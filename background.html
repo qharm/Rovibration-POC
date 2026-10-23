@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background &mdash; Rovibration-POC 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"macros": {"tens": ["\\boldsymbol{#1}", 1], "op": ["\\hat{#1}", 1], "optens": ["\\hat{\\boldsymbol{#1}}", 1], "tr": "\\operatorname{tr}", "Natom": "N_{\\mathrm{atom}}", "Nvib": "N_{\\mathrm{vib}}", "rzvec": "\\tens{r}^{0}", "Izvec": "\\tens{I}^{0}", "Izmhalf": "\\left(\\Izvec\\right)^{-1/2}", "Lvec": "\\tens{L}", "Mvec": "\\tens{M}", "zetavec": "\\tens{\\zeta}", "avec": "\\tens{a}", "Bvec": "\\tens{B}", "gammavec": "\\tens{\\gamma}", "omegavec": "\\tens{\\omega}", "vvec": "\\tens{v}", "midx": "\\tens{m}", "rvec": "\\optens{r}", "rhovec": "\\optens{\\rho}", "Ivec": "\\optens{I}", "Ieffvec": "\\optens{I}'", "qvec": "\\optens{Q}", "pvec": "\\optens{P}", "jvec": "\\optens{J}", "pivec": "\\optens{\\pi}", "muvec": "\\optens{\\mu}", "bvec": "\\optens{b}", "rop": "\\op{r}", "Iop": "\\op{I}", "Ieffop": "\\op{I}'", "qop": "\\op{Q}", "pop": "\\op{P}", "jop": "\\op{J}", "piop": "\\op{\\pi}", "muop": "\\op{\\mu}", "aop": "\\op{a}", "Vop": "\\op{V}", "Hvib": "\\op{H}_{\\mathrm{vib}}", "HRR": "\\op{H}_{\\mathrm{RR}}", "HHO": "\\op{H}_{\\mathrm{HO}}", "HvibCor": "\\op{H}_{\\mathrm{vibCor}}", "Hrovib": "\\op{H}_{\\mathrm{rovib}}", "Vharm": "\\op{V}_{\\mathrm{harm}}", "Vanharm": "\\op{V}_{\\mathrm{anharm}}"}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Rovibration-POC" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Rovibration-POC
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Background</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notation">Notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#problem-specification">Problem Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#definitions">Definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deriving-the-rovibrational-hamiltonian">Deriving the Rovibrational Hamiltonian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#matrix-elements">Matrix Elements</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Rovibration-POC</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Background</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/background.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="background">
+<h1>Background<a class="headerlink" href="#background" title="Link to this heading"></a></h1>
+<p>These are notes on the rovibrational theory used by DOI: 10.1063/5.0333947.</p>
+<section id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Link to this heading"></a></h2>
+<p>The following typesetting conventions are used:</p>
+<ul class="simple">
+<li><p>Scalars are in normal font, e.g., <span class="math notranslate nohighlight">\(\Natom\)</span>.</p></li>
+<li><p>Tensors (of rank one or higher) are bold, e.g., <span class="math notranslate nohighlight">\(\zetavec\)</span>. When a tensor is
+written in element form the elements are scalars, and are therefore in
+normal font, e.g., <span class="math notranslate nohighlight">\(\zeta^\alpha_{i,j}\)</span>.</p></li>
+<li><p>Operators have hats, e.g., <span class="math notranslate nohighlight">\(\Hvib\)</span>. Tensor operators are also bold, e.g.,
+<span class="math notranslate nohighlight">\(\jvec\)</span>, but their elements are not, e.g., <span class="math notranslate nohighlight">\(\jop_\alpha\)</span>.</p></li>
+<li><p>Anything that depends on the nuclear coordinates or momenta is an operator.</p></li>
+</ul>
+</section>
+<section id="problem-specification">
+<h2>Problem Specification<a class="headerlink" href="#problem-specification" title="Link to this heading"></a></h2>
+<p>We assume we have a non-linear molecule with <span class="math notranslate nohighlight">\(\Natom\)</span> atoms. This means that
+the molecule has <span class="math notranslate nohighlight">\(\Nvib = (3\Natom - 6)\)</span> vibrational degrees of freedom.
+We will define a molecular reference frame shortly. In the molecular reference
+frame, <span class="math notranslate nohighlight">\(\rvec\)</span> is the vector containing the Cartesian coordinates of all <span class="math notranslate nohighlight">\(\Natom\)</span>
+atoms such that <span class="math notranslate nohighlight">\(\rvec_i\)</span> is the position of the <span class="math notranslate nohighlight">\(i\)</span>th atom in
+the molecule. Similarly, <span class="math notranslate nohighlight">\(\Mvec\)</span> is the diagonal matrix of atomic masses such
+that <span class="math notranslate nohighlight">\(M_{ii}\)</span> is the mass of the <span class="math notranslate nohighlight">\(i\)</span>th atom.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Vop\left(\rvec\right)\)</span> is the potential energy surface (PES) of the
+molecule.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rzvec\)</span> is a minimum energy geometry on the PES. The molecular
+reference frame is defined so that its origin is the center of mass of
+<span class="math notranslate nohighlight">\(\rzvec\)</span> and its axes are aligned with the principal axes of
+inertia of <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rhovec = \rvec - \rzvec\)</span> is the displacement of the
+molecule from its minimum energy geometry. Note that
+<span class="math notranslate nohighlight">\(\rhovec\)</span> satisfy the Eckart conditions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Lvec\)</span> is the the transformation matrix that diagonalizes the
+Hessian of the potential energy surface at the minimum energy geometry.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\qvec = \Lvec^T\Mvec^{1/2}\rhovec\)</span> are the mass-
+weighted normal coordinates of the molecule, which are the vibrational
+degrees of freedom of the molecule.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pvec = -i\hbar\frac{\partial}{\partial \qvec}\)</span> are the
+vibrational momenta of the molecule, which are conjugate to the
+vibrational degrees of freedom of the molecule.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\jvec\)</span> is the total angular momentum of the molecule.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\pivec\)</span> is the vibrational angular momentum of the molecule</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Ivec\)</span> is the inertia tensor of the molecule with coordinates
+defined by <span class="math notranslate nohighlight">\(\rvec\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Izvec\)</span> is the inertia tensor of the molecule with coordinates
+defined by <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Ieffvec\)</span> is the effective inertia tensor of the molecule with
+coordinates defined by <span class="math notranslate nohighlight">\(\rvec\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\muvec\)</span> is the inverse of the effective inertia tensor of the
+molecule with coordinates defined by <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\zetavec\)</span> is the Coriolis coupling tensor.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\gammavec\)</span> are the rotation constants of the molecule.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\omegavec\)</span> are the harmonic frequencies of the vibrational
+degrees of freedom of the molecule.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Hvib\)</span> is the vibrational Hamiltonian of the molecule.</p></li>
+</ul>
+</section>
+<section id="definitions">
+<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h2>
+<p><span class="math notranslate nohighlight">\(\zetavec\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\zeta_{i,j}^\alpha = \sum_{k=1}^{\Natom}
+    \left(\Lvec_{k,i}\times\Lvec_{k,j}\right)_\alpha\]</div>
+<p><span class="math notranslate nohighlight">\(\Ivec\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\Iop_{\alpha,\beta} = \sum_{i=1}^{\Natom} M_i
+    \left(\left(\rvec_i\cdot\rvec_i\right)\delta_{\alpha,\beta} -
+          \rop_{i,\alpha}\rop_{i,\beta}\right)\]</div>
+<p><span class="math notranslate nohighlight">\(\Izvec\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[I^0_{\alpha,\alpha} = \frac{\hbar^2}{2\gamma_\alpha}\]</div>
+<p><span class="math notranslate nohighlight">\(\Ieffvec\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\Ieffop_{\alpha,\beta} = \Iop_{\alpha,\beta} -
+   \sum_{i,j,k}^{\Nvib} \zeta^{\alpha}_{i,k}\zeta^\beta_{j,k}
+   \qop_i \qop_j\]</div>
+<p><span class="math notranslate nohighlight">\(\pivec\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\piop_\alpha = \sum_{i,j}^{\Nvib} \zeta_{i,j}^\alpha \qop_i \pop_j\]</div>
+</section>
+<section id="deriving-the-rovibrational-hamiltonian">
+<h2>Deriving the Rovibrational Hamiltonian<a class="headerlink" href="#deriving-the-rovibrational-hamiltonian" title="Link to this heading"></a></h2>
+<p><span class="math notranslate nohighlight">\(\Hvib\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\Hvib =
+   \frac{1}{2}\left(\jvec-\pivec\right)^T\muvec\left(\jvec-\pivec\right) +
+   \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 +
+   \Vop(\qvec) -
+   \frac{\hbar^2}{8}\tr(\muvec)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\frac{\hbar^2}{8}\tr(\muvec)\)</span> is the Watson term for a
+non-linear molecule and is a type of centrifugal distortion term.</p>
+<p><span class="math notranslate nohighlight">\(\Vop(\qvec)\)</span> is then expanded as a Taylor series about the minimum
+energy geometry (which means the zeroth and 1st order terms are zero).
+Truncating at the quartic term gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Vop(\qvec) \approx  + \Vharm + \Vanharm\\
+\Vharm \equiv&amp; \frac{1}{2}\sum_{i}^{\Nvib}\omega_i^2 \qop_i^2 \\
+\Vanharm \equiv&amp; \frac{1}{6}\sum_{i,j,k}^{\Nvib}g_{i,j,k}
+                   \qop_i \qop_j \qop_k +
+           \frac{1}{24}\sum_{i,j,k,\ell}^{\Nvib}F_{i,j,k,\ell}
+             \qop_i \qop_j \qop_k \qop_\ell\end{split}\]</div>
+<p>where we used the fact that the harmonic force constants are diagonal in
+mass-weighted coordinates and defined the third- and fourth-order force
+constants as <span class="math notranslate nohighlight">\(g_{i,j,k}\)</span> and <span class="math notranslate nohighlight">\(F_{i,j,k,\ell}\)</span> respectively.</p>
+<p>For convenience and consistency, <span class="math notranslate nohighlight">\(\muvec\)</span> is also expanded as a
+fourth-order Taylor series about the minimum energy geometry:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\muvec \approx&amp; \sum_{n=0}^{4}\muvec^{(n)}\\
+\muvec^{(n)} =&amp; c_n \Izmhalf \bvec^n \Izmhalf\\
+c_n =&amp; (n+1)\left(-\frac{1}{2}\right)^n\\
+\bvec =&amp; \sum_{k=1}^{\Nvib} \Izmhalf \avec_k \Izmhalf \qop_k\\
+a_{k,\alpha\beta} =&amp;
+   2 \sum_{\ell=1}^{\Natom} \sum_{m,n=1}^{3}
+   \left(\delta_{\alpha\beta}\delta_{mn} -
+         \delta_{\alpha n}\delta_{\beta m}\right)
+   \sqrt{M_\ell}\,
+   r_{\ell,m}^0
+   L_{\ell,k,n}\end{split}\]</div>
+<p>Inserting the Taylor expansions of <span class="math notranslate nohighlight">\(\Vop(\qvec)\)</span> and <span class="math notranslate nohighlight">\(\muvec\)</span> into the
+vibrational Hamiltonian, and retaining terms up to fourth order in <span class="math notranslate nohighlight">\(\qvec\)</span>
+gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Hvib =&amp;
+  \HRR
+  + \HHO + \Vanharm  + \HvibCor + \Hrovib +
+  \mathcal{O}(\qvec^5)\\
+\HHO \equiv&amp;  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\\
+\HvibCor\equiv&amp; \frac{1}{2}\sum_{n=0}^{2}
+  \pivec^T\muvec^{(n)}\pivec -
+  \sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\\
+\Hrovib \equiv&amp; \frac{1}{2}\sum_{n=1}^{4}
+  \jvec^T\muvec^{(n)}\jvec -
+  \frac{1}{2}\sum_{n=0}^{3}\jvec^T\muvec^{(n)}\pivec-
+  \frac{1}{2}\sum_{n=0}^{3}\pivec^T\muvec^{(n)}\jvec\\
+  \mathcal{O}(\qvec^5) =&amp;
+         \frac{1}{2}\sum_{n=3}^{4}\pivec^T\muvec^{(n)}\pivec -
+         \frac{1}{2}\jvec^T\muvec^{(4)}\pivec -
+         \frac{1}{2}\pivec^T\muvec^{(4)}\jvec\\\end{split}\]</div>
+<p>The rigid rotor Hamiltonian is then defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\HRR \equiv&amp; \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\\
+            =&amp; \frac{1}{2}\sum_{i,j=1}^{3}
+               \jop_i\muop^{(0)}_{i,j}\jop_j\\
+            =&amp; \frac{1}{2}\sum_{i=1}^{3}
+               \frac{\jop_i^2}{I^0_{i,i}}\end{split}\]</div>
+<p>Letting <span class="math notranslate nohighlight">\(\alpha = \frac{1}{2I^0_{xx}}\)</span>,
+<span class="math notranslate nohighlight">\(\beta = \frac{1}{2I^0_{yy}}\)</span>, and
+<span class="math notranslate nohighlight">\(\gamma = \frac{1}{2I^0_{zz}}\)</span>, we can rewrite</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\HRR =&amp;\frac{1}{2}\left[\alpha \jop_x^2 + \beta \jop_y^2 +
+                         \gamma \jop_z^2\right]\\
+       =&amp;\frac{\alpha+\beta}{4}\left(\jop_x^2 + \jop_y^2\right) +
+         \frac{\alpha-\beta}{4}\left(\jop_x^2 - \jop_y^2\right) +
+         \frac{\gamma \jop_z^2}{2}\\
+       =&amp;\frac{\alpha+\beta}{4}\left(\jop^2 - \jop_z^2\right) +
+         \frac{\alpha-\beta}{8}\left(\jop_+^2 + \jop_-^2\right) +
+         \frac{\gamma \jop_z^2}{2}\end{split}\]</div>
+<p>The remaining Hamiltonians are easier to work with once
+<span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span> and <span class="math notranslate nohighlight">\(\pivec\)</span> are written explicitly in terms
+of <span class="math notranslate nohighlight">\(\qvec\)</span> and <span class="math notranslate nohighlight">\(\pvec\)</span>. In the rest of this section
+<span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are Cartesian indices (as in the Definitions
+section), not the constants used for <span class="math notranslate nohighlight">\(\HRR\)</span>. Defining</p>
+<div class="math notranslate nohighlight">
+\[\Bvec_k \equiv \Izmhalf \avec_k \Izmhalf\]</div>
+<p>so that <span class="math notranslate nohighlight">\(\bvec = \sum_{k}\Bvec_k \qop_k\)</span>, and using the fact that
+the <span class="math notranslate nohighlight">\(\qop_k\)</span> commute with one another, <span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span> is a
+polynomial of degree <span class="math notranslate nohighlight">\(n\)</span> in <span class="math notranslate nohighlight">\(\qvec\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\muop^{(n)}_{\alpha\beta} =&amp;
+   \sum_{\midx}\eta^{(n)}_{\alpha\beta,\midx}\qop^{\midx}\\
+\eta^{(n)}_{\alpha\beta,\midx} \equiv&amp; c_n\left[
+   \Izmhalf
+   \Bvec_{m_1}\Bvec_{m_2}\cdots\Bvec_{m_n}
+   \Izmhalf\right]_{\alpha\beta}\\
+\qop^{\midx} \equiv&amp; \qop_{m_1}\qop_{m_2}\cdots \qop_{m_n}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\midx = \left(m_1, m_2, \ldots, m_n\right)\)</span> is a multi-index
+and <span class="math notranslate nohighlight">\(\sum_{\midx}\)</span> runs each <span class="math notranslate nohighlight">\(m_t\)</span> from 1 to
+<span class="math notranslate nohighlight">\(\Nvib\)</span>. For <span class="math notranslate nohighlight">\(n=0\)</span>, <span class="math notranslate nohighlight">\(\qop^{\midx} = 1\)</span> and
+<span class="math notranslate nohighlight">\(\eta^{(0)}_{\alpha\beta} = \delta_{\alpha\beta}/I^0_{\alpha\alpha}\)</span>.
+Two properties are used below:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\avec_k\)</span> is symmetric (a consequence of the Eckart conditions),
+so <span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span> is symmetric.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\zeta^\alpha_{i,j} = -\zeta^\alpha_{j,i}\)</span>, so
+<span class="math notranslate nohighlight">\(\zeta^\alpha_{i,i} = 0\)</span> and each <span class="math notranslate nohighlight">\(\piop_\alpha\)</span> is Hermitian.</p></li>
+</ul>
+<p>The vibrational Coriolis Hamiltonian is purely vibrational. Writing out the
+matrix products and inserting the expansions above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\HvibCor =&amp; \frac{1}{2}\sum_{n=0}^{2}\sum_{\alpha,\beta=1}^{3}
+   \piop_\alpha\muop^{(n)}_{\alpha\beta}\piop_\beta -
+   \frac{\hbar^2}{8}\sum_{n=0}^{4}\sum_{\alpha=1}^{3}
+   \muop^{(n)}_{\alpha\alpha}\\
+  =&amp; \frac{1}{2}\sum_{n=0}^{2}\sum_{\alpha,\beta=1}^{3}
+   \sum_{i,j,k,\ell=1}^{\Nvib}\sum_{\midx}
+   \zeta^\alpha_{i,j}\zeta^\beta_{k,\ell}
+   \eta^{(n)}_{\alpha\beta,\midx}
+   \qop_i \pop_j \qop^{\midx} \qop_k \pop_\ell -
+   \frac{\hbar^2}{8}\sum_{n=0}^{4}\sum_{\alpha=1}^{3}\sum_{\midx}
+   \eta^{(n)}_{\alpha\alpha,\midx}\qop^{\midx}\end{split}\]</div>
+<p>The operator ordering must be kept, because <span class="math notranslate nohighlight">\(\pop_j\)</span> does not commute
+with <span class="math notranslate nohighlight">\(\qop^{\midx}\qop_k\)</span>. The <span class="math notranslate nohighlight">\(n=0\)</span> terms reduce to</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{2}\sum_{\alpha=1}^{3}
+   \frac{\piop_\alpha^2}{I^0_{\alpha\alpha}} -
+\frac{\hbar^2}{8}\sum_{\alpha=1}^{3}
+   \frac{1}{I^0_{\alpha\alpha}}\]</div>
+<p>the second of which is a constant energy shift.</p>
+<p>For the rovibrational coupling Hamiltonian, note that the molecule-fixed
+components of <span class="math notranslate nohighlight">\(\jvec\)</span> act only on the rotational coordinates, so they
+commute with <span class="math notranslate nohighlight">\(\qvec\)</span>, <span class="math notranslate nohighlight">\(\pvec\)</span>, and therefore
+<span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span> and <span class="math notranslate nohighlight">\(\pivec\)</span>. Combined with the symmetry of
+<span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span>, this lets the two Coriolis terms be combined:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\pivec^T\muvec^{(n)}\jvec =&amp;
+   \sum_{\alpha,\beta=1}^{3}
+   \piop_\alpha\muop^{(n)}_{\alpha\beta}\jop_\beta
+ = \sum_{\alpha,\beta=1}^{3}
+   \jop_\alpha\piop_\beta\muop^{(n)}_{\alpha\beta}\\
+\jvec^T\muvec^{(n)}\pivec + \pivec^T\muvec^{(n)}\jvec =&amp;
+   \sum_{\alpha,\beta=1}^{3}\jop_\alpha\left(
+     \muop^{(n)}_{\alpha\beta}\piop_\beta +
+     \piop_\beta\muop^{(n)}_{\alpha\beta}\right)\end{split}\]</div>
+<p>where the first line relabeled <span class="math notranslate nohighlight">\(\alpha\leftrightarrow\beta\)</span>. Inserting
+this and the expansions above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Hrovib =&amp; \frac{1}{2}\sum_{n=1}^{4}\sum_{\alpha,\beta=1}^{3}
+   \muop^{(n)}_{\alpha\beta}\jop_\alpha \jop_\beta -
+   \frac{1}{2}\sum_{n=0}^{3}\sum_{\alpha,\beta=1}^{3}\jop_\alpha\left(
+     \muop^{(n)}_{\alpha\beta}\piop_\beta +
+     \piop_\beta\muop^{(n)}_{\alpha\beta}\right)\\
+  =&amp; \frac{1}{2}\sum_{n=1}^{4}\sum_{\alpha,\beta=1}^{3}\sum_{\midx}
+   \eta^{(n)}_{\alpha\beta,\midx}\qop^{\midx}\jop_\alpha \jop_\beta\\
+   &amp;- \frac{1}{2}\sum_{n=0}^{3}\sum_{\alpha,\beta=1}^{3}
+   \sum_{k,\ell=1}^{\Nvib}\sum_{\midx}
+   \zeta^\beta_{k,\ell}\eta^{(n)}_{\alpha\beta,\midx}
+   \left(\qop^{\midx}\qop_k \pop_\ell + \qop_k \pop_\ell \qop^{\midx}\right)
+   \jop_\alpha\end{split}\]</div>
+<p>Because <span class="math notranslate nohighlight">\(\muvec^{(0)}\)</span> is a diagonal constant, the <span class="math notranslate nohighlight">\(n=0\)</span>
+Coriolis term reduces to</p>
+<div class="math notranslate nohighlight">
+\[-\sum_{\alpha=1}^{3}
+   \frac{\jop_\alpha\piop_\alpha}{I^0_{\alpha\alpha}}\]</div>
+</section>
+<section id="matrix-elements">
+<h2>Matrix Elements<a class="headerlink" href="#matrix-elements" title="Link to this heading"></a></h2>
+<p>Let <span class="math notranslate nohighlight">\(\ket{v}\)</span> be an eigenfunction of <span class="math notranslate nohighlight">\(\HHO\)</span> with eigenvalue
+<span class="math notranslate nohighlight">\(E_v=\hbar\omega_v\)</span> and <span class="math notranslate nohighlight">\(\ket{J,K}\)</span> be an eigenfunction of
+<span class="math notranslate nohighlight">\(\jop^2\)</span>
+and <span class="math notranslate nohighlight">\(\jop_z\)</span> with eigenvalues <span class="math notranslate nohighlight">\(\hbar^2 J(J+1)\)</span> and
+<span class="math notranslate nohighlight">\(K\hbar\)</span> respectively (here <span class="math notranslate nohighlight">\(K\)</span> is the projection of
+<span class="math notranslate nohighlight">\(\jvec\)</span> on to the molecule’s z-axis). A basis for the rovibrational
+Hamiltonian is then given by the direct
+product of one <span class="math notranslate nohighlight">\(\ket{v}\)</span> per vibrational degree of freedom and
+<span class="math notranslate nohighlight">\(\ket{J,K}\)</span>, i.e., <span class="math notranslate nohighlight">\(\ket{\vvec,J,K}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\HRR\)</span> is not diagonal in this basis, because the rigid rotor
+eigenstates are linear combinations of the <span class="math notranslate nohighlight">\(\ket{J,K}\)</span> states. The matrix
+elements of <span class="math notranslate nohighlight">\(\HRR\)</span> in this basis are given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =&amp;
+   \frac{1}{2}\delta_{\vvec',\vvec}
+   \braket{J', K'\mid\frac{\alpha+\beta}{4}\left(\jop^2 - \jop_z^2\right) +
+        \frac{\alpha-\beta}{8}\left(\jop_+^2 + \jop_-^2\right) +
+        \frac{\gamma \jop_z^2}{2}\mid J, K}\\\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\HHO\)</span> is diagonal in this basis with matrix elements:</p>
+<div class="math notranslate nohighlight">
+\[\bra{\vvec',K'}\HHO\ket{\vvec,K} =
+   \delta_{\vvec',\vvec}\delta_{K',K}
+   \sum_{i=1}^{\Nvib}\hbar\omega_{v_i}\]</div>
+<p><span class="math notranslate nohighlight">\(\HvibCor\)</span> and <span class="math notranslate nohighlight">\(\Hrovib\)</span> are sums of products of
+<span class="math notranslate nohighlight">\(\qop_k\)</span>, <span class="math notranslate nohighlight">\(\pop_k\)</span>, and <span class="math notranslate nohighlight">\(\jop_\alpha\)</span>, so their matrix
+elements follow from those of the individual operators.</p>
+<p>In mass-weighted normal coordinates
+<span class="math notranslate nohighlight">\(\qop_k = \sqrt{\frac{\hbar}{2\omega_k}}
+\left(\aop_k + \aop_k^\dagger\right)\)</span> and
+<span class="math notranslate nohighlight">\(\pop_k = i\sqrt{\frac{\hbar\omega_k}{2}}
+\left(\aop_k^\dagger - \aop_k\right)\)</span>,
+where <span class="math notranslate nohighlight">\(\aop_k\)</span> and <span class="math notranslate nohighlight">\(\aop_k^\dagger\)</span> are the ladder operators of
+mode <span class="math notranslate nohighlight">\(k\)</span>. The single-mode matrix elements are therefore:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{v'_k\mid \qop_k\mid v_k} =&amp; \sqrt{\frac{\hbar}{2\omega_k}}
+   \left(\sqrt{v_k+1}\,\delta_{v'_k,v_k+1} +
+         \sqrt{v_k}\,\delta_{v'_k,v_k-1}\right)\\
+\braket{v'_k\mid \pop_k\mid v_k} =&amp; i\sqrt{\frac{\hbar\omega_k}{2}}
+   \left(\sqrt{v_k+1}\,\delta_{v'_k,v_k+1} -
+         \sqrt{v_k}\,\delta_{v'_k,v_k-1}\right)\end{split}\]</div>
+<p>Operators on different modes commute, so the matrix element of a product of
+<span class="math notranslate nohighlight">\(\qop\)</span> and <span class="math notranslate nohighlight">\(\pop\)</span> operators factors into one matrix element per
+mode:</p>
+<div class="math notranslate nohighlight">
+\[\braket{\vvec'\mid \op{O}_1 \op{O}_2\cdots \op{O}_p\mid\vvec} =
+   \prod_{k=1}^{\Nvib}\braket{v'_k\mid \op{O}^{(k)}\mid v_k}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\op{O}^{(k)}\)</span> is the product, in the original order, of the
+factors that act on mode <span class="math notranslate nohighlight">\(k\)</span> (the identity if there are none).
+Single-mode products are evaluated by inserting
+<span class="math notranslate nohighlight">\(\sum_{v''_k}\ket{v''_k}\bra{v''_k}\)</span> between factors. Each factor changes
+one quantum number by <span class="math notranslate nohighlight">\(\pm 1\)</span>, so a product of <span class="math notranslate nohighlight">\(p\)</span> factors only
+connects states with
+<span class="math notranslate nohighlight">\(\sum_k\left|v'_k - v_k\right| \le p\)</span> and
+<span class="math notranslate nohighlight">\(\sum_k\left(v'_k - v_k\right) \equiv p \pmod 2\)</span>.</p>
+<p>The molecule-fixed components of <span class="math notranslate nohighlight">\(\jvec\)</span> obey the anomalous commutation
+relation <span class="math notranslate nohighlight">\(\left[\jop_x, \jop_y\right] = -i\hbar \jop_z\)</span>. As a result
+<span class="math notranslate nohighlight">\(\jop_\pm = \jop_x \pm i\jop_y\)</span> lower and raise <span class="math notranslate nohighlight">\(K\)</span> respectively
+(the reverse of the space-fixed case):</p>
+<div class="math notranslate nohighlight">
+\[\jop_\pm\ket{J,K} = \hbar C^\mp_{J,K}\ket{J,K\mp1},\qquad
+C^\pm_{J,K} \equiv \sqrt{J(J+1) - K(K\pm1)}\]</div>
+<p>This does not affect <span class="math notranslate nohighlight">\(\HRR\)</span>, which only contains
+<span class="math notranslate nohighlight">\(\jop_+^2 + \jop_-^2\)</span>, but it fixes the signs below. Using
+<span class="math notranslate nohighlight">\(\jop_x = \frac{1}{2}\left(\jop_+ + \jop_-\right)\)</span> and
+<span class="math notranslate nohighlight">\(\jop_y = \frac{1}{2i}\left(\jop_+ - \jop_-\right)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{J',K'\mid \jop_x\mid J,K} =&amp; \frac{\hbar}{2}\delta_{J',J}
+   \left(C^+_{J,K}\,\delta_{K',K+1} + C^-_{J,K}\,\delta_{K',K-1}\right)\\
+\braket{J',K'\mid \jop_y\mid J,K} =&amp; \frac{i\hbar}{2}\delta_{J',J}
+   \left(C^+_{J,K}\,\delta_{K',K+1} - C^-_{J,K}\,\delta_{K',K-1}\right)\\
+\braket{J',K'\mid \jop_z\mid J,K} =&amp; \hbar K\,\delta_{J',J}\delta_{K',K}\end{split}\]</div>
+<p>Every <span class="math notranslate nohighlight">\(\jop_\alpha\)</span> conserves <span class="math notranslate nohighlight">\(J\)</span>, so products are evaluated within
+a single <span class="math notranslate nohighlight">\(J\)</span> block:</p>
+<div class="math notranslate nohighlight">
+\[\braket{J,K'\mid \jop_\alpha \jop_\beta\mid J,K} =
+   \sum_{K''=K-1}^{K+1}\braket{J,K'\mid \jop_\alpha\mid J,K''}
+                       \braket{J,K''\mid \jop_\beta\mid J,K}\]</div>
+<p>which is nonzero only for <span class="math notranslate nohighlight">\(\left|K'-K\right| \le 2\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(\HvibCor\)</span> is purely vibrational, so it is diagonal in <span class="math notranslate nohighlight">\(J\)</span> and
+<span class="math notranslate nohighlight">\(K\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{\vvec',J',K'\mid \HvibCor\mid\vvec,J,K} =&amp;
+   \delta_{J',J}\delta_{K',K}\left[
+   \frac{1}{2}\sum_{n=0}^{2}\sum_{\alpha,\beta=1}^{3}
+   \sum_{i,j,k,\ell=1}^{\Nvib}\sum_{\midx}
+   \zeta^\alpha_{i,j}\zeta^\beta_{k,\ell}
+   \eta^{(n)}_{\alpha\beta,\midx}
+   \braket{\vvec'\mid \qop_i \pop_j \qop^{\midx} \qop_k \pop_\ell
+           \mid\vvec}\right.\\
+   &amp;\left.- \frac{\hbar^2}{8}\sum_{n=0}^{4}\sum_{\alpha=1}^{3}
+   \sum_{\midx}\eta^{(n)}_{\alpha\alpha,\midx}
+   \braket{\vvec'\mid \qop^{\midx}\mid\vvec}\right]\end{split}\]</div>
+<p>The <span class="math notranslate nohighlight">\(n\)</span>th Coriolis term is a product of <span class="math notranslate nohighlight">\(n+4\)</span> vibrational
+operators and the <span class="math notranslate nohighlight">\(n\)</span>th Watson term is a product of <span class="math notranslate nohighlight">\(n\)</span>, which
+sets the range of <span class="math notranslate nohighlight">\(\vvec'\)</span> each term couples to.</p>
+<p><span class="math notranslate nohighlight">\(\Hrovib\)</span> couples vibration and rotation, and its matrix elements
+factor into a vibrational and a rotational part:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\braket{\vvec',J',K'\mid \Hrovib\mid\vvec,J,K} =&amp;
+   \delta_{J',J}\left[
+   \frac{1}{2}\sum_{n=1}^{4}\sum_{\alpha,\beta=1}^{3}\sum_{\midx}
+   \eta^{(n)}_{\alpha\beta,\midx}
+   \braket{\vvec'\mid \qop^{\midx}\mid\vvec}
+   \braket{J,K'\mid \jop_\alpha \jop_\beta\mid J,K}\right.\\
+   &amp;- \frac{1}{2}\sum_{n=0}^{3}\sum_{\alpha,\beta=1}^{3}
+   \sum_{k,\ell=1}^{\Nvib}\sum_{\midx}
+   \zeta^\beta_{k,\ell}\eta^{(n)}_{\alpha\beta,\midx}\\
+   &amp;\left.\times\braket{\vvec'\mid
+      \qop^{\midx}\qop_k \pop_\ell + \qop_k \pop_\ell \qop^{\midx}
+      \mid\vvec}
+   \braket{J,K'\mid \jop_\alpha\mid J,K}\right]\end{split}\]</div>
+<p>The first (centrifugal distortion) term couples <span class="math notranslate nohighlight">\(K\)</span> to
+<span class="math notranslate nohighlight">\(K, K\pm1, K\pm2\)</span>. The second (Coriolis) term couples <span class="math notranslate nohighlight">\(K\)</span> to
+<span class="math notranslate nohighlight">\(K, K\pm1\)</span>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Rovibration-POC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, QHARM Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
