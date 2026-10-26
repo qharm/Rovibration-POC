@@ -42,34 +42,35 @@ We will define a molecular reference frame shortly. In the molecular reference
 frame, |rvec| is the vector containing the Cartesian coordinates of all |Natom| 
 atoms such that :math:`\rvec_i` is the position of the :math:`i`\ th atom in 
 the molecule. Similarly, |Mvec| is the diagonal matrix of atomic masses such 
-that :math:`M_{ii}` is the mass of the :math:`i`\ th atom.
+that :math:`M_{ii}` is the mass of the :math:`i`\ th atom. |Ivec| is the inertia
+tensor of the molecule with coordinates defined by |rvec|.
 
+We assume that :math:`\Vop\left(\rvec\right)` is the potential energy surface 
+(PES) of the molecule and that |rzvec| is a minimum energy geometry on the PES. 
+The molecular reference frame is defined so that its origin is the center of 
+mass of |rzvec| and its axes are aligned with the principal axes of inertia of 
+|rzvec|. To satisfy the Eckart conditions, we will use displacements from 
+|rzvec| to define the geometry of the molecule instead of |rvec|. 
+The displacements are defined as :math:`\rhovec = \rvec - \rzvec`.
 
-- :math:`\Vop\left(\rvec\right)` is the potential energy surface (PES) of the
-  molecule.
-- |rzvec| is a minimum energy geometry on the PES. The molecular
-  reference frame is defined so that its origin is the center of mass of
-  |rzvec| and its axes are aligned with the principal axes of
-  inertia of |rzvec|.
-- :math:`\rhovec = \rvec - \rzvec` is the displacement of the
-  molecule from its minimum energy geometry. Note that
-  |rhovec| satisfy the Eckart conditions.
-- |Lvec| is the the transformation matrix that diagonalizes the
-  Hessian of the potential energy surface at the minimum energy geometry.
-- :math:`\qvec = \Lvec^T\Mvec^{1/2}\rhovec` are the mass-
-  weighted normal coordinates of the molecule, which are the vibrational
-  degrees of freedom of the molecule.
-- :math:`\pvec = -i\hbar\frac{\partial}{\partial \qvec}` are the
-  vibrational momenta of the molecule, which are conjugate to the
-  vibrational degrees of freedom of the molecule.
-- |jvec| is the total angular momentum of the molecule.
-- |pivec| is the vibrational angular momentum of the molecule
-- |Ivec| is the inertia tensor of the molecule with coordinates
-  defined by |rvec|.
-- |Izvec| is the inertia tensor of the molecule with coordinates
-  defined by |rzvec|.
+The orientation and location of the molecular reference frame with respect to 
+the space-fixed reference frame can be fixed by requiring the center of mass to
+be at the origin of the space-fixed reference frame and the Hessian of the PES 
+at |rzvec| to be diagonal in mass-weighted Cartesian coordinates. |Lvec| is the 
+transformation 
+matrix that diagonalizes the Hessian and |Izvec| is the diagonal inertia tensor 
+of the molecule at |rzvec|. :math:`\qvec = \Lvec^T\Mvec^{1/2}\rhovec` are the 
+resulting mass-weighted normal coordinates of the molecule describing the 
+vibrational degrees of freedom. The corresponding vibrational momenta are
+:math:`\pvec = -i\hbar\frac{\partial}{\partial \qvec}`. As the molecule vibrates
+and rotations it will be assumed to have total angular momentum |jvec| and
+vibrational angular momentum |pivec|. 
+
+Other quantities used in the rovibrational Hamiltonian are:
+
 - |Ieffvec| is the effective inertia tensor of the molecule with
-  coordinates defined by |rvec|.
+  coordinates defined by |rvec|; it is the difference between |Ivec| and the
+  vibrational contribution to the inertia tensor.
 - |muvec| is the inverse of the effective inertia tensor of the
   molecule with coordinates defined by |rzvec|.
 - |zetavec| is the Coriolis coupling tensor.
@@ -140,7 +141,7 @@ Truncating at the quartic term gives:
 
 .. math::
 
-    \Vop(\qvec) \approx  + \Vharm + \Vanharm\\
+    \Vop(\qvec) \approx&  \Vharm + \Vanharm\\
     \Vharm \equiv& \frac{1}{2}\sum_{i}^{\Nvib}\omega_i^2 \qop_i^2 \\
     \Vanharm \equiv& \frac{1}{6}\sum_{i,j,k}^{\Nvib}g_{i,j,k}
                        \qop_i \qop_j \qop_k +
@@ -196,30 +197,31 @@ The rigid rotor Hamiltonian is then defined as:
 .. math::
 
    \HRR \equiv& \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\\
-               =& \frac{1}{2}\sum_{i,j=1}^{3}
-                  \jop_i\muop^{(0)}_{i,j}\jop_j\\
-               =& \frac{1}{2}\sum_{i=1}^{3}
-                  \frac{\jop_i^2}{I^0_{i,i}}
+               =& \frac{1}{2}\sum_{\alpha,\beta=1}^{3}
+                  \jop_\alpha\muop^{(0)}_{\alpha,\beta}\jop_\beta\\
+               =& \frac{1}{2}\sum_{\alpha=1}^{3}
+                  \frac{\jop_\alpha^2}{I^0_{\alpha,\alpha}}
 
-Letting :math:`\alpha = \frac{1}{2I^0_{xx}}`,
-:math:`\beta = \frac{1}{2I^0_{yy}}`, and
-:math:`\gamma = \frac{1}{2I^0_{zz}}`, we can rewrite
+where we used the fact that :math:`\muvec^{(0)}` is diagonal in the molecule-
+fixed frame. Using :math:`\gamma_x = \frac{\hbar^2}{2I^0_{xx}}`,
+:math:`\gamma_y = \frac{\hbar^2}{2I^0_{yy}}`, and
+:math:`\gamma_z = \frac{\hbar^2}{2I^0_{zz}}`, we can rewrite:
 
 .. math::
-   \HRR =&\frac{1}{2}\left[\alpha \jop_x^2 + \beta \jop_y^2 +
-                            \gamma \jop_z^2\right]\\
-          =&\frac{\alpha+\beta}{4}\left(\jop_x^2 + \jop_y^2\right) +
-            \frac{\alpha-\beta}{4}\left(\jop_x^2 - \jop_y^2\right) +
-            \frac{\gamma \jop_z^2}{2}\\
-          =&\frac{\alpha+\beta}{4}\left(\jop^2 - \jop_z^2\right) +
-            \frac{\alpha-\beta}{8}\left(\jop_+^2 + \jop_-^2\right) +
-            \frac{\gamma \jop_z^2}{2}
+   \HRR =&\frac{1}{\hbar^2}\left[\gamma_x \jop_x^2 + \gamma_y \jop_y^2 +
+                                  \gamma_z \jop_z^2\right]\\
+          =&\frac{1}{\hbar^2}\left[
+            \frac{\gamma_x+\gamma_y}{2}\left(\jop_x^2 + \jop_y^2\right) +
+            \frac{\gamma_x-\gamma_y}{2}\left(\jop_x^2 - \jop_y^2\right) +
+            \gamma_z \jop_z^2\right]\\
+          =&\frac{1}{\hbar^2}\left[
+            \frac{\gamma_x+\gamma_y}{2}\left(\jop^2 - \jop_z^2\right) +
+            \frac{\gamma_x-\gamma_y}{4}\left(\jop_+^2 + \jop_-^2\right) +
+            \gamma_z \jop_z^2\right]
 
 The remaining Hamiltonians are easier to work with once
 :math:`\muvec^{(n)}` and |pivec| are written explicitly in terms
-of |qvec| and |pvec|. In the rest of this section
-:math:`\alpha` and :math:`\beta` are Cartesian indices (as in the Definitions
-section), not the constants used for |HRR|. Defining
+of |qvec| and |pvec|. 
 
 .. math::
 
@@ -328,7 +330,7 @@ Matrix Elements
 ***************
 
 Let :math:`\ket{v}` be an eigenfunction of |HHO| with eigenvalue
-:math:`E_v=\hbar\omega_v` and :math:`\ket{J,K}` be an eigenfunction of
+:math:`E_v=\hbar\omega\left(v + \frac{1}{2}\right)` and :math:`\ket{J,K}` be an eigenfunction of
 :math:`\jop^2`
 and :math:`\jop_z` with eigenvalues :math:`\hbar^2 J(J+1)` and
 :math:`K\hbar` respectively (here :math:`K` is the projection of
@@ -337,6 +339,16 @@ Hamiltonian is then given by the direct
 product of one :math:`\ket{v}` per vibrational degree of freedom and
 :math:`\ket{J,K}`, i.e., :math:`\ket{\vvec,J,K}`.
 
+The molecule-fixed components of |jvec| obey the anomalous commutation
+relation :math:`\left[\jop_x, \jop_y\right] = -i\hbar \jop_z`. As a result
+:math:`\jop_\pm = \jop_x \pm i\jop_y` lower and raise :math:`K` respectively
+(the reverse of the space-fixed case):
+
+.. math::
+
+   \jop_\pm\ket{J,K} = \hbar C^\mp_{J,K}\ket{J,K\mp1},\qquad
+   C^\pm_{J,K} \equiv \sqrt{J(J+1) - K(K\pm1)}
+
 |HRR| is not diagonal in this basis, because the rigid rotor
 eigenstates are linear combinations of the :math:`\ket{J,K}` states. The matrix
 elements of |HRR| in this basis are given by:
@@ -344,20 +356,23 @@ elements of |HRR| in this basis are given by:
 .. math::
 
     \braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =&
-       \frac{1}{2}\delta_{\vvec',\vvec}
-       \braket{J', K'\mid\frac{\alpha+\beta}{4}\left(\jop^2 - \jop_z^2\right) +
-            \frac{\alpha-\beta}{8}\left(\jop_+^2 + \jop_-^2\right) +
-            \frac{\gamma \jop_z^2}{2}\mid J, K}\\
+       \delta_{\vvec',\vvec}\delta_{J',J}\left[
+       \left(\frac{\gamma_x+\gamma_y}{2}\left(J(J+1) - K^2\right) +
+             \gamma_z K^2\right)\delta_{K',K}\right.\\
+       &\left.+ \frac{\gamma_x-\gamma_y}{4}\left(
+          C^-_{J,K}C^-_{J,K-1}\,\delta_{K',K-2} +
+          C^+_{J,K}C^+_{J,K+1}\,\delta_{K',K+2}\right)\right]
 
-
+where the :math:`\hbar^2` from the two ladder operators cancels the
+:math:`1/\hbar^2` in |HRR|.
 
 |HHO| is diagonal in this basis with matrix elements:
 
 .. math::
 
-    \bra{\vvec',K'}\HHO\ket{\vvec,K} =
-       \delta_{\vvec',\vvec}\delta_{K',K}
-       \sum_{i=1}^{\Nvib}\hbar\omega_{v_i}
+    \braket{\vvec',J',K'\mid\HHO\mid\vvec,J,K} =
+       \delta_{\vvec',\vvec}\delta_{J',J}\delta_{K',K}
+       \sum_{i=1}^{\Nvib}\hbar\omega_i\left(v_i + \frac{1}{2}\right)
 
 |HvibCor| and |Hrovib| are sums of products of
 :math:`\qop_k`, :math:`\pop_k`, and :math:`\jop_\alpha`, so their matrix
@@ -398,18 +413,9 @@ connects states with
 :math:`\sum_k\left|v'_k - v_k\right| \le p` and
 :math:`\sum_k\left(v'_k - v_k\right) \equiv p \pmod 2`.
 
-The molecule-fixed components of |jvec| obey the anomalous commutation
-relation :math:`\left[\jop_x, \jop_y\right] = -i\hbar \jop_z`. As a result
-:math:`\jop_\pm = \jop_x \pm i\jop_y` lower and raise :math:`K` respectively
-(the reverse of the space-fixed case):
-
-.. math::
-
-   \jop_\pm\ket{J,K} = \hbar C^\mp_{J,K}\ket{J,K\mp1},\qquad
-   C^\pm_{J,K} \equiv \sqrt{J(J+1) - K(K\pm1)}
-
-This does not affect |HRR|, which only contains
-:math:`\jop_+^2 + \jop_-^2`, but it fixes the signs below. Using
+The reversed action of :math:`\jop_\pm` does not change the magnitude of the
+|HRR| matrix elements, which only involve :math:`\jop_+^2 + \jop_-^2`, but it
+fixes the signs below. Using
 :math:`\jop_x = \frac{1}{2}\left(\jop_+ + \jop_-\right)` and
 :math:`\jop_y = \frac{1}{2i}\left(\jop_+ - \jop_-\right)`:
 

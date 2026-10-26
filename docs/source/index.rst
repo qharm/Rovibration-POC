@@ -22,3 +22,4 @@ A proof-of-concept library that solves the rovibrational problem.
    :maxdepth: 2
 
    background
+   design
