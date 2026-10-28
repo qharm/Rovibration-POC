@@ -101,6 +101,7 @@ math_macros = {
     "zetavec": (r"\tens{\zeta}", 0),
     "avec": (r"\tens{a}", 0),
     "Bvec": (r"\tens{B}", 0),
+    "etavec": (r"\tens{\eta}", 0),
     "gammavec": (r"\tens{\gamma}", 0),
     "omegavec": (r"\tens{\omega}", 0),
     "vvec": (r"\tens{v}", 0),
@@ -132,6 +133,7 @@ math_macros = {
     "HRR": (r"\op{H}_{\mathrm{RR}}", 0),
     "HHO": (r"\op{H}_{\mathrm{HO}}", 0),
     "HvibCor": (r"\op{H}_{\mathrm{vibCor}}", 0),
+    "Hwatson": (r"\op{H}_{\mathrm{watson}}", 0),
     "Hrovib": (r"\op{H}_{\mathrm{rovib}}", 0),
     "Vharm": (r"\op{V}_{\mathrm{harm}}", 0),
     "Vanharm": (r"\op{V}_{\mathrm{anharm}}", 0),
@@ -151,20 +153,16 @@ mathjax3_config = {
 
 # MathJax autoloads the braket extension (\bra, \ket, \braket), LaTeX does not.
 latex_elements = {
-    "preamble": "\n".join(
-        [r"\usepackage{braket}"]
-        + [
-            rf"\newcommand{{\{name}}}[{nargs}]{{{definition}}}"
-            for name, (definition, nargs) in math_macros.items()
-        ]
-    )
+    "preamble":
+    "\n".join([r"\usepackage{braket}"] + [
+        rf"\newcommand{{\{name}}}[{nargs}]{{{definition}}}"
+        for name, (definition, nargs) in math_macros.items()
+    ])
 }
 
-rst_prolog = "\n".join(
-    rf".. |{name}| replace:: :math:`\{name}`"
-    for name, (_, nargs) in math_macros.items()
-    if not nargs
-)
+rst_prolog = "\n".join(rf".. |{name}| replace:: :math:`\{name}`"
+                       for name, (_, nargs) in math_macros.items()
+                       if not nargs)
 
 # -- Options for HTML output -------------------------------------------------
 

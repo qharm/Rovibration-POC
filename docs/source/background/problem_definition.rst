@@ -12,29 +12,9 @@
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
 
-##########
-Background
-##########
-
-These are notes on the rovibrational theory used by DOI: 10.1063/5.0333947.
-
-********
-Notation
-********
-
-The following typesetting conventions are used:
-
-- Scalars are in normal font, e.g., |Natom|.
-- Tensors (of rank one or higher) are bold, e.g., |zetavec|. When a tensor is
-  written in element form the elements are scalars, and are therefore in
-  normal font, e.g., :math:`\zeta^\alpha_{i,j}`.
-- Operators have hats, e.g., |Hvib|. Tensor operators are also bold, e.g.,
-  |jvec|, but their elements are not, e.g., :math:`\jop_\alpha`.
-- Anything that depends on the nuclear coordinates or momenta is an operator.
-
-*********************
+#####################
 Problem Specification
-*********************
+#####################
 
 We assume we have a non-linear molecule with |Natom| atoms. This means that
 the molecule has :math:`\Nvib = (3\Natom - 6)` vibrational degrees of freedom.
@@ -177,12 +157,12 @@ gives:
 
        \Hvib =&
          \HRR
-         + \HHO + \Vanharm  + \HvibCor + \Hrovib +
+         + \HHO + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
          \mathcal{O}(\qvec^5)\\
        \HHO \equiv&  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\\
        \HvibCor\equiv& \frac{1}{2}\sum_{n=0}^{2}
-         \pivec^T\muvec^{(n)}\pivec -
-         \sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\\
+         \pivec^T\muvec^{(n)}\pivec\\         
+       \Hwatson \equiv& -\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\\
        \Hrovib \equiv& \frac{1}{2}\sum_{n=1}^{4}
          \jvec^T\muvec^{(n)}\jvec -
          \frac{1}{2}\sum_{n=0}^{3}\jvec^T\muvec^{(n)}\pivec-
@@ -192,32 +172,19 @@ gives:
                 \frac{1}{2}\jvec^T\muvec^{(4)}\pivec -
                 \frac{1}{2}\pivec^T\muvec^{(4)}\jvec\\
 
-The rigid rotor Hamiltonian is then defined as:
 
-.. math::
+- See :ref:`rigid_rotor` for details on the rigid rotor Hamiltonian, 
+  :math:`\HRR`.
+- See :ref:`harmonic_oscillator` for details on the harmonic oscillator 
+  Hamiltonian, :math:`\HHO`.
+- See :ref:`vibration_coriolis` for details on the vibrational Coriolis 
+  Hamiltonian, :math:`\HvibCor`.
+- See :ref:`watson_hamiltonian` for details on the Watson Hamiltonian, 
+  :math:`\Hwatson`.
+- See :ref:`rovibrational_coupling` for details on the rovibrational coupling 
+  Hamiltonian, :math:`\Hrovib`.
 
-   \HRR \equiv& \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\\
-               =& \frac{1}{2}\sum_{\alpha,\beta=1}^{3}
-                  \jop_\alpha\muop^{(0)}_{\alpha,\beta}\jop_\beta\\
-               =& \frac{1}{2}\sum_{\alpha=1}^{3}
-                  \frac{\jop_\alpha^2}{I^0_{\alpha,\alpha}}
-
-where we used the fact that :math:`\muvec^{(0)}` is diagonal in the molecule-
-fixed frame. Using :math:`\gamma_x = \frac{\hbar^2}{2I^0_{xx}}`,
-:math:`\gamma_y = \frac{\hbar^2}{2I^0_{yy}}`, and
-:math:`\gamma_z = \frac{\hbar^2}{2I^0_{zz}}`, we can rewrite:
-
-.. math::
-   \HRR =&\frac{1}{\hbar^2}\left[\gamma_x \jop_x^2 + \gamma_y \jop_y^2 +
-                                  \gamma_z \jop_z^2\right]\\
-          =&\frac{1}{\hbar^2}\left[
-            \frac{\gamma_x+\gamma_y}{2}\left(\jop_x^2 + \jop_y^2\right) +
-            \frac{\gamma_x-\gamma_y}{2}\left(\jop_x^2 - \jop_y^2\right) +
-            \gamma_z \jop_z^2\right]\\
-          =&\frac{1}{\hbar^2}\left[
-            \frac{\gamma_x+\gamma_y}{2}\left(\jop^2 - \jop_z^2\right) +
-            \frac{\gamma_x-\gamma_y}{4}\left(\jop_+^2 + \jop_-^2\right) +
-            \gamma_z \jop_z^2\right]
+TODO: Stuff below here needs a new home.
 
 The remaining Hamiltonians are easier to work with once
 :math:`\muvec^{(n)}` and |pivec| are written explicitly in terms
@@ -252,79 +219,6 @@ Two properties are used below:
 - :math:`\zeta^\alpha_{i,j} = -\zeta^\alpha_{j,i}`, so
   :math:`\zeta^\alpha_{i,i} = 0` and each :math:`\piop_\alpha` is Hermitian.
 
-The vibrational Coriolis Hamiltonian is purely vibrational. Writing out the
-matrix products and inserting the expansions above:
-
-.. math::
-
-   \HvibCor =& \frac{1}{2}\sum_{n=0}^{2}\sum_{\alpha,\beta=1}^{3}
-      \piop_\alpha\muop^{(n)}_{\alpha\beta}\piop_\beta -
-      \frac{\hbar^2}{8}\sum_{n=0}^{4}\sum_{\alpha=1}^{3}
-      \muop^{(n)}_{\alpha\alpha}\\
-     =& \frac{1}{2}\sum_{n=0}^{2}\sum_{\alpha,\beta=1}^{3}
-      \sum_{i,j,k,\ell=1}^{\Nvib}\sum_{\midx}
-      \zeta^\alpha_{i,j}\zeta^\beta_{k,\ell}
-      \eta^{(n)}_{\alpha\beta,\midx}
-      \qop_i \pop_j \qop^{\midx} \qop_k \pop_\ell -
-      \frac{\hbar^2}{8}\sum_{n=0}^{4}\sum_{\alpha=1}^{3}\sum_{\midx}
-      \eta^{(n)}_{\alpha\alpha,\midx}\qop^{\midx}
-
-The operator ordering must be kept, because :math:`\pop_j` does not commute
-with :math:`\qop^{\midx}\qop_k`. The :math:`n=0` terms reduce to
-
-.. math::
-
-   \frac{1}{2}\sum_{\alpha=1}^{3}
-      \frac{\piop_\alpha^2}{I^0_{\alpha\alpha}} -
-   \frac{\hbar^2}{8}\sum_{\alpha=1}^{3}
-      \frac{1}{I^0_{\alpha\alpha}}
-
-the second of which is a constant energy shift.
-
-For the rovibrational coupling Hamiltonian, note that the molecule-fixed
-components of |jvec| act only on the rotational coordinates, so they
-commute with |qvec|, |pvec|, and therefore
-:math:`\muvec^{(n)}` and |pivec|. Combined with the symmetry of
-:math:`\muvec^{(n)}`, this lets the two Coriolis terms be combined:
-
-.. math::
-
-   \pivec^T\muvec^{(n)}\jvec =&
-      \sum_{\alpha,\beta=1}^{3}
-      \piop_\alpha\muop^{(n)}_{\alpha\beta}\jop_\beta
-    = \sum_{\alpha,\beta=1}^{3}
-      \jop_\alpha\piop_\beta\muop^{(n)}_{\alpha\beta}\\
-   \jvec^T\muvec^{(n)}\pivec + \pivec^T\muvec^{(n)}\jvec =&
-      \sum_{\alpha,\beta=1}^{3}\jop_\alpha\left(
-        \muop^{(n)}_{\alpha\beta}\piop_\beta +
-        \piop_\beta\muop^{(n)}_{\alpha\beta}\right)
-
-where the first line relabeled :math:`\alpha\leftrightarrow\beta`. Inserting
-this and the expansions above:
-
-.. math::
-
-   \Hrovib =& \frac{1}{2}\sum_{n=1}^{4}\sum_{\alpha,\beta=1}^{3}
-      \muop^{(n)}_{\alpha\beta}\jop_\alpha \jop_\beta -
-      \frac{1}{2}\sum_{n=0}^{3}\sum_{\alpha,\beta=1}^{3}\jop_\alpha\left(
-        \muop^{(n)}_{\alpha\beta}\piop_\beta +
-        \piop_\beta\muop^{(n)}_{\alpha\beta}\right)\\
-     =& \frac{1}{2}\sum_{n=1}^{4}\sum_{\alpha,\beta=1}^{3}\sum_{\midx}
-      \eta^{(n)}_{\alpha\beta,\midx}\qop^{\midx}\jop_\alpha \jop_\beta\\
-      &- \frac{1}{2}\sum_{n=0}^{3}\sum_{\alpha,\beta=1}^{3}
-      \sum_{k,\ell=1}^{\Nvib}\sum_{\midx}
-      \zeta^\beta_{k,\ell}\eta^{(n)}_{\alpha\beta,\midx}
-      \left(\qop^{\midx}\qop_k \pop_\ell + \qop_k \pop_\ell \qop^{\midx}\right)
-      \jop_\alpha
-
-Because :math:`\muvec^{(0)}` is a diagonal constant, the :math:`n=0`
-Coriolis term reduces to
-
-.. math::
-
-   -\sum_{\alpha=1}^{3}
-      \frac{\jop_\alpha\piop_\alpha}{I^0_{\alpha\alpha}}
-
 ***************
 Matrix Elements
 ***************
@@ -349,30 +243,8 @@ relation :math:`\left[\jop_x, \jop_y\right] = -i\hbar \jop_z`. As a result
    \jop_\pm\ket{J,K} = \hbar C^\mp_{J,K}\ket{J,K\mp1},\qquad
    C^\pm_{J,K} \equiv \sqrt{J(J+1) - K(K\pm1)}
 
-|HRR| is not diagonal in this basis, because the rigid rotor
-eigenstates are linear combinations of the :math:`\ket{J,K}` states. The matrix
-elements of |HRR| in this basis are given by:
 
-.. math::
 
-    \braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =&
-       \delta_{\vvec',\vvec}\delta_{J',J}\left[
-       \left(\frac{\gamma_x+\gamma_y}{2}\left(J(J+1) - K^2\right) +
-             \gamma_z K^2\right)\delta_{K',K}\right.\\
-       &\left.+ \frac{\gamma_x-\gamma_y}{4}\left(
-          C^-_{J,K}C^-_{J,K-1}\,\delta_{K',K-2} +
-          C^+_{J,K}C^+_{J,K+1}\,\delta_{K',K+2}\right)\right]
-
-where the :math:`\hbar^2` from the two ladder operators cancels the
-:math:`1/\hbar^2` in |HRR|.
-
-|HHO| is diagonal in this basis with matrix elements:
-
-.. math::
-
-    \braket{\vvec',J',K'\mid\HHO\mid\vvec,J,K} =
-       \delta_{\vvec',\vvec}\delta_{J',J}\delta_{K',K}
-       \sum_{i=1}^{\Nvib}\hbar\omega_i\left(v_i + \frac{1}{2}\right)
 
 |HvibCor| and |Hrovib| are sums of products of
 :math:`\qop_k`, :math:`\pop_k`, and :math:`\jop_\alpha`, so their matrix
@@ -438,46 +310,5 @@ a single :math:`J` block:
 
 which is nonzero only for :math:`\left|K'-K\right| \le 2`.
 
-|HvibCor| is purely vibrational, so it is diagonal in :math:`J` and
-:math:`K`:
 
-.. math::
 
-   \braket{\vvec',J',K'\mid \HvibCor\mid\vvec,J,K} =&
-      \delta_{J',J}\delta_{K',K}\left[
-      \frac{1}{2}\sum_{n=0}^{2}\sum_{\alpha,\beta=1}^{3}
-      \sum_{i,j,k,\ell=1}^{\Nvib}\sum_{\midx}
-      \zeta^\alpha_{i,j}\zeta^\beta_{k,\ell}
-      \eta^{(n)}_{\alpha\beta,\midx}
-      \braket{\vvec'\mid \qop_i \pop_j \qop^{\midx} \qop_k \pop_\ell
-              \mid\vvec}\right.\\
-      &\left.- \frac{\hbar^2}{8}\sum_{n=0}^{4}\sum_{\alpha=1}^{3}
-      \sum_{\midx}\eta^{(n)}_{\alpha\alpha,\midx}
-      \braket{\vvec'\mid \qop^{\midx}\mid\vvec}\right]
-
-The :math:`n`\ th Coriolis term is a product of :math:`n+4` vibrational
-operators and the :math:`n`\ th Watson term is a product of :math:`n`, which
-sets the range of :math:`\vvec'` each term couples to.
-
-|Hrovib| couples vibration and rotation, and its matrix elements
-factor into a vibrational and a rotational part:
-
-.. math::
-
-   \braket{\vvec',J',K'\mid \Hrovib\mid\vvec,J,K} =&
-      \delta_{J',J}\left[
-      \frac{1}{2}\sum_{n=1}^{4}\sum_{\alpha,\beta=1}^{3}\sum_{\midx}
-      \eta^{(n)}_{\alpha\beta,\midx}
-      \braket{\vvec'\mid \qop^{\midx}\mid\vvec}
-      \braket{J,K'\mid \jop_\alpha \jop_\beta\mid J,K}\right.\\
-      &- \frac{1}{2}\sum_{n=0}^{3}\sum_{\alpha,\beta=1}^{3}
-      \sum_{k,\ell=1}^{\Nvib}\sum_{\midx}
-      \zeta^\beta_{k,\ell}\eta^{(n)}_{\alpha\beta,\midx}\\
-      &\left.\times\braket{\vvec'\mid
-         \qop^{\midx}\qop_k \pop_\ell + \qop_k \pop_\ell \qop^{\midx}
-         \mid\vvec}
-      \braket{J,K'\mid \jop_\alpha\mid J,K}\right]
-
-The first (centrifugal distortion) term couples :math:`K` to
-:math:`K, K\pm1, K\pm2`. The second (Coriolis) term couples :math:`K` to
-:math:`K, K\pm1`.

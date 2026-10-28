@@ -21,5 +21,5 @@ A proof-of-concept library that solves the rovibrational problem.
 .. toctree::
    :maxdepth: 2
 
-   background
-   design
+   background/index
+   developer/index
