@@ -1,3 +1,17 @@
+.. Copyright 2026 QHARM Team
+..
+.. Licensed under the Apache License, Version 2.0 (the "License");
+.. you may not use this file except in compliance with the License.
+.. You may obtain a copy of the License at
+..
+.. http://www.apache.org/licenses/LICENSE-2.0
+..
+.. Unless required by applicable law or agreed to in writing, software
+.. distributed under the License is distributed on an "AS IS" BASIS,
+.. WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+.. See the License for the specific language governing permissions and
+.. limitations under the License.
+
 
 .. _matrix_elements:
 
@@ -16,7 +30,7 @@ Considerations
 #. Hamiltonian is a sum of terms.
 
    - The design calls for one class per Hamiltonian term.
-   - The matrix elements for the individual terms will be evaluated term by 
+   - The matrix elements for the individual terms will be evaluated term by
      term, and then summed to get the total Hamiltonian matrix element.
 
 #. Basis functions are assumed to be products of harmonic oscillator
@@ -34,7 +48,7 @@ Helper Functions
 ****************
 
 #. ``non_zero_indices(BraBasis, t, KetBasis)``. Takes the basis set for the
-   bra, a term in the Hamiltonian, and the basis set for the ket. Returns a 
+   bra, a term in the Hamiltonian, and the basis set for the ket. Returns a
    generator that runs over bra-ket basis function pairs. The generator only
    returns pairs that are in general non-zero.
 
@@ -42,11 +56,11 @@ Helper Functions
      sets or batches of basis functions.
    - One common API. Internally can branch based on the input types.
 
-#. ``matrix_element(Bra, t, Ket)``. Takes a basis function from the bra, a 
-   term from the Hamiltonian, and a basis function from the ket. Returns the 
+#. ``matrix_element(Bra, t, Ket)``. Takes a basis function from the bra, a
+   term from the Hamiltonian, and a basis function from the ket. Returns the
    value of the corresponding matrix element.
 
-   - Similar to ``non_zero_indices``, the idea is to have a common API that can 
+   - Similar to ``non_zero_indices``, the idea is to have a common API that can
      branch internally based on the input types.
    - Could be extended to take a batch of basis functions eventually.
 

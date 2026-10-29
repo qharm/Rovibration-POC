@@ -48,6 +48,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Theoretical Background</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#notation">Notation</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Problem Specification</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#coordinate-system">Coordinate System</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#definitions">Definitions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#deriving-the-rovibrational-hamiltonian">Deriving the Rovibrational Hamiltonian</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#matrix-elements">Matrix Elements</a></li>
@@ -93,15 +94,42 @@
              
   <section id="problem-specification">
 <h1>Problem Specification<a class="headerlink" href="#problem-specification" title="Link to this heading"></a></h1>
+<p>The goal of rovib is to model the rovibrational energy levels of a non-linear
+molecule containing <span class="math notranslate nohighlight">\(\Natom\)</span> atoms. The location of the <span class="math notranslate nohighlight">\(i\)</span>th atom in the
+molecule is given by the vector <span class="math notranslate nohighlight">\(\rvec_i\)</span> and the location of the
+molecule as a whole is given by the 3|Natom|-dimensional vector
+<span class="math notranslate nohighlight">\(\rvec = \left(\rvec_1, \rvec_2, \ldots, \rvec_\Natom\right)\)</span>. Similarly,
+<span class="math notranslate nohighlight">\(\Mvec\)</span> is the diagonal matrix of atomic masses such that <span class="math notranslate nohighlight">\(M_{ii}\)</span> is the
+mass of the <span class="math notranslate nohighlight">\(i\)</span>th atom. We assume that the Born-Oppenheimer
+approximation is valid. In this case, we can assume that the nuclei move on a
+single potential energy surface (PES), <span class="math notranslate nohighlight">\(\Vop\left(\rvec\right)\)</span>, defined
+by the electronic Hamiltonian. We will also assume that we have located a
+minimum energy geometry on the PES, <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p>
+<p>Our original goal can be restated as solving the time-independent Schrödinger
+equation for the motion of the nuclei on the PES.</p>
+<section id="coordinate-system">
+<h2>Coordinate System<a class="headerlink" href="#coordinate-system" title="Link to this heading"></a></h2>
+<p><span class="math notranslate nohighlight">\(\rvec\)</span> will in general be a somewhat arbitrary space-fixed reference
+frame. In this coordinate system the molecule can translate, rotate, and
+vibrate. The rovibrational Hamiltonian is simplified by defining a molecular
+reference frame that maximally decouples the <span class="math notranslate nohighlight">\(\Nvib = (3\Natom - 6)\)</span>
+internal degrees of freedom of the molecule (vibrations) from the 6 external
+degrees of freedom (translations and rotations). In practice, rotational-
+vibrational coupling is only completely eliminated if the PES is harmonic. The
+conditions under which the internal and external degrees of freedom are
+maximally decoupled are known as the Eckart conditions.</p>
+<p>To eliminate the translational degrees of freedom, we require the molecular
+reference frame to move with the molecule. This is accomplished by requiring
+the center of mass of the molecule to be at the origin of the molecular
+reference frame.</p>
 <p>We assume we have a non-linear molecule with <span class="math notranslate nohighlight">\(\Natom\)</span> atoms. This means that
-the molecule has <span class="math notranslate nohighlight">\(\Nvib = (3\Natom - 6)\)</span> vibrational degrees of freedom.
+the molecule has  vibrational degrees of freedom.
 We will define a molecular reference frame shortly. In the molecular reference
 frame, <span class="math notranslate nohighlight">\(\rvec\)</span> is the vector containing the Cartesian coordinates of all <span class="math notranslate nohighlight">\(\Natom\)</span>
 atoms such that <span class="math notranslate nohighlight">\(\rvec_i\)</span> is the position of the <span class="math notranslate nohighlight">\(i\)</span>th atom in
-the molecule. Similarly, <span class="math notranslate nohighlight">\(\Mvec\)</span> is the diagonal matrix of atomic masses such
-that <span class="math notranslate nohighlight">\(M_{ii}\)</span> is the mass of the <span class="math notranslate nohighlight">\(i\)</span>th atom. <span class="math notranslate nohighlight">\(\Ivec\)</span> is the inertia
+the molecule.  <span class="math notranslate nohighlight">\(\Ivec\)</span> is the inertia
 tensor of the molecule with coordinates defined by <span class="math notranslate nohighlight">\(\rvec\)</span>.</p>
-<p>We assume that <span class="math notranslate nohighlight">\(\Vop\left(\rvec\right)\)</span> is the potential energy surface
+<p>We assume that  is the potential energy surface
 (PES) of the molecule and that <span class="math notranslate nohighlight">\(\rzvec\)</span> is a minimum energy geometry on the PES.
 The molecular reference frame is defined so that its origin is the center of
 mass of <span class="math notranslate nohighlight">\(\rzvec\)</span> and its axes are aligned with the principal axes of inertia of
@@ -133,6 +161,7 @@ molecule with coordinates defined by <span class="math notranslate nohighlight">
 degrees of freedom of the molecule.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Hvib\)</span> is the vibrational Hamiltonian of the molecule.</p></li>
 </ul>
+</section>
 <section id="definitions">
 <h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h2>
 <p><span class="math notranslate nohighlight">\(\zetavec\)</span> is given by:</p>

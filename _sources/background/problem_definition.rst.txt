@@ -16,35 +16,68 @@
 Problem Specification
 #####################
 
+The goal of rovib is to model the rovibrational energy levels of a non-linear
+molecule containing |Natom| atoms. The location of the :math:`i`\ th atom in the
+molecule is given by the vector :math:`\rvec_i` and the location of the
+molecule as a whole is given by the 3|Natom|-dimensional vector
+:math:`\rvec = \left(\rvec_1, \rvec_2, \ldots, \rvec_\Natom\right)`. Similarly,
+|Mvec| is the diagonal matrix of atomic masses such that :math:`M_{ii}` is the
+mass of the :math:`i`\ th atom. We assume that the Born-Oppenheimer
+approximation is valid. In this case, we can assume that the nuclei move on a
+single potential energy surface (PES), :math:`\Vop\left(\rvec\right)`, defined
+by the electronic Hamiltonian. We will also assume that we have located a
+minimum energy geometry on the PES, :math:`\rzvec`.
+
+Our original goal can be restated as solving the time-independent Schrödinger
+equation for the motion of the nuclei on the PES.
+
+*****************
+Coordinate System
+*****************
+
+:math:`\rvec` will in general be a somewhat arbitrary space-fixed reference
+frame. In this coordinate system the molecule can translate, rotate, and
+vibrate. The rovibrational Hamiltonian is simplified by defining a molecular
+reference frame that maximally decouples the :math:`\Nvib = (3\Natom - 6)`
+internal degrees of freedom of the molecule (vibrations) from the 6 external
+degrees of freedom (translations and rotations). In practice, rotational-
+vibrational coupling is only completely eliminated if the PES is harmonic. The
+conditions under which the internal and external degrees of freedom are
+maximally decoupled are known as the Eckart conditions.
+
+To eliminate the translational degrees of freedom, we require the molecular
+reference frame to move with the molecule. This is accomplished by requiring
+the center of mass of the molecule to be at the origin of the molecular
+reference frame.
+
 We assume we have a non-linear molecule with |Natom| atoms. This means that
-the molecule has :math:`\Nvib = (3\Natom - 6)` vibrational degrees of freedom.
+the molecule has  vibrational degrees of freedom.
 We will define a molecular reference frame shortly. In the molecular reference
-frame, |rvec| is the vector containing the Cartesian coordinates of all |Natom| 
-atoms such that :math:`\rvec_i` is the position of the :math:`i`\ th atom in 
-the molecule. Similarly, |Mvec| is the diagonal matrix of atomic masses such 
-that :math:`M_{ii}` is the mass of the :math:`i`\ th atom. |Ivec| is the inertia
+frame, |rvec| is the vector containing the Cartesian coordinates of all |Natom|
+atoms such that :math:`\rvec_i` is the position of the :math:`i`\ th atom in
+the molecule.  |Ivec| is the inertia
 tensor of the molecule with coordinates defined by |rvec|.
 
-We assume that :math:`\Vop\left(\rvec\right)` is the potential energy surface 
-(PES) of the molecule and that |rzvec| is a minimum energy geometry on the PES. 
-The molecular reference frame is defined so that its origin is the center of 
-mass of |rzvec| and its axes are aligned with the principal axes of inertia of 
-|rzvec|. To satisfy the Eckart conditions, we will use displacements from 
-|rzvec| to define the geometry of the molecule instead of |rvec|. 
+We assume that  is the potential energy surface
+(PES) of the molecule and that |rzvec| is a minimum energy geometry on the PES.
+The molecular reference frame is defined so that its origin is the center of
+mass of |rzvec| and its axes are aligned with the principal axes of inertia of
+|rzvec|. To satisfy the Eckart conditions, we will use displacements from
+|rzvec| to define the geometry of the molecule instead of |rvec|.
 The displacements are defined as :math:`\rhovec = \rvec - \rzvec`.
 
-The orientation and location of the molecular reference frame with respect to 
+The orientation and location of the molecular reference frame with respect to
 the space-fixed reference frame can be fixed by requiring the center of mass to
-be at the origin of the space-fixed reference frame and the Hessian of the PES 
-at |rzvec| to be diagonal in mass-weighted Cartesian coordinates. |Lvec| is the 
-transformation 
-matrix that diagonalizes the Hessian and |Izvec| is the diagonal inertia tensor 
-of the molecule at |rzvec|. :math:`\qvec = \Lvec^T\Mvec^{1/2}\rhovec` are the 
-resulting mass-weighted normal coordinates of the molecule describing the 
+be at the origin of the space-fixed reference frame and the Hessian of the PES
+at |rzvec| to be diagonal in mass-weighted Cartesian coordinates. |Lvec| is the
+transformation
+matrix that diagonalizes the Hessian and |Izvec| is the diagonal inertia tensor
+of the molecule at |rzvec|. :math:`\qvec = \Lvec^T\Mvec^{1/2}\rhovec` are the
+resulting mass-weighted normal coordinates of the molecule describing the
 vibrational degrees of freedom. The corresponding vibrational momenta are
 :math:`\pvec = -i\hbar\frac{\partial}{\partial \qvec}`. As the molecule vibrates
 and rotations it will be assumed to have total angular momentum |jvec| and
-vibrational angular momentum |pivec|. 
+vibrational angular momentum |pivec|.
 
 Other quantities used in the rovibrational Hamiltonian are:
 
@@ -161,7 +194,7 @@ gives:
          \mathcal{O}(\qvec^5)\\
        \HHO \equiv&  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\\
        \HvibCor\equiv& \frac{1}{2}\sum_{n=0}^{2}
-         \pivec^T\muvec^{(n)}\pivec\\         
+         \pivec^T\muvec^{(n)}\pivec\\
        \Hwatson \equiv& -\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\\
        \Hrovib \equiv& \frac{1}{2}\sum_{n=1}^{4}
          \jvec^T\muvec^{(n)}\jvec -
@@ -173,22 +206,22 @@ gives:
                 \frac{1}{2}\pivec^T\muvec^{(4)}\jvec\\
 
 
-- See :ref:`rigid_rotor` for details on the rigid rotor Hamiltonian, 
+- See :ref:`rigid_rotor` for details on the rigid rotor Hamiltonian,
   :math:`\HRR`.
-- See :ref:`harmonic_oscillator` for details on the harmonic oscillator 
+- See :ref:`harmonic_oscillator` for details on the harmonic oscillator
   Hamiltonian, :math:`\HHO`.
-- See :ref:`vibration_coriolis` for details on the vibrational Coriolis 
+- See :ref:`vibration_coriolis` for details on the vibrational Coriolis
   Hamiltonian, :math:`\HvibCor`.
-- See :ref:`watson_hamiltonian` for details on the Watson Hamiltonian, 
+- See :ref:`watson_hamiltonian` for details on the Watson Hamiltonian,
   :math:`\Hwatson`.
-- See :ref:`rovibrational_coupling` for details on the rovibrational coupling 
+- See :ref:`rovibrational_coupling` for details on the rovibrational coupling
   Hamiltonian, :math:`\Hrovib`.
 
 TODO: Stuff below here needs a new home.
 
 The remaining Hamiltonians are easier to work with once
 :math:`\muvec^{(n)}` and |pivec| are written explicitly in terms
-of |qvec| and |pvec|. 
+of |qvec| and |pvec|.
 
 .. math::
 
@@ -309,6 +342,3 @@ a single :math:`J` block:
                           \braket{J,K''\mid \jop_\beta\mid J,K}
 
 which is nonzero only for :math:`\left|K'-K\right| \le 2`.
-
-
-
