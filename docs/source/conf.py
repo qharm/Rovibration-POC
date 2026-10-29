@@ -20,9 +20,17 @@
 # full list see the documentation:
 # http://www.sphinx-doc.org/en/master/config
 
+import os
+import sys
+
+# Makes the Python package importable for autodoc.
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../python"))
+)
+
 # -- Project information -----------------------------------------------------
 
-project = "Rovibration-POC"
+project = "rovib"
 copyright = "2026, QHARM Team"
 author = "QHARM Team"
 
@@ -40,10 +48,21 @@ release = version
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.intersphinx",
     "sphinx.ext.mathjax",
     "sphinx.ext.githubpages",
     "sphinx_rtd_theme",
 ]
+
+# Lets the API documentation link to the Python and NumPy documentation.
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "numpy": ("https://numpy.org/doc/stable", None),
+}
+
+# List members in the order they appear in the source.
+autodoc_member_order = "bysource"
 
 # The suffix(es) of source filenames.
 source_suffix = ".rst"
@@ -153,16 +172,20 @@ mathjax3_config = {
 
 # MathJax autoloads the braket extension (\bra, \ket, \braket), LaTeX does not.
 latex_elements = {
-    "preamble":
-    "\n".join([r"\usepackage{braket}"] + [
-        rf"\newcommand{{\{name}}}[{nargs}]{{{definition}}}"
-        for name, (definition, nargs) in math_macros.items()
-    ])
+    "preamble": "\n".join(
+        [r"\usepackage{braket}"]
+        + [
+            rf"\newcommand{{\{name}}}[{nargs}]{{{definition}}}"
+            for name, (definition, nargs) in math_macros.items()
+        ]
+    )
 }
 
-rst_prolog = "\n".join(rf".. |{name}| replace:: :math:`\{name}`"
-                       for name, (_, nargs) in math_macros.items()
-                       if not nargs)
+rst_prolog = "\n".join(
+    rf".. |{name}| replace:: :math:`\{name}`"
+    for name, (_, nargs) in math_macros.items()
+    if not nargs
+)
 
 # -- Options for HTML output -------------------------------------------------
 

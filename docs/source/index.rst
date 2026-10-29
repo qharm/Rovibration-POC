@@ -12,9 +12,9 @@
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
 
-###############
-Rovibration-POC
-###############
+#####
+rovib
+#####
 
 A proof-of-concept library that solves the rovibrational problem.
 
@@ -23,3 +23,4 @@ A proof-of-concept library that solves the rovibrational problem.
 
    background/index
    developer/index
+   api

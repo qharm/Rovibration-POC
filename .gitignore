@@ -23,6 +23,10 @@ docs/venv/
 # Byte-compiled Python
 __pycache__/
 
+# Python packaging artifacts
+*.egg-info/
+build/
+
 # These are the documentation build directories
 docs/build
 docs/source/_build

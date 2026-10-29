@@ -20,6 +20,20 @@ on:
       - main
 
 jobs:
+  test_python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit and System Tests
+        run: |
+          pip install -e .
+          python -m unittest discover tests/python
+        shell: bash
   test_docs:
     runs-on: ubuntu-latest
     steps:

@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    = -W --keep-going -n
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = rovibration_poc
+SPHINXPROJ    = rovib
 SOURCEDIR     = source
 BUILDDIR      = build
 

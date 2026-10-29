@@ -14,5 +14,5 @@
   ~ limitations under the License.
 -->
 
-# Rovibration-POC
+# rovib
 A proof-of-concept library that solves the rovibrational problem
