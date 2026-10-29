@@ -21,6 +21,8 @@ header:
     - docs/Makefile
     - docs/requirements.txt
     - docs/build/
+    - docs/.venv/
     - LICENSE
+    - '**/rovib.egg-info/**'
 
   comment: never
