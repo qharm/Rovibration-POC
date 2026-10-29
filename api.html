@@ -1,0 +1,811 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Reference &mdash; rovib 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"macros": {"tens": ["\\boldsymbol{#1}", 1], "op": ["\\hat{#1}", 1], "optens": ["\\hat{\\boldsymbol{#1}}", 1], "tr": "\\operatorname{tr}", "Natom": "N_{\\mathrm{atom}}", "Nvib": "N_{\\mathrm{vib}}", "rzvec": "\\tens{r}^{0}", "Izvec": "\\tens{I}^{0}", "Izmhalf": "\\left(\\Izvec\\right)^{-1/2}", "Lvec": "\\tens{L}", "Mvec": "\\tens{M}", "zetavec": "\\tens{\\zeta}", "avec": "\\tens{a}", "Bvec": "\\tens{B}", "etavec": "\\tens{\\eta}", "gammavec": "\\tens{\\gamma}", "omegavec": "\\tens{\\omega}", "vvec": "\\tens{v}", "midx": "\\tens{m}", "rvec": "\\optens{r}", "rhovec": "\\optens{\\rho}", "Ivec": "\\optens{I}", "Ieffvec": "\\optens{I}'", "qvec": "\\optens{Q}", "pvec": "\\optens{P}", "jvec": "\\optens{J}", "pivec": "\\optens{\\pi}", "muvec": "\\optens{\\mu}", "bvec": "\\optens{b}", "rop": "\\op{r}", "Iop": "\\op{I}", "Ieffop": "\\op{I}'", "qop": "\\op{Q}", "pop": "\\op{P}", "jop": "\\op{J}", "piop": "\\op{\\pi}", "muop": "\\op{\\mu}", "aop": "\\op{a}", "Vop": "\\op{V}", "Hvib": "\\op{H}_{\\mathrm{vib}}", "HRR": "\\op{H}_{\\mathrm{RR}}", "HHO": "\\op{H}_{\\mathrm{HO}}", "HvibCor": "\\op{H}_{\\mathrm{vibCor}}", "Hwatson": "\\op{H}_{\\mathrm{watson}}", "Hrovib": "\\op{H}_{\\mathrm{rovib}}", "Vharm": "\\op{V}_{\\mathrm{harm}}", "Vanharm": "\\op{V}_{\\mathrm{anharm}}"}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Classes Design" href="developer/classes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            rovib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="background/index.html">Theoretical Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-rovib.molecule">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.molecule.Molecule"><code class="docutils literal notranslate"><span class="pre">Molecule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.molecule.Molecule.symbols"><code class="docutils literal notranslate"><span class="pre">Molecule.symbols</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.molecule.Molecule.coords"><code class="docutils literal notranslate"><span class="pre">Molecule.coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.molecule.Molecule.masses"><code class="docutils literal notranslate"><span class="pre">Molecule.masses</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.molecule.Molecule.natoms"><code class="docutils literal notranslate"><span class="pre">Molecule.natoms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.molecule.Molecule.nvib"><code class="docutils literal notranslate"><span class="pre">Molecule.nvib</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction"><code class="docutils literal notranslate"><span class="pre">RovibrationalBasisFunction</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction.nvib"><code class="docutils literal notranslate"><span class="pre">RovibrationalBasisFunction.nvib</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz"><code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.nvib"><code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz.nvib</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.vmax"><code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz.vmax</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.J"><code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz.J</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.basis_function"><code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz.basis_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.index"><code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz.index()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_term.HamiltonianTerm"><code class="docutils literal notranslate"><span class="pre">HamiltonianTerm</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian.Hamiltonian"><code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.hamiltonian.Hamiltonian.terms"><code class="docutils literal notranslate"><span class="pre">Hamiltonian.terms</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian"><code class="docutils literal notranslate"><span class="pre">HarmonicHamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian.frequencies"><code class="docutils literal notranslate"><span class="pre">HarmonicHamiltonian.frequencies</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian.nvib"><code class="docutils literal notranslate"><span class="pre">HarmonicHamiltonian.nvib</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rovib.harmonic_hamiltonian_elements">Matrix Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.harmonic_hamiltonian_elements.harmonic_matrix_element"><code class="docutils literal notranslate"><span class="pre">harmonic_matrix_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.harmonic_hamiltonian_elements.harmonic_non_zero_indices"><code class="docutils literal notranslate"><span class="pre">harmonic_non_zero_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_matrix.non_zero_indices"><code class="docutils literal notranslate"><span class="pre">non_zero_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_matrix.matrix_element"><code class="docutils literal notranslate"><span class="pre">matrix_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_matrix.build_hamiltonian_matrix"><code class="docutils literal notranslate"><span class="pre">build_hamiltonian_matrix()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rovib.driver">Driver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.driver.rovibrational_energies"><code class="docutils literal notranslate"><span class="pre">rovibrational_energies()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.driver.dominant_basis_function"><code class="docutils literal notranslate"><span class="pre">dominant_basis_function()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.driver.hartree_to_wavenumber"><code class="docutils literal notranslate"><span class="pre">hartree_to_wavenumber()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-rovib.water_params">Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.water_molecule"><code class="docutils literal notranslate"><span class="pre">water_molecule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.water_normal_modes"><code class="docutils literal notranslate"><span class="pre">water_normal_modes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.water_harmonic_frequencies"><code class="docutils literal notranslate"><span class="pre">water_harmonic_frequencies()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.harmonic_analysis"><code class="docutils literal notranslate"><span class="pre">harmonic_analysis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.is_water"><code class="docutils literal notranslate"><span class="pre">is_water()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.constants.HARTREE_TO_CM"><code class="docutils literal notranslate"><span class="pre">HARTREE_TO_CM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.constants.AMU_TO_ME"><code class="docutils literal notranslate"><span class="pre">AMU_TO_ME</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">rovib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<span id="api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<section id="module-rovib.molecule">
+<span id="classes"></span><h2>Classes<a class="headerlink" href="#module-rovib.molecule" title="Link to this heading"></a></h2>
+<p>Defines the Molecule class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.molecule.Molecule">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.molecule.</span></span><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masses</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.molecule.Molecule" title="Link to this definition"></a></dt>
+<dd><p>The user’s description of a (non-linear) molecule.</p>
+<p>This class is a stand-in for SimDE’s <code class="docutils literal notranslate"><span class="pre">ChemicalSystem</span></code> class. The
+coordinates and masses are stored as read-only arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>symbols</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – The atomic symbol of each atom.</p></li>
+<li><p><strong>coords</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – Cartesian coordinates of each atom in bohr. The shape is
+(number of atoms, 3).</p></li>
+<li><p><strong>masses</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – Isotopic mass of each atom in electron masses. The shape is
+(number of atoms,).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">coords</span></code> or <code class="docutils literal notranslate"><span class="pre">masses</span></code> does not have the shape
+implied by <code class="docutils literal notranslate"><span class="pre">symbols</span></code>.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.molecule.Molecule.symbols">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">symbols</span></span><a class="headerlink" href="#rovib.molecule.Molecule.symbols" title="Link to this definition"></a></dt>
+<dd><p>The atomic symbol of each atom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a> of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.molecule.Molecule.coords">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">coords</span></span><a class="headerlink" href="#rovib.molecule.Molecule.coords" title="Link to this definition"></a></dt>
+<dd><p>Cartesian coordinates of each atom in bohr.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.molecule.Molecule.masses">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">masses</span></span><a class="headerlink" href="#rovib.molecule.Molecule.masses" title="Link to this definition"></a></dt>
+<dd><p>Isotopic mass of each atom in electron masses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.molecule.Molecule.natoms">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">natoms</span></span><a class="headerlink" href="#rovib.molecule.Molecule.natoms" title="Link to this definition"></a></dt>
+<dd><p>The number of atoms in the molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.molecule.Molecule.nvib">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nvib</span></span><a class="headerlink" href="#rovib.molecule.Molecule.nvib" title="Link to this definition"></a></dt>
+<dd><p>The number of vibrational degrees of freedom.</p>
+<p>The molecule is assumed to be non-linear, so this is
+<span class="math notranslate nohighlight">\(3\Natom - 6\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-rovib.rovibrational_basis_function">Defines the RovibrationalBasisFunction class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.rovibrational_basis_function.RovibrationalBasisFunction">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.rovibrational_basis_function.</span></span><span class="sig-name descname"><span class="pre">RovibrationalBasisFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="Link to this definition"></a></dt>
+<dd><p>A rovibrational basis function <span class="math notranslate nohighlight">\(\ket{\vvec,J,K}\)</span>.</p>
+<p>The basis function is the product of one harmonic oscillator
+eigenfunction per vibrational mode and an angular momentum eigenstate.
+Instances are immutable and hashable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The vibrational quantum number of each mode.</p></li>
+<li><p><strong>J</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The total angular momentum quantum number.</p></li>
+<li><p><strong>K</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The projection of the total angular momentum on to the
+molecule-fixed z-axis.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If any vibrational quantum number is negative, if
+<code class="docutils literal notranslate"><span class="pre">J</span></code> is negative, or if <span class="math notranslate nohighlight">\(|K| &gt; J\)</span>.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.rovibrational_basis_function.RovibrationalBasisFunction.nvib">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nvib</span></span><a class="headerlink" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction.nvib" title="Link to this definition"></a></dt>
+<dd><p>The number of vibrational modes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-rovib.rovibrational_ansatz">Defines the RovibrationalAnsatz class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.rovibrational_ansatz.RovibrationalAnsatz">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.rovibrational_ansatz.</span></span><span class="sig-name descname"><span class="pre">RovibrationalAnsatz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nvib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="Link to this definition"></a></dt>
+<dd><p>The space in which the Hamiltonian is diagonalized.</p>
+<p>The space is the direct product of harmonic oscillator states, with
+<span class="math notranslate nohighlight">\(0 \le v_k \le v_{\max}\)</span> for every mode, and the angular
+momentum states <span class="math notranslate nohighlight">\(\ket{J,K}\)</span> with <span class="math notranslate nohighlight">\(K = -J, \ldots, J\)</span> for a
+single <span class="math notranslate nohighlight">\(J\)</span>. Only the truncation parameters are stored; basis
+functions are generated on demand.</p>
+<p>Basis functions are ordered with the first mode’s quantum number varying
+slowest and <span class="math notranslate nohighlight">\(K\)</span> varying fastest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nvib</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The number of vibrational modes.</p></li>
+<li><p><strong>vmax</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The maximum vibrational quantum number of each mode.</p></li>
+<li><p><strong>J</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The total angular momentum quantum number.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">nvib</span></code> is less than 1 or if <code class="docutils literal notranslate"><span class="pre">vmax</span></code> or <code class="docutils literal notranslate"><span class="pre">J</span></code> is
+negative.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.rovibrational_ansatz.RovibrationalAnsatz.nvib">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nvib</span></span><a class="headerlink" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.nvib" title="Link to this definition"></a></dt>
+<dd><p>The number of vibrational modes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.rovibrational_ansatz.RovibrationalAnsatz.vmax">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vmax</span></span><a class="headerlink" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.vmax" title="Link to this definition"></a></dt>
+<dd><p>The maximum vibrational quantum number of each mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.rovibrational_ansatz.RovibrationalAnsatz.J">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">J</span></span><a class="headerlink" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.J" title="Link to this definition"></a></dt>
+<dd><p>The total angular momentum quantum number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rovib.rovibrational_ansatz.RovibrationalAnsatz.basis_function">
+<span class="sig-name descname"><span class="pre">basis_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.basis_function" title="Link to this definition"></a></dt>
+<dd><p>Returns the basis function with the given index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The index of the basis function.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The basis function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction">RovibrationalBasisFunction</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#IndexError" title="(in Python v3.15)"><strong>IndexError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">index</span></code> is not in [0, <code class="docutils literal notranslate"><span class="pre">len(self)</span></code>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="rovib.rovibrational_ansatz.RovibrationalAnsatz.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis_function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz.index" title="Link to this definition"></a></dt>
+<dd><p>Returns the index of a basis function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>basis_function</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function to look up.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of <code class="docutils literal notranslate"><span class="pre">basis_function</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">basis_function</span></code> is not in the ansatz.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-rovib.hamiltonian_term">Defines the HamiltonianTerm class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.hamiltonian_term.HamiltonianTerm">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.hamiltonian_term.</span></span><span class="sig-name descname"><span class="pre">HamiltonianTerm</span></span><a class="headerlink" href="#rovib.hamiltonian_term.HamiltonianTerm" title="Link to this definition"></a></dt>
+<dd><p>Base class for the terms of a Hamiltonian.</p>
+<p>Terms carry the state needed to evaluate their matrix elements, but
+otherwise serve as a domain-specific language for specifying which terms
+are in the Hamiltonian. Matrix elements are evaluated by separate
+functions (see <a class="reference internal" href="#module-rovib.hamiltonian_matrix" title="rovib.hamiltonian_matrix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">rovib.hamiltonian_matrix</span></code></a>).</p>
+<p>Adding two terms, or a term and a
+<a class="reference internal" href="#rovib.hamiltonian.Hamiltonian" title="rovib.hamiltonian.Hamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a>, gives a
+<a class="reference internal" href="#rovib.hamiltonian.Hamiltonian" title="rovib.hamiltonian.Hamiltonian"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hamiltonian</span></code></a>.</p>
+</dd></dl>
+
+<p id="module-rovib.hamiltonian">Defines the Hamiltonian class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.hamiltonian.Hamiltonian">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.hamiltonian.</span></span><span class="sig-name descname"><span class="pre">Hamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.hamiltonian.Hamiltonian" title="Link to this definition"></a></dt>
+<dd><p>A Hamiltonian, i.e., a sum of Hamiltonian terms.</p>
+<p>The Hamiltonian only records which terms it contains. Its matrix is built
+by <a class="reference internal" href="#rovib.hamiltonian_matrix.build_hamiltonian_matrix" title="rovib.hamiltonian_matrix.build_hamiltonian_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">rovib.hamiltonian_matrix.build_hamiltonian_matrix()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>terms</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><em>tuple</em></a><em> of </em><a class="reference internal" href="#rovib.hamiltonian_term.HamiltonianTerm" title="rovib.hamiltonian_term.HamiltonianTerm"><em>HamiltonianTerm</em></a>) – The terms in the Hamiltonian.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#TypeError" title="(in Python v3.15)"><strong>TypeError</strong></a> – If any element of <code class="docutils literal notranslate"><span class="pre">terms</span></code> is not a
+<a class="reference internal" href="#rovib.hamiltonian_term.HamiltonianTerm" title="rovib.hamiltonian_term.HamiltonianTerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">HamiltonianTerm</span></code></a>.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.hamiltonian.Hamiltonian.terms">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">terms</span></span><a class="headerlink" href="#rovib.hamiltonian.Hamiltonian.terms" title="Link to this definition"></a></dt>
+<dd><p>The terms in the Hamiltonian, in the order they were added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a> of <a class="reference internal" href="#rovib.hamiltonian_term.HamiltonianTerm" title="rovib.hamiltonian_term.HamiltonianTerm">HamiltonianTerm</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-rovib.harmonic_hamiltonian">Defines the HarmonicHamiltonian class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.harmonic_hamiltonian.HarmonicHamiltonian">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.harmonic_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">HarmonicHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequencies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian" title="Link to this definition"></a></dt>
+<dd><p>The harmonic oscillator Hamiltonian <span class="math notranslate nohighlight">\(\HHO\)</span>.</p>
+<p>The frequencies are stored as a read-only array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frequencies</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – The harmonic frequencies <span class="math notranslate nohighlight">\(\omegavec\)</span> in hartree. The
+shape is (number of vibrational modes,).</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">frequencies</span></code> is not a non-empty vector, or if
+any frequency is not positive.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.harmonic_hamiltonian.HarmonicHamiltonian.frequencies">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">frequencies</span></span><a class="headerlink" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian.frequencies" title="Link to this definition"></a></dt>
+<dd><p>The harmonic frequencies <span class="math notranslate nohighlight">\(\omegavec\)</span> in hartree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.harmonic_hamiltonian.HarmonicHamiltonian.nvib">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nvib</span></span><a class="headerlink" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian.nvib" title="Link to this definition"></a></dt>
+<dd><p>The number of vibrational modes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-rovib.harmonic_hamiltonian_elements">
+<span id="matrix-elements"></span><h2>Matrix Elements<a class="headerlink" href="#module-rovib.harmonic_hamiltonian_elements" title="Link to this heading"></a></h2>
+<p>Matrix elements of the harmonic oscillator Hamiltonian.</p>
+<p><span class="math notranslate nohighlight">\(\HHO\)</span> is diagonal in the rovibrational basis:</p>
+<div class="math notranslate nohighlight">
+\[\braket{\vvec',J',K'\mid\HHO\mid\vvec,J,K} =
+   \delta_{\vvec',\vvec}\delta_{J',J}\delta_{K',K}
+   \sum_{i=1}^{\Nvib}\omega_i\left(v_i + \frac{1}{2}\right)\]</div>
+<p>in atomic units.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.harmonic_hamiltonian_elements.harmonic_matrix_element">
+<span class="sig-prename descclassname"><span class="pre">rovib.harmonic_hamiltonian_elements.</span></span><span class="sig-name descname"><span class="pre">harmonic_matrix_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ket</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.harmonic_hamiltonian_elements.harmonic_matrix_element" title="Link to this definition"></a></dt>
+<dd><p>Computes a single matrix element of <span class="math notranslate nohighlight">\(\HHO\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function in the bra.</p></li>
+<li><p><strong>term</strong> (<a class="reference internal" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian" title="rovib.harmonic_hamiltonian.HarmonicHamiltonian"><em>HarmonicHamiltonian</em></a>) – The harmonic oscillator Hamiltonian.</p></li>
+<li><p><strong>ket</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function in the ket.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix element in hartree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#complex" title="(in Python v3.15)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.harmonic_hamiltonian_elements.harmonic_non_zero_indices">
+<span class="sig-prename descclassname"><span class="pre">rovib.harmonic_hamiltonian_elements.</span></span><span class="sig-name descname"><span class="pre">harmonic_non_zero_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bra_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ket_space</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.harmonic_hamiltonian_elements.harmonic_non_zero_indices" title="Link to this definition"></a></dt>
+<dd><p>Generates the bra-ket pairs with non-zero matrix elements of <span class="math notranslate nohighlight">\(\HHO\)</span>.</p>
+<p>Since <span class="math notranslate nohighlight">\(\HHO\)</span> is diagonal, an element is non-zero only if the bra and ket
+are the same basis function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra_space</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the bra basis functions come from.</p></li>
+<li><p><strong>term</strong> (<a class="reference internal" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian" title="rovib.harmonic_hamiltonian.HarmonicHamiltonian"><em>HarmonicHamiltonian</em></a>) – The harmonic oscillator Hamiltonian.</p></li>
+<li><p><strong>ket_space</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the ket basis functions come from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A generator of (bra, ket) pairs of
+<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RovibrationalBasisFunction</span></code></a> objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.15)">collections.abc.Iterator</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If either space has a different number of
+vibrational modes than <code class="docutils literal notranslate"><span class="pre">term</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-rovib.hamiltonian_matrix">Builds the matrix of a Hamiltonian in a rovibrational ansatz.</p>
+<p><a class="reference internal" href="#rovib.hamiltonian_matrix.non_zero_indices" title="rovib.hamiltonian_matrix.non_zero_indices"><code class="xref py py-func docutils literal notranslate"><span class="pre">non_zero_indices()</span></code></a> and <a class="reference internal" href="#rovib.hamiltonian_matrix.matrix_element" title="rovib.hamiltonian_matrix.matrix_element"><code class="xref py py-func docutils literal notranslate"><span class="pre">matrix_element()</span></code></a> are the common APIs for
+all Hamiltonian terms; internally they dispatch on the type of the term.
+<a class="reference internal" href="#rovib.hamiltonian_matrix.build_hamiltonian_matrix" title="rovib.hamiltonian_matrix.build_hamiltonian_matrix"><code class="xref py py-func docutils literal notranslate"><span class="pre">build_hamiltonian_matrix()</span></code></a> uses them to fill in the non-zero elements
+of a dense matrix.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.hamiltonian_matrix.non_zero_indices">
+<span class="sig-prename descclassname"><span class="pre">rovib.hamiltonian_matrix.</span></span><span class="sig-name descname"><span class="pre">non_zero_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bra_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ket_space</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.hamiltonian_matrix.non_zero_indices" title="Link to this definition"></a></dt>
+<dd><p>Generates the bra-ket pairs whose matrix elements may be non-zero.</p>
+<p>Pairs whose matrix element is zero by symmetry or selection rules are
+skipped. The bra and ket spaces may differ, e.g., to build a block of the
+matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra_space</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the bra basis functions come from.</p></li>
+<li><p><strong>term</strong> (<a class="reference internal" href="#rovib.hamiltonian_term.HamiltonianTerm" title="rovib.hamiltonian_term.HamiltonianTerm"><em>HamiltonianTerm</em></a>) – The Hamiltonian term.</p></li>
+<li><p><strong>ket_space</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the ket basis functions come from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A generator of (bra, ket) pairs of
+<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RovibrationalBasisFunction</span></code></a> objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.15)">collections.abc.Iterator</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#TypeError" title="(in Python v3.15)"><strong>TypeError</strong></a> – If the type of <code class="docutils literal notranslate"><span class="pre">term</span></code> is not implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.hamiltonian_matrix.matrix_element">
+<span class="sig-prename descclassname"><span class="pre">rovib.hamiltonian_matrix.</span></span><span class="sig-name descname"><span class="pre">matrix_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ket</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.hamiltonian_matrix.matrix_element" title="Link to this definition"></a></dt>
+<dd><p>Computes a single matrix element of a Hamiltonian term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function in the bra.</p></li>
+<li><p><strong>term</strong> (<a class="reference internal" href="#rovib.hamiltonian_term.HamiltonianTerm" title="rovib.hamiltonian_term.HamiltonianTerm"><em>HamiltonianTerm</em></a>) – The Hamiltonian term.</p></li>
+<li><p><strong>ket</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function in the ket.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix element in hartree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#complex" title="(in Python v3.15)">complex</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#TypeError" title="(in Python v3.15)"><strong>TypeError</strong></a> – If the type of <code class="docutils literal notranslate"><span class="pre">term</span></code> is not implemented.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.hamiltonian_matrix.build_hamiltonian_matrix">
+<span class="sig-prename descclassname"><span class="pre">rovib.hamiltonian_matrix.</span></span><span class="sig-name descname"><span class="pre">build_hamiltonian_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.hamiltonian_matrix.build_hamiltonian_matrix" title="Link to this definition"></a></dt>
+<dd><p>Builds the dense matrix of a Hamiltonian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hamiltonian</strong> (<a class="reference internal" href="#rovib.hamiltonian.Hamiltonian" title="rovib.hamiltonian.Hamiltonian"><em>Hamiltonian</em></a>) – The Hamiltonian.</p></li>
+<li><p><strong>ansatz</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the Hamiltonian is built in.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix of <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> in hartree. The shape is
+(<code class="docutils literal notranslate"><span class="pre">len(ansatz)</span></code>, <code class="docutils literal notranslate"><span class="pre">len(ansatz)</span></code>).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#TypeError" title="(in Python v3.15)"><strong>TypeError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> contains a term whose matrix
+elements are not implemented.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#RuntimeError" title="(in Python v3.15)"><strong>RuntimeError</strong></a> – If the resulting matrix is not Hermitian.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-rovib.driver">
+<span id="driver"></span><h2>Driver<a class="headerlink" href="#module-rovib.driver" title="Link to this heading"></a></h2>
+<p>The top-level driver: from a molecule to rovibrational energies.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.driver.rovibrational_energies">
+<span class="sig-prename descclassname"><span class="pre">rovib.driver.</span></span><span class="sig-name descname"><span class="pre">rovibrational_energies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.driver.rovibrational_energies" title="Link to this definition"></a></dt>
+<dd><p>Computes the rovibrational energies of a molecule.</p>
+<p>The Hamiltonian is currently only the harmonic oscillator Hamiltonian
+<span class="math notranslate nohighlight">\(\HHO\)</span>, and the parameters are hard-coded for water. The eigenvectors are
+expressed in <code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz(molecule.nvib,</span> <span class="pre">vmax,</span> <span class="pre">J)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule, at its minimum energy geometry.</p></li>
+<li><p><strong>vmax</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The maximum vibrational quantum number of each mode.</p></li>
+<li><p><strong>J</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The total angular momentum quantum number.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The energies in hartree (in ascending order) and the
+corresponding eigenvectors (as columns).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a> of (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a>)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">molecule</span></code> is not water.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.driver.dominant_basis_function">
+<span class="sig-prename descclassname"><span class="pre">rovib.driver.</span></span><span class="sig-name descname"><span class="pre">dominant_basis_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eigenvector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.driver.dominant_basis_function" title="Link to this definition"></a></dt>
+<dd><p>Returns the basis function that contributes most to an eigenvector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>eigenvector</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – The eigenvector’s coefficients in <code class="docutils literal notranslate"><span class="pre">ansatz</span></code>.</p></li>
+<li><p><strong>ansatz</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The ansatz the eigenvector is expressed in.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The basis function with the largest coefficient magnitude.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction">RovibrationalBasisFunction</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.driver.hartree_to_wavenumber">
+<span class="sig-prename descclassname"><span class="pre">rovib.driver.</span></span><span class="sig-name descname"><span class="pre">hartree_to_wavenumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.driver.hartree_to_wavenumber" title="Link to this definition"></a></dt>
+<dd><p>Converts energies from hartree to wavenumbers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>energy</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – The energies in hartree.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The energies in cm^-1.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-rovib.water_params">
+<span id="parameters"></span><h2>Parameters<a class="headerlink" href="#module-rovib.water_params" title="Link to this heading"></a></h2>
+<p>Hard-coded parameters for water.</p>
+<p>Unless noted otherwise, the parameters are from Appendix B of E. Lötstedt and
+T. Szidarovszky, J. Chem. Phys. 165, 024118 (2026),
+doi:10.1063/5.0333947. The functions in this module return the parameters
+in atomic units.</p>
+<p>The molecule-fixed axes are those of the paper: x (the paper’s a axis) is
+perpendicular to the molecular plane, y (b) is in the plane, and z (c) is the
+C2 axis. The atoms are ordered O, H1, H2, and the vibrational modes are
+ordered symmetric stretch, bend, antisymmetric stretch.</p>
+<p>This file was generated by Claude. RMR has verified that the parameters in this
+file are consistent with 10.1063/5.0333947.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.water_params.water_molecule">
+<span class="sig-prename descclassname"><span class="pre">rovib.water_params.</span></span><span class="sig-name descname"><span class="pre">water_molecule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rovib.water_params.water_molecule" title="Link to this definition"></a></dt>
+<dd><p>Returns the equilibrium geometry of water.</p>
+<p>The paper only gives the O-H distance and the H-O-H angle. The Cartesian
+coordinates are derived from them, with the center of mass at the
+origin and the axes described in the module documentation.</p>
+<p>This fixes the coordinates up to the sign of the inversion
+<span class="math notranslate nohighlight">\(\rzvec \rightarrow -\rzvec\)</span>, which the Eckart conditions cannot
+determine. The orientation used here has O on the -z side of the center
+of mass and H1 at y &lt; 0, which is the orientation that reproduces the
+paper’s results. Note that, with the paper’s normal-mode matrix, a
+positive displacement along the symmetric stretch then compresses the
+O-H bonds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Water at its equilibrium geometry.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule">Molecule</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.water_params.water_normal_modes">
+<span class="sig-prename descclassname"><span class="pre">rovib.water_params.</span></span><span class="sig-name descname"><span class="pre">water_normal_modes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rovib.water_params.water_normal_modes" title="Link to this definition"></a></dt>
+<dd><p>Returns the normal-mode transformation matrix <span class="math notranslate nohighlight">\(\Lvec\)</span> of water.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The (dimensionless) normal-mode matrix, indexed by (atom, axis,
+mode).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.water_params.water_harmonic_frequencies">
+<span class="sig-prename descclassname"><span class="pre">rovib.water_params.</span></span><span class="sig-name descname"><span class="pre">water_harmonic_frequencies</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#rovib.water_params.water_harmonic_frequencies" title="Link to this definition"></a></dt>
+<dd><p>Returns the harmonic frequencies <span class="math notranslate nohighlight">\(\omegavec\)</span> of water.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The harmonic frequencies in hartree.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.water_params.harmonic_analysis">
+<span class="sig-prename descclassname"><span class="pre">rovib.water_params.</span></span><span class="sig-name descname"><span class="pre">harmonic_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.water_params.harmonic_analysis" title="Link to this definition"></a></dt>
+<dd><p>Performs the harmonic analysis of a molecule.</p>
+<p>The results are hard-coded for water. A general implementation would
+diagonalize the mass-weighted Hessian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule, at its minimum energy geometry.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normal-mode matrix <span class="math notranslate nohighlight">\(\Lvec\)</span>, indexed by (atom, axis, mode),
+and the harmonic frequencies <span class="math notranslate nohighlight">\(\omegavec\)</span> in hartree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)">tuple</a> of (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a>)</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">molecule</span></code> is not water.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.water_params.is_water">
+<span class="sig-prename descclassname"><span class="pre">rovib.water_params.</span></span><span class="sig-name descname"><span class="pre">is_water</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-06</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.water_params.is_water" title="Link to this definition"></a></dt>
+<dd><p>Determines if a molecule is the water molecule in this module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule to check.</p></li>
+<li><p><strong>atol</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The absolute tolerance, in bohr, for comparing coordinates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if <code class="docutils literal notranslate"><span class="pre">molecule</span></code> has the same atoms, isotopic masses, and
+(to within <code class="docutils literal notranslate"><span class="pre">atol</span></code>) coordinates as <a class="reference internal" href="#rovib.water_params.water_molecule" title="rovib.water_params.water_molecule"><code class="xref py py-func docutils literal notranslate"><span class="pre">water_molecule()</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-rovib.constants">Physical constants and unit conversions.</p>
+<p>All calculations are done in atomic units. The values here are the CODATA
+2018 recommended values and are only needed to convert inputs to, and
+results from, atomic units.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="rovib.constants.HARTREE_TO_CM">
+<span class="sig-prename descclassname"><span class="pre">rovib.constants.</span></span><span class="sig-name descname"><span class="pre">HARTREE_TO_CM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">219474.6313632</span></em><a class="headerlink" href="#rovib.constants.HARTREE_TO_CM" title="Link to this definition"></a></dt>
+<dd><p>Conversion factor from hartree to wavenumbers (cm^-1).</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="rovib.constants.AMU_TO_ME">
+<span class="sig-prename descclassname"><span class="pre">rovib.constants.</span></span><span class="sig-name descname"><span class="pre">AMU_TO_ME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1822.888486209</span></em><a class="headerlink" href="#rovib.constants.AMU_TO_ME" title="Link to this definition"></a></dt>
+<dd><p>Conversion factor from unified atomic mass units to electron masses.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="developer/classes.html" class="btn btn-neutral float-left" title="Classes Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, QHARM Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

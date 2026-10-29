@@ -12,13 +12,15 @@
 .. See the License for the specific language governing permissions and
 .. limitations under the License.
 
-###############
-Rovibration-POC
-###############
+#####
+rovib
+#####
 
 A proof-of-concept library that solves the rovibrational problem.
 
 .. toctree::
    :maxdepth: 2
 
-   background
+   background/index
+   developer/index
+   api

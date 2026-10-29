@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Library Design &mdash; rovib 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"macros": {"tens": ["\\boldsymbol{#1}", 1], "op": ["\\hat{#1}", 1], "optens": ["\\hat{\\boldsymbol{#1}}", 1], "tr": "\\operatorname{tr}", "Natom": "N_{\\mathrm{atom}}", "Nvib": "N_{\\mathrm{vib}}", "rzvec": "\\tens{r}^{0}", "Izvec": "\\tens{I}^{0}", "Izmhalf": "\\left(\\Izvec\\right)^{-1/2}", "Lvec": "\\tens{L}", "Mvec": "\\tens{M}", "zetavec": "\\tens{\\zeta}", "avec": "\\tens{a}", "Bvec": "\\tens{B}", "etavec": "\\tens{\\eta}", "gammavec": "\\tens{\\gamma}", "omegavec": "\\tens{\\omega}", "vvec": "\\tens{v}", "midx": "\\tens{m}", "rvec": "\\optens{r}", "rhovec": "\\optens{\\rho}", "Ivec": "\\optens{I}", "Ieffvec": "\\optens{I}'", "qvec": "\\optens{Q}", "pvec": "\\optens{P}", "jvec": "\\optens{J}", "pivec": "\\optens{\\pi}", "muvec": "\\optens{\\mu}", "bvec": "\\optens{b}", "rop": "\\op{r}", "Iop": "\\op{I}", "Ieffop": "\\op{I}'", "qop": "\\op{Q}", "pop": "\\op{P}", "jop": "\\op{J}", "piop": "\\op{\\pi}", "muop": "\\op{\\mu}", "aop": "\\op{a}", "Vop": "\\op{V}", "Hvib": "\\op{H}_{\\mathrm{vib}}", "HRR": "\\op{H}_{\\mathrm{RR}}", "HHO": "\\op{H}_{\\mathrm{HO}}", "HvibCor": "\\op{H}_{\\mathrm{vibCor}}", "Hwatson": "\\op{H}_{\\mathrm{watson}}", "Hrovib": "\\op{H}_{\\mathrm{rovib}}", "Vharm": "\\op{V}_{\\mathrm{harm}}", "Vanharm": "\\op{V}_{\\mathrm{anharm}}"}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Evaluating Matrix Elements" href="matrix_elements.html" />
+    <link rel="prev" title="Developer Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            rovib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../background/index.html">Theoretical Background</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Library Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#considerations">Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#driver-control-flow">Driver Control Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="matrix_elements.html">Evaluating Matrix Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="classes.html">Classes Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rovib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Developer Documentation</a></li>
+      <li class="breadcrumb-item active">Library Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer/design.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="library-design">
+<h1>Library Design<a class="headerlink" href="#library-design" title="Link to this heading"></a></h1>
+<section id="considerations">
+<h2>Considerations<a class="headerlink" href="#considerations" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Should be extensible to other molecules. But will be hard-coded to water
+for now.</p>
+<ul class="simple">
+<li><p>Main feature gap is getting the anharmonic force constants.</p></li>
+</ul>
+</li>
+<li><p>First pass is a standalone Python module. Eventually will want to go back
+and modularize it for use with SimDE.</p>
+<ul class="simple">
+<li><p>Envisioning a top-level driver where each subfunction will eventually be a
+PluginPlay module.</p></li>
+</ul>
+</li>
+<li><p>First pass will build entire Hamiltonian matrix.</p>
+<ul class="simple">
+<li><p>This is not scalable. Eventually want to do Davidson diagonalization so
+will need to be able to do sigma builds.</p></li>
+</ul>
+</li>
+<li><p>Will use atomic units for all calculations.</p></li>
+<li><p>Need complex arithmetic because matrix elements of P and J are complex.</p></li>
+<li><p>Object-oriented.</p>
+<ul class="simple">
+<li><p>Classes discussed in <a class="reference internal" href="classes.html#classes"><span class="std std-ref">Classes Design</span></a> section.</p></li>
+</ul>
+</li>
+<li><p>One class per Hamiltonian term.</p>
+<ul class="simple">
+<li><p>Like SimDE, terms should carry state needed to evaluate matrix elements,
+but serve primarily as a DSL for determining what terms are in the
+Hamiltonian.</p></li>
+</ul>
+</li>
+<li><p>Need a class for describing the space in which the Hamiltonian will be
+diagonalized.</p>
+<ul class="simple">
+<li><p>Carries parameters to denote how the basis is truncated.</p></li>
+<li><p>Also DSL-like. Storing full basis is not scalable.</p></li>
+</ul>
+</li>
+<li><p>Driver responsible for going from a molecule to a Hamiltonian operator to
+the eigenvalues of the Hamiltonian operator.</p></li>
+</ol>
+</section>
+<section id="driver-control-flow">
+<h2>Driver Control Flow<a class="headerlink" href="#driver-control-flow" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Input is a minimum energy <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> object.</p>
+<ul class="simple">
+<li><p>Hard-code to water in the system test.</p></li>
+<li><p>Assuming minimum energy allows focusing on Taylor expanding the PES.</p></li>
+</ul>
+</li>
+<li><p>Do harmonic analysis to get <span class="math notranslate nohighlight">\(\Lvec\)</span> and <span class="math notranslate nohighlight">\(\omegavec\)</span>.</p></li>
+<li><p>Fill <code class="docutils literal notranslate"><span class="pre">HarmonicHamiltonian</span></code> object.</p>
+<ul class="simple">
+<li><p>Hard-code for water. Throw if input <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> is not water.</p></li>
+<li><p>A general approach needs second derivatives of the electronic energy with
+respect to displacements from <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Fill <code class="docutils literal notranslate"><span class="pre">AnharmonicPotential</span></code> object.</p>
+<ul class="simple">
+<li><p>Hard-code for water. Throw if input <code class="docutils literal notranslate"><span class="pre">Molecule</span></code> is not water.</p></li>
+<li><p>A general approach needs third and fourth derivatives of the electronic
+energy with respect to displacements from <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Fill <code class="docutils literal notranslate"><span class="pre">RigidRotorHamiltonian</span></code> object.</p>
+<ul class="simple">
+<li><p>Build the inertia tensor and diagonalize it.</p></li>
+<li><p>Test against hard-coded values for water.</p></li>
+</ul>
+</li>
+<li><p>Build the eta tensors.</p>
+<ol class="arabic simple">
+<li><p>Compute <span class="math notranslate nohighlight">\(\avec\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Nvib\)</span> by 3 by 3</p></li>
+<li><p>Needs <span class="math notranslate nohighlight">\(\rzvec\)</span>, <span class="math notranslate nohighlight">\(\Mvec\)</span>, and <span class="math notranslate nohighlight">\(\Lvec\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\Bvec\)</span> by transforming <span class="math notranslate nohighlight">\(\avec\)</span> using <span class="math notranslate nohighlight">\(\Izvec\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Nvib\)</span> by 3 by 3</p></li>
+</ul>
+</li>
+<li><p>Build the five eta tensors from <span class="math notranslate nohighlight">\(\Bvec\)</span> and <span class="math notranslate nohighlight">\(\Izvec\)</span>.</p>
+<ul class="simple">
+<li><p>n = 0 is 3 by 3</p></li>
+<li><p>n = 1 is 3 by 3 by <span class="math notranslate nohighlight">\(\Nvib\)</span></p></li>
+<li><p>n = 2 is 3 by 3 by <span class="math notranslate nohighlight">\(\Nvib\)</span> by <span class="math notranslate nohighlight">\(\Nvib\)</span></p></li>
+<li><p>n = 3 is 3 by 3 by <span class="math notranslate nohighlight">\(\Nvib\)</span> by <span class="math notranslate nohighlight">\(\Nvib\)</span> by <span class="math notranslate nohighlight">\(\Nvib\)</span></p></li>
+<li><p>n = 4 is 3 by 3 by <span class="math notranslate nohighlight">\(\Nvib\)</span> by <span class="math notranslate nohighlight">\(\Nvib\)</span> by <span class="math notranslate nohighlight">\(\Nvib\)</span> by <span class="math notranslate nohighlight">\(\Nvib\)</span></p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Build <code class="docutils literal notranslate"><span class="pre">WatsonHamiltonian</span></code> object.</p></li>
+<li><p>Compute <span class="math notranslate nohighlight">\(\zetavec\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Nvib\)</span> by 3 by <span class="math notranslate nohighlight">\(\Nvib\)</span></p></li>
+<li><p>Involves cross-products of <span class="math notranslate nohighlight">\(\Lvec\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Build <code class="docutils literal notranslate"><span class="pre">RovibrationalHamiltonian</span></code> and <code class="docutils literal notranslate"><span class="pre">VibrationalCoriolisHamiltonian</span></code></p>
+<ul class="simple">
+<li><p>Input is <span class="math notranslate nohighlight">\(\zetavec\)</span> and <span class="math notranslate nohighlight">\(\etavec\)</span>.</p></li>
+</ul>
+</li>
+<li><p>Build <code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz</span></code> object.</p>
+<ul class="simple">
+<li><p>Input is the maximum vibrational quantum number and total angular momentum.</p></li>
+</ul>
+</li>
+<li><p>Build the Hamiltonian in the <code class="docutils literal notranslate"><span class="pre">RovibrationalBasisFunction</span></code> basis.</p>
+<ul class="simple">
+<li><p>Details are in <a class="reference internal" href="matrix_elements.html#matrix-elements"><span class="std std-ref">Evaluating Matrix Elements</span></a> section.</p></li>
+</ul>
+</li>
+<li><p>Diagonalize the Hamiltonian matrix to get eigenvalues/eigenvectors.</p>
+<ul class="simple">
+<li><p>Driver returns the eigenvalues and eigenvectors</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="matrix_elements.html" class="btn btn-neutral float-right" title="Evaluating Matrix Elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, QHARM Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
