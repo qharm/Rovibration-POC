@@ -19,6 +19,7 @@
 # These are common Python virtual environment directory names
 venv/
 docs/venv/
+.venv/
 
 # Byte-compiled Python
 __pycache__/
