@@ -176,27 +176,25 @@ also expanded as a fourth-order Taylor series about the minimum energy geometry,
 vibrational Hamiltonian, and retaining terms up to fourth order in <span class="math notranslate nohighlight">\(\qvec\)</span>
 gives:</p>
 <div class="math notranslate nohighlight">
-\[\Hvib =&amp; \HHO + \HRR + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
+\[\Hvib = \HHO + \HRR + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
   \mathcal{O}(\qvec^5)\]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\HHO \equiv&amp;  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\)</span> is the
+<li><p><span class="math notranslate nohighlight">\(\HHO \equiv  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\)</span> is the
 harmonic oscillator Hamiltonian.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\HRR \equiv&amp; \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\)</span> is the rigid rotor
+<li><p><span class="math notranslate nohighlight">\(\HRR \equiv \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\)</span> is the rigid rotor
 Hamiltonian.</p></li>
 <li><p><span class="math notranslate nohighlight">\(\Vanharm\)</span> is the anharmonic potential energy.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\HvibCor\equiv&amp; \frac{1}{2}\sum_{n=0}^{2}\pivec^T\muvec^{(n)}\pivec\)</span>
-is the vibrational Coriolis Hamiltonian.</p></li>
-<li><dl class="simple">
-<dt><span class="math notranslate nohighlight">\(\Hwatson \equiv&amp; -\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\)</span> is</dt><dd><p>the Watson Hamiltonian.</p>
-</dd>
-</dl>
-</li>
 </ul>
-<p>and <span class="math notranslate nohighlight">\(\Hrovib\)</span> is the rovibrational coupling Hamiltonian, which is given
-by:</p>
+<p><span class="math notranslate nohighlight">\(\HvibCor\)</span> is:</p>
 <div class="math notranslate nohighlight">
-\[\Hrovib \equiv&amp; \frac{1}{2}\sum_{n=1}^{4}\jvec^T\muvec^{(n)}\jvec -
+\[\begin{split}\HvibCor\equiv&amp; \frac{1}{2}\sum_{n=0}^{2}\pivec^T\muvec^{(n)}\pivec +
+               \Hwatson\\
+\Hwatson \equiv&amp; -\frac{1}{2}\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\end{split}\]</div>
+<p>is the vibrational Coriolis Hamiltonian and <span class="math notranslate nohighlight">\(\Hrovib\)</span> is the rovibrational
+coupling Hamiltonian, which is given by:</p>
+<div class="math notranslate nohighlight">
+\[\Hrovib \equiv \frac{1}{2}\sum_{n=1}^{4}\jvec^T\muvec^{(n)}\jvec -
       \frac{1}{2}\sum_{n=0}^{3}\jvec^T\muvec^{(n)}\pivec-
       \frac{1}{2}\sum_{n=0}^{3}\pivec^T\muvec^{(n)}\jvec\]</div>
 </section>
@@ -233,15 +231,16 @@ are:</p>
                                    \frac{\gamma_x+\gamma_y}{2}
                                    \left(J(J+1) - K^2\right) +
                                    \gamma_z K^2\right]\\
-T^{(\text{RR},-2)}_{J,K',K} \equiv&amp; \delta_{K',K-2}
+T^{(\text{RR},-2)}_{J,K',K} \equiv&amp; \delta_{K',K-2}\left[
                                    \frac{\gamma_x-\gamma_y}{4}
-                                   C^-_{J,K}C^-_{J,K-1}\\
-T^{(\text{RR},2)}_{J,K',K} \equiv&amp; \delta_{K',K+2}
+                                   C^-_{J,K}C^-_{J,K-1}\right]\\
+T^{(\text{RR},2)}_{J,K',K} \equiv&amp; \delta_{K',K+2}\left[
                                    \frac{\gamma_x-\gamma_y}{4}
-                                   C^+_{J,K}C^+_{J,K+1}\end{split}\]</div>
+                                   C^+_{J,K}C^+_{J,K+1}\right]\end{split}\]</div>
 <p>with <span class="math notranslate nohighlight">\(\gamma_x\)</span>, <span class="math notranslate nohighlight">\(\gamma_y\)</span>, and <span class="math notranslate nohighlight">\(\gamma_z\)</span> being the
-rotational constants of the molecule and
-<span class="math notranslate nohighlight">\(C^\pm_{J,K} =&amp; \sqrt{J(J+1) - K(K\pm1)}\)</span>.</p>
+rotational constants of the molecule and:</p>
+<div class="math notranslate nohighlight">
+\[C^\pm_{J,K} = \sqrt{J(J+1) - K(K\pm1)}.\]</div>
 </section>
 <section id="watson-matrix-elements">
 <h3>Watson Matrix Elements<a class="headerlink" href="#watson-matrix-elements" title="Link to this heading"></a></h3>

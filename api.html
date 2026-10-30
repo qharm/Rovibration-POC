@@ -78,11 +78,17 @@
 <li class="toctree-l4"><a class="reference internal" href="#rovib.harmonic_hamiltonian.HarmonicHamiltonian.nvib"><code class="docutils literal notranslate"><span class="pre">HarmonicHamiltonian.nvib</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian"><code class="docutils literal notranslate"><span class="pre">RigidRotorHamiltonian</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian.rotational_constants"><code class="docutils literal notranslate"><span class="pre">RigidRotorHamiltonian.rotational_constants</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#module-rovib.harmonic_hamiltonian_elements">Matrix Elements</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.harmonic_hamiltonian_elements.harmonic_matrix_element"><code class="docutils literal notranslate"><span class="pre">harmonic_matrix_element()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.harmonic_hamiltonian_elements.harmonic_non_zero_indices"><code class="docutils literal notranslate"><span class="pre">harmonic_non_zero_indices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.rigid_rotor_hamiltonian_elements.rigid_rotor_matrix_element"><code class="docutils literal notranslate"><span class="pre">rigid_rotor_matrix_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.rigid_rotor_hamiltonian_elements.rigid_rotor_non_zero_indices"><code class="docutils literal notranslate"><span class="pre">rigid_rotor_non_zero_indices()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_matrix.non_zero_indices"><code class="docutils literal notranslate"><span class="pre">non_zero_indices()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_matrix.matrix_element"><code class="docutils literal notranslate"><span class="pre">matrix_element()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.hamiltonian_matrix.build_hamiltonian_matrix"><code class="docutils literal notranslate"><span class="pre">build_hamiltonian_matrix()</span></code></a></li>
@@ -94,7 +100,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#rovib.driver.hartree_to_wavenumber"><code class="docutils literal notranslate"><span class="pre">hartree_to_wavenumber()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#module-rovib.water_params">Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-rovib.inertia">Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.inertia.inertia_tensor"><code class="docutils literal notranslate"><span class="pre">inertia_tensor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rovib.inertia.rotational_constants"><code class="docutils literal notranslate"><span class="pre">rotational_constants()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.water_molecule"><code class="docutils literal notranslate"><span class="pre">water_molecule()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.water_normal_modes"><code class="docutils literal notranslate"><span class="pre">water_normal_modes()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rovib.water_params.water_harmonic_frequencies"><code class="docutils literal notranslate"><span class="pre">water_harmonic_frequencies()</span></code></a></li>
@@ -435,6 +443,36 @@ any frequency is not positive.</p>
 
 </dd></dl>
 
+<p id="module-rovib.rigid_rotor_hamiltonian">Defines the RigidRotorHamiltonian class.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">rovib.rigid_rotor_hamiltonian.</span></span><span class="sig-name descname"><span class="pre">RigidRotorHamiltonian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rotational_constants</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian" title="Link to this definition"></a></dt>
+<dd><p>The rigid rotor Hamiltonian <span class="math notranslate nohighlight">\(\HRR\)</span>.</p>
+<p>The rotational constants are stored as a read-only array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rotational_constants</strong> (<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><em>numpy.ndarray</em></a>) – The rotational constants <span class="math notranslate nohighlight">\(\gammavec\)</span>, i.e.,
+<span class="math notranslate nohighlight">\((\gamma_x, \gamma_y, \gamma_z)\)</span>, in hartree. <span class="math notranslate nohighlight">\(K\)</span> is
+the projection of <span class="math notranslate nohighlight">\(\jvec\)</span> on to the z-axis.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">rotational_constants</span></code> does not have shape (3,),
+or if any rotational constant is not positive.</p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian.rotational_constants">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rotational_constants</span></span><a class="headerlink" href="#rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian.rotational_constants" title="Link to this definition"></a></dt>
+<dd><p>The rotational constants <span class="math notranslate nohighlight">\(\gammavec\)</span> in hartree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-rovib.harmonic_hamiltonian_elements">
 <span id="matrix-elements"></span><h2>Matrix Elements<a class="headerlink" href="#module-rovib.harmonic_hamiltonian_elements" title="Link to this heading"></a></h2>
@@ -490,6 +528,75 @@ are the same basis function.</p>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If either space has a different number of
 vibrational modes than <code class="docutils literal notranslate"><span class="pre">term</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-rovib.rigid_rotor_hamiltonian_elements">Matrix elements of the rigid rotor Hamiltonian.</p>
+<p><span class="math notranslate nohighlight">\(\HRR\)</span> is diagonal in <span class="math notranslate nohighlight">\(\vvec\)</span> and <span class="math notranslate nohighlight">\(J\)</span>, and couples <span class="math notranslate nohighlight">\(K\)</span> only
+to <span class="math notranslate nohighlight">\(K\)</span> and <span class="math notranslate nohighlight">\(K\pm 2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =
+   \delta_{\vvec',\vvec}\delta_{J',J}\left(
+   T^{(\text{RR},0)}_{J,K',K} +
+   T^{(\text{RR},-2)}_{J,K',K} +
+   T^{(\text{RR},2)}_{J,K',K}\right)\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T^{(\text{RR},0)}_{J,K',K} \equiv&amp; \delta_{K',K}\left[
+                                   \frac{\gamma_x+\gamma_y}{2}
+                                   \left(J(J+1) - K^2\right) +
+                                   \gamma_z K^2\right]\\
+T^{(\text{RR},-2)}_{J,K',K} \equiv&amp; \delta_{K',K-2}
+                                   \frac{\gamma_x-\gamma_y}{4}
+                                   C^-_{J,K}C^-_{J,K-1}\\
+T^{(\text{RR},2)}_{J,K',K} \equiv&amp; \delta_{K',K+2}
+                                   \frac{\gamma_x-\gamma_y}{4}
+                                   C^+_{J,K}C^+_{J,K+1}\end{split}\]</div>
+<p>and <span class="math notranslate nohighlight">\(C^\pm_{J,K} = \sqrt{J(J+1) - K(K\pm1)}\)</span>. See
+<a class="reference internal" href="background/rigid_rotor.html#rigid-rotor"><span class="std std-ref">Rigid Rotor Hamiltonian</span></a> for the derivation.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.rigid_rotor_hamiltonian_elements.rigid_rotor_matrix_element">
+<span class="sig-prename descclassname"><span class="pre">rovib.rigid_rotor_hamiltonian_elements.</span></span><span class="sig-name descname"><span class="pre">rigid_rotor_matrix_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bra</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ket</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rigid_rotor_hamiltonian_elements.rigid_rotor_matrix_element" title="Link to this definition"></a></dt>
+<dd><p>Computes a single matrix element of <span class="math notranslate nohighlight">\(\HRR\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function in the bra.</p></li>
+<li><p><strong>term</strong> (<a class="reference internal" href="#rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian" title="rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian"><em>RigidRotorHamiltonian</em></a>) – The rigid rotor Hamiltonian.</p></li>
+<li><p><strong>ket</strong> (<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><em>RovibrationalBasisFunction</em></a>) – The basis function in the ket.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The matrix element in hartree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#complex" title="(in Python v3.15)">complex</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.rigid_rotor_hamiltonian_elements.rigid_rotor_non_zero_indices">
+<span class="sig-prename descclassname"><span class="pre">rovib.rigid_rotor_hamiltonian_elements.</span></span><span class="sig-name descname"><span class="pre">rigid_rotor_non_zero_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bra_space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">term</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ket_space</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.rigid_rotor_hamiltonian_elements.rigid_rotor_non_zero_indices" title="Link to this definition"></a></dt>
+<dd><p>Generates the bra-ket pairs with non-zero matrix elements of <span class="math notranslate nohighlight">\(\HRR\)</span>.</p>
+<p>An element is non-zero only if the bra and ket have the same vibrational
+quantum numbers and <span class="math notranslate nohighlight">\(J\)</span>, and their <span class="math notranslate nohighlight">\(K\)</span> values differ by 0 or
+2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bra_space</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the bra basis functions come from.</p></li>
+<li><p><strong>term</strong> (<a class="reference internal" href="#rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian" title="rovib.rigid_rotor_hamiltonian.RigidRotorHamiltonian"><em>RigidRotorHamiltonian</em></a>) – The rigid rotor Hamiltonian.</p></li>
+<li><p><strong>ket_space</strong> (<a class="reference internal" href="#rovib.rovibrational_ansatz.RovibrationalAnsatz" title="rovib.rovibrational_ansatz.RovibrationalAnsatz"><em>RovibrationalAnsatz</em></a>) – The space the ket basis functions come from.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A generator of (bra, ket) pairs of
+<a class="reference internal" href="#rovib.rovibrational_basis_function.RovibrationalBasisFunction" title="rovib.rovibrational_basis_function.RovibrationalBasisFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">RovibrationalBasisFunction</span></code></a> objects.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.15)">collections.abc.Iterator</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -587,13 +694,15 @@ elements are not implemented.</p></li>
 <dt class="sig sig-object py" id="rovib.driver.rovibrational_energies">
 <span class="sig-prename descclassname"><span class="pre">rovib.driver.</span></span><span class="sig-name descname"><span class="pre">rovibrational_energies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">J</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.driver.rovibrational_energies" title="Link to this definition"></a></dt>
 <dd><p>Computes the rovibrational energies of a molecule.</p>
-<p>The Hamiltonian is currently only the harmonic oscillator Hamiltonian
-<span class="math notranslate nohighlight">\(\HHO\)</span>, and the parameters are hard-coded for water. The eigenvectors are
-expressed in <code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz(molecule.nvib,</span> <span class="pre">vmax,</span> <span class="pre">J)</span></code>.</p>
+<p>The Hamiltonian is currently the harmonic oscillator Hamiltonian <span class="math notranslate nohighlight">\(\HHO\)</span>
+plus the rigid rotor Hamiltonian <span class="math notranslate nohighlight">\(\HRR\)</span>. The harmonic parameters are
+hard-coded for water. The eigenvectors are expressed in
+<code class="docutils literal notranslate"><span class="pre">RovibrationalAnsatz(molecule.nvib,</span> <span class="pre">vmax,</span> <span class="pre">J)</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule, at its minimum energy geometry.</p></li>
+<li><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule, at its minimum energy geometry, with its
+center of mass at the origin.</p></li>
 <li><p><strong>vmax</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The maximum vibrational quantum number of each mode.</p></li>
 <li><p><strong>J</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The total angular momentum quantum number.</p></li>
 </ul>
@@ -649,9 +758,75 @@ corresponding eigenvectors (as columns).</p>
 </dd></dl>
 
 </section>
-<section id="module-rovib.water_params">
-<span id="parameters"></span><h2>Parameters<a class="headerlink" href="#module-rovib.water_params" title="Link to this heading"></a></h2>
-<p>Hard-coded parameters for water.</p>
+<section id="module-rovib.inertia">
+<span id="parameters"></span><h2>Parameters<a class="headerlink" href="#module-rovib.inertia" title="Link to this heading"></a></h2>
+<p>The inertia tensor and the rotational constants of a molecule.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.inertia.inertia_tensor">
+<span class="sig-prename descclassname"><span class="pre">rovib.inertia.</span></span><span class="sig-name descname"><span class="pre">inertia_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.inertia.inertia_tensor" title="Link to this definition"></a></dt>
+<dd><p>Computes the inertia tensor of a molecule about the origin.</p>
+<div class="math notranslate nohighlight">
+\[I_{\alpha\beta} = \sum_{i=1}^{\Natom} M_{ii}
+   \left[\left(\vec{r}_i\cdot\vec{r}_i\right)
+   \delta_{\alpha,\beta} - r_{i,\alpha}r_{i,\beta}\right]\]</div>
+<p>For the inertia tensor about the center of mass, the center of mass of
+<code class="docutils literal notranslate"><span class="pre">molecule</span></code> must be at the origin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The inertia tensor in electron masses times bohr squared. The
+shape is (3, 3).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="rovib.inertia.rotational_constants">
+<span class="sig-prename descclassname"><span class="pre">rovib.inertia.</span></span><span class="sig-name descname"><span class="pre">rotational_constants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordering</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">3,</span> <span class="pre">2)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#rovib.inertia.rotational_constants" title="Link to this definition"></a></dt>
+<dd><p>Computes the rotational constants <span class="math notranslate nohighlight">\(\gammavec\)</span> of a molecule.</p>
+<p>The rotational constants are
+<span class="math notranslate nohighlight">\(\gamma_\alpha = \frac{\hbar^2}{2I^0_{\alpha\alpha}}\)</span>, where
+the <span class="math notranslate nohighlight">\(I^0_{\alpha\alpha}\)</span> are the principal moments of inertia,
+i.e., the eigenvalues of the inertia tensor <span class="math notranslate nohighlight">\(\Izvec\)</span> at the minimum energy
+geometry.</p>
+<p>Diagonalizing <span class="math notranslate nohighlight">\(\Izvec\)</span> does not say which principal axis is x, y, or z;
+<code class="docutils literal notranslate"><span class="pre">ordering</span></code> does. <code class="docutils literal notranslate"><span class="pre">ordering[i]</span></code> is the rank (1 being the smallest) of
+the rotational constant assigned to the i-th axis. The default, (1, 3,
+2), is the convention of doi:10.1063/5.0333947: x has the smallest
+rotational constant, y the largest, and z the middle one. The
+axes used for other quantities (e.g., the normal modes) must follow the
+same convention.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecule</strong> (<a class="reference internal" href="#rovib.molecule.Molecule" title="rovib.molecule.Molecule"><em>Molecule</em></a>) – The molecule, at its minimum energy geometry, with its
+center of mass at the origin.</p></li>
+<li><p><strong>ordering</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – A permutation of (1, 2, 3) giving the rank of the
+rotational constant of each axis. A string such as <code class="docutils literal notranslate"><span class="pre">&quot;132&quot;</span></code> is also
+accepted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The rotational constants <span class="math notranslate nohighlight">\((\gamma_x, \gamma_y,
+\gamma_z)\)</span> in hartree.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)">numpy.ndarray</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">ordering</span></code> is not a permutation of (1, 2, 3), or
+if a principal moment of inertia is zero (i.e., the molecule is
+linear).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-rovib.water_params">Hard-coded parameters for water.</p>
 <p>Unless noted otherwise, the parameters are from Appendix B of E. Lötstedt and
 T. Szidarovszky, J. Chem. Phys. 165, 024118 (2026),
 doi:10.1063/5.0333947. The functions in this module return the parameters

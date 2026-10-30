@@ -126,27 +126,31 @@ gives:
 
 .. math::
 
-       \Hvib =& \HHO + \HRR + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
+       \Hvib = \HHO + \HRR + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
          \mathcal{O}(\qvec^5)
 
 Where:
 
-- :math:`\HHO \equiv&  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm` is the
+- :math:`\HHO \equiv  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm` is the
   harmonic oscillator Hamiltonian.
-- :math:`\HRR \equiv& \frac{1}{2}\jvec^T\muvec^{(0)}\jvec` is the rigid rotor
+- :math:`\HRR \equiv \frac{1}{2}\jvec^T\muvec^{(0)}\jvec` is the rigid rotor
   Hamiltonian.
 - :math:`\Vanharm` is the anharmonic potential energy.
-- :math:`\HvibCor\equiv& \frac{1}{2}\sum_{n=0}^{2}\pivec^T\muvec^{(n)}\pivec`
-  is the vibrational Coriolis Hamiltonian.
-- :math:`\Hwatson \equiv& -\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})` is
-   the Watson Hamiltonian.
 
-and :math:`\Hrovib` is the rovibrational coupling Hamiltonian, which is given
-by:
+:math:`\HvibCor` is:
 
 .. math::
 
-   \Hrovib \equiv& \frac{1}{2}\sum_{n=1}^{4}\jvec^T\muvec^{(n)}\jvec -
+   \HvibCor\equiv& \frac{1}{2}\sum_{n=0}^{2}\pivec^T\muvec^{(n)}\pivec +
+                  \Hwatson\\
+   \Hwatson \equiv& -\frac{1}{2}\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})
+
+is the vibrational Coriolis Hamiltonian and :math:`\Hrovib` is the rovibrational
+coupling Hamiltonian, which is given by:
+
+.. math::
+
+   \Hrovib \equiv \frac{1}{2}\sum_{n=1}^{4}\jvec^T\muvec^{(n)}\jvec -
          \frac{1}{2}\sum_{n=0}^{3}\jvec^T\muvec^{(n)}\pivec-
          \frac{1}{2}\sum_{n=0}^{3}\pivec^T\muvec^{(n)}\jvec
 
@@ -196,16 +200,19 @@ where:
                                       \frac{\gamma_x+\gamma_y}{2}
                                       \left(J(J+1) - K^2\right) +
                                       \gamma_z K^2\right]\\
-   T^{(\text{RR},-2)}_{J,K',K} \equiv& \delta_{K',K-2}
+   T^{(\text{RR},-2)}_{J,K',K} \equiv& \delta_{K',K-2}\left[
                                       \frac{\gamma_x-\gamma_y}{4}
-                                      C^-_{J,K}C^-_{J,K-1}\\
-   T^{(\text{RR},2)}_{J,K',K} \equiv& \delta_{K',K+2}
+                                      C^-_{J,K}C^-_{J,K-1}\right]\\
+   T^{(\text{RR},2)}_{J,K',K} \equiv& \delta_{K',K+2}\left[
                                       \frac{\gamma_x-\gamma_y}{4}
-                                      C^+_{J,K}C^+_{J,K+1}
+                                      C^+_{J,K}C^+_{J,K+1}\right]
 
 with :math:`\gamma_x`, :math:`\gamma_y`, and :math:`\gamma_z` being the
-rotational constants of the molecule and
-:math:`C^\pm_{J,K} =& \sqrt{J(J+1) - K(K\pm1)}`.
+rotational constants of the molecule and:
+
+.. math::
+
+   C^\pm_{J,K} = \sqrt{J(J+1) - K(K\pm1)}.
 
 Watson Matrix Elements
 ======================

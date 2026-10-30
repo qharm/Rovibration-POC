@@ -40,11 +40,17 @@ Classes
 .. automodule:: rovib.harmonic_hamiltonian
    :members:
 
+.. automodule:: rovib.rigid_rotor_hamiltonian
+   :members:
+
 ***************
 Matrix Elements
 ***************
 
 .. automodule:: rovib.harmonic_hamiltonian_elements
+   :members:
+
+.. automodule:: rovib.rigid_rotor_hamiltonian_elements
    :members:
 
 .. automodule:: rovib.hamiltonian_matrix
@@ -60,6 +66,9 @@ Driver
 **********
 Parameters
 **********
+
+.. automodule:: rovib.inertia
+   :members:
 
 .. automodule:: rovib.water_params
    :members:
