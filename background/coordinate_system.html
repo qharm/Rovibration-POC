@@ -1,0 +1,263 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coordinate System &mdash; rovib 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=d45e8c67"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script>window.MathJax = {"tex": {"macros": {"tens": ["\\boldsymbol{#1}", 1], "op": ["\\hat{#1}", 1], "optens": ["\\hat{\\boldsymbol{#1}}", 1], "tr": "\\operatorname{tr}", "Natom": "N_{\\mathrm{atom}}", "Nvib": "N_{\\mathrm{vib}}", "rzvec": "\\tens{r}^{0}", "Izvec": "\\tens{I}^{0}", "Izmhalf": "\\left(\\Izvec\\right)^{-1/2}", "Lvec": "\\tens{L}", "Mvec": "\\tens{M}", "zetavec": "\\tens{\\zeta}", "avec": "\\tens{a}", "Bvec": "\\tens{B}", "etavec": "\\tens{\\eta}", "gammavec": "\\tens{\\gamma}", "omegavec": "\\tens{\\omega}", "vvec": "\\tens{v}", "midx": "\\tens{m}", "rvec": "\\optens{r}", "rhovec": "\\optens{\\rho}", "Ivec": "\\optens{I}", "Ieffvec": "\\optens{I}'", "qvec": "\\optens{Q}", "pvec": "\\optens{P}", "jvec": "\\optens{J}", "pivec": "\\optens{\\pi}", "muvec": "\\optens{\\mu}", "bvec": "\\optens{b}", "rop": "\\op{r}", "Iop": "\\op{I}", "Ieffop": "\\op{I}'", "qop": "\\op{Q}", "pop": "\\op{P}", "jop": "\\op{J}", "piop": "\\op{\\pi}", "muop": "\\op{\\mu}", "aop": "\\op{a}", "Vop": "\\op{V}", "Hvib": "\\op{H}_{\\mathrm{vib}}", "HRR": "\\op{H}_{\\mathrm{RR}}", "HHO": "\\op{H}_{\\mathrm{HO}}", "HvibCor": "\\op{H}_{\\mathrm{vibCor}}", "Hwatson": "\\op{H}_{\\mathrm{watson}}", "Hrovib": "\\op{H}_{\\mathrm{rovib}}", "Vharm": "\\op{V}_{\\mathrm{harm}}", "Vanharm": "\\op{V}_{\\mathrm{anharm}}"}}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Watson mu Tensor" href="watson_mu.html" />
+    <link rel="prev" title="Problem Specification" href="problem_definition.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            rovib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Theoretical Background</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#notation">Notation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="problem_definition.html">Problem Specification</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Coordinate System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eckart-conditions">Eckart Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conversion-from-space-fixed-to-eckart-frame">Conversion from Space-Fixed to Eckart Frame</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="watson_mu.html">Watson mu Tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="angular_wavefunction.html">Angular Wavefunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rigid_rotor.html">Rigid Rotor Hamiltonian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vibration_coriolis.html">Vibrational-Coriolis Hamiltonian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="watson.html">Watson Hamiltonian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rovibrational_coupling.html">Rovibrational Coupling Hamiltonian</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">rovib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Theoretical Background</a></li>
+      <li class="breadcrumb-item active">Coordinate System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/background/coordinate_system.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coordinate-system">
+<span id="id1"></span><h1>Coordinate System<a class="headerlink" href="#coordinate-system" title="Link to this heading"></a></h1>
+<p>The instantaneous geometry of the molecule, <span class="math notranslate nohighlight">\(\tens{r}\)</span>, and the minimum
+energy geometry, <span class="math notranslate nohighlight">\(\tens{r}^0\)</span>, will in general be expressed with respect
+to a somewhat arbitrary space-fixed reference frame. Describing nuclear motion
+in the space-fixed coordinate system will in general couple the molecule’s
+internal (vibrational) and external (translational and rotational) degrees of
+freedom. In practice, it is not possible to completely decouple the internal and
+external degrees of freedom (e.g., centrifugal distortion caused by rotation
+will affect the vibrational motion). Our goal is to instead find a coordinate
+system in which the internal and external degrees of freedom are as decoupled as
+possible. This coordinate system is known as the Eckart frame and the Eckart
+conditions provide the mechanism for decoupling the internal and external
+degrees of freedom. The goal of this section is to re-express quantities in
+terms of the Eckart frame.</p>
+<p>The minimum energy geometry of the molecule is a fixed reference geometry that
+does not change as the molecule moves. It will follow the Eckart frame as the
+molecule moves. At each instant we can position the minimum energy geometry in
+the Eckart frame however we want. We will choose to position it so that its
+center of mass lies at the origin and the principal axes are aligned with the
+Eckart frame’s axes. Since the center of mass of the minimum energy geometry is
+at the origin, we know:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{\Natom} M_{ii}\vec{f}^0_i = \vec{0}.\]</div>
+<p>where the use of <span class="math notranslate nohighlight">\(f\)</span> instead of <span class="math notranslate nohighlight">\(r\)</span> is to indicate that the
+components of the vector are expressed in the Eckart frame. Similarly, we know
+that in the Eckart frame the inertia tensor of the minimum energy geometry,
+<span class="math notranslate nohighlight">\(\tens{I}^0\)</span>, is diagonal and the elements are given by:</p>
+<div class="math notranslate nohighlight">
+\[I^0_{\alpha\beta} = \delta_{\alpha,\beta}\sum_{i=1}^{\Natom} M_{ii}
+    \left[\left(\vec{f}^0_i\cdot\vec{f}^0_i\right) -
+          f^0_{i,\alpha}f^0_{i,\beta}\right]\]</div>
+<p>Now consider the instantaneous geometry of the molecule. In the Eckart reference
+frame, the instantaneous center of mass, <span class="math notranslate nohighlight">\(\vec{f}_{\text{COM}}\)</span>, of the
+molecule is given by:</p>
+<div class="math notranslate nohighlight">
+\[\vec{f}_{\text{COM}} = \frac{\sum_{i=1}^{\Natom} M_{ii}\vec{f}_i}
+    {\sum_{i=1}^{\Natom} M_{ii}}\]</div>
+<p>and the instantaneous inertia tensor of the molecule, <span class="math notranslate nohighlight">\(\tens{I}\)</span>, is
+given by:</p>
+<div class="math notranslate nohighlight">
+\[I_{\alpha\beta} = \sum_{i=1}^{\Natom} M_{ii}
+    \left[\left(\vec{f}_i\cdot\vec{f}_i\right)\delta_{\alpha,\beta} -
+          f_{i,\alpha}f_{i,\beta}\right].\]</div>
+<p>Since the PES will be Taylor expanded it is convenient to describe the geometry
+of the molecule in terms of displacements from the minimum energy geometry.
+Since both the instantaneous and minimum energy geometries move with the Eckart
+frame, so too will the displacements. To that end, we define
+<span class="math notranslate nohighlight">\(\vec{\rho}_i\)</span> as the displacement of the <span class="math notranslate nohighlight">\(i\)</span>th atom from
+<span class="math notranslate nohighlight">\(\vec{f}^0_i\)</span>.</p>
+<p>The definition of the displacements are then:</p>
+<div class="math notranslate nohighlight">
+\[\vec{\rho}_i = \vec{f}_i - \vec{f}^0_i\]</div>
+<p>For convenience we also define mass weighted displacements,
+<span class="math notranslate nohighlight">\(\tens{P} = \Mvec^{1/2}\tens{\rho}\)</span>.</p>
+<section id="eckart-conditions">
+<h2>Eckart Conditions<a class="headerlink" href="#eckart-conditions" title="Link to this heading"></a></h2>
+<p>The Eckart frame will be defined in terms of three vectors,
+<span class="math notranslate nohighlight">\(\hat{e}_x\)</span>, <span class="math notranslate nohighlight">\(\hat{e}_y\)</span>, and <span class="math notranslate nohighlight">\(\hat{e}_z\)</span>, termed the Eckart
+vectors. Again, for convenience, we define mass-weighted counterparts
+<span class="math notranslate nohighlight">\(\hat{E}_x\)</span>, <span class="math notranslate nohighlight">\(\hat{E}_y\)</span>, and <span class="math notranslate nohighlight">\(\hat{E}_z\)</span>. Since the Eckart
+frame moves with the molecule, the Eckart vectors will coincide with the
+translational vectors of the molecule. Projecting the translations onto the
+displacements gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{E}_\alpha\cdot\tens{P} =&amp; \sum_{i=1}^{\Natom} M_{ii}
+    \left(\hat{e}_\alpha\cdot\vec{\rho}_i\right)\\
+    =&amp; \sum_{i=1}^{\Natom} M_{ii}\rho_{i\alpha}\end{split}\]</div>
+<p>To define internal degrees of freedom, we want the displacements to be
+orthogonal to the Eckart vectors. This leads to the <em>translational Eckart
+conditions</em>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{\Natom} M_{ii}\vec{\rho}_i = \vec{0}\]</div>
+<p>Inserting the definition of the displacements gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i=1}^{\Natom} M_{ii}\left(\vec{f}_i - \vec{f}^0_i\right) =&amp;
+    \sum_{i=1}^{\Natom} M_{ii}\vec{f}_i -
+    \sum_{i=1}^{\Natom} M_{ii}\vec{f}^0_i \\
+    =&amp; \sum_{i=1}^{\Natom} M_{ii}\vec{f}_i = \vec{0}\end{split}\]</div>
+<p>where we have used the fact that the minimum energy geometry is defined so that
+its center of mass is at the origin. Therefore, the translational Eckart
+conditions are satisfied if the instantaneous center of mass of the molecule is
+also at the origin of the Eckart frame.</p>
+<p>We can define a basis for the rotational motion of the molecule as
+<span class="math notranslate nohighlight">\(\vec{s}_\alpha = \hat{e}_\alpha \times \vec{f}^0\)</span>. Defining
+<span class="math notranslate nohighlight">\(\vec{S}_\alpha = \tens{M}^{1/2}\vec{s}_\alpha\)</span>, we can project the
+rotations onto the displacements:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{S}_\alpha\cdot\tens{P} =&amp; \sum_{i=1}^{\Natom} M_{ii}
+    \left(\hat{e}_\alpha\times\vec{f}^0_i\right)\cdot\vec{\rho}_i\\
+    =&amp; \sum_{i=1}^{\Natom} M_{ii}
+       \hat{e}_\alpha\cdot\left(\vec{f}^0_i\times\vec{\rho}_i\right)\\
+    =&amp; \sum_{i=1}^{\Natom}
+        M_{ii}\left(\vec{f}^0_i\times\vec{\rho}_i\right)_\alpha\end{split}\]</div>
+<p>Yielding the <em>rotational Eckart conditions</em>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{\Natom} M_{ii}\vec{f}^0_i\times\vec{\rho}_i = \vec{0}\]</div>
+<p>Inserting the definition of the displacements gives:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{0} =&amp; \sum_{i=1}^{\Natom}
+   M_{ii}\vec{f}^0_i\times\left(\vec{f}_i - \vec{f}^0_i\right) \\
+    =&amp; \sum_{i=1}^{\Natom} M_{ii}\vec{f}^0_i\times\vec{f}_i -
+       \sum_{i=1}^{\Natom} M_{ii}\vec{f}^0_i\times\vec{f}^0_i \\
+    =&amp; \sum_{i=1}^{\Natom} M_{ii}\vec{f}^0_i\times\vec{f}_i\end{split}\]</div>
+<p>In other words, the rotational Eckart conditions are satisfied when the
+instantaneous geometry of the molecule has no net rotation with respect to the
+minimum energy geometry.</p>
+</section>
+<section id="conversion-from-space-fixed-to-eckart-frame">
+<h2>Conversion from Space-Fixed to Eckart Frame<a class="headerlink" href="#conversion-from-space-fixed-to-eckart-frame" title="Link to this heading"></a></h2>
+<p>The Eckart conditions lead to a projection operator:</p>
+<div class="math notranslate nohighlight">
+\[\tens{P}_{\text{Ext}} =
+  \frac{1}{\sum_{i=1}^{\Natom} M_{ii}}
+  \sum_{\alpha=1}^{3}\hat{E}_\alpha\hat{E}_\alpha^T +
+  \sum_{\alpha=1}^{3}\frac{\vec{S}_\alpha\vec{S}_\alpha^T}
+                          {I^0_{\alpha\alpha}}\]</div>
+<p>If <span class="math notranslate nohighlight">\(\bar{H}\)</span> is the mass-weighted Hessian of the PES with respect to
+displacements from the minimum energy geometry, then the mass-weighted Hessian
+in the Eckart frame is given by:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\tens{H}}_{\text{Eckart}} =
+   \left(\tens{1} - \tens{P}_{\text{Ext}}\right)^T
+   \bar{\tens{H}}\left(\tens{1} - \tens{P}_{\text{Ext}}\right)\]</div>
+<p>Solving:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\tens{H}}_{\text{Eckart}}\bar{\tens{L}} =
+\bar{\tens{L}}\tens{\Omega}^2\]</div>
+<p>gives a diagonal matrix <span class="math notranslate nohighlight">\(\tens{\Omega}\)</span> containing the vibrational
+frequencies and the mass-weighted vibrational modes, <span class="math notranslate nohighlight">\(\bar{\tens{L}}\)</span>.
+The transformation from the space-fixed frame to the Eckart frame is then
+given by:</p>
+<div class="math notranslate nohighlight">
+\[\tens{L} = \tens{M}\bar{\tens{L}}\]</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="problem_definition.html" class="btn btn-neutral float-left" title="Problem Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="watson_mu.html" class="btn btn-neutral float-right" title="Watson mu Tensor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, QHARM Team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

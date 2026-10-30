@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Harmonic Oscillator Hamiltonian &mdash; rovib 0.0.1 documentation</title>
+  <title>Watson mu Tensor &mdash; rovib 0.0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
 
@@ -21,8 +21,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Rigid Rotor Hamiltonian" href="rigid_rotor.html" />
-    <link rel="prev" title="Problem Specification" href="problem_definition.html" /> 
+    <link rel="next" title="Angular Wavefunction" href="angular_wavefunction.html" />
+    <link rel="prev" title="Coordinate System" href="coordinate_system.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,7 +48,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Theoretical Background</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#notation">Notation</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="problem_definition.html">Problem Specification</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Harmonic Oscillator Hamiltonian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordinate_system.html">Coordinate System</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Watson mu Tensor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general-formulation">General Formulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#th-order-term">0-th Order Term</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="angular_wavefunction.html">Angular Wavefunction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rigid_rotor.html">Rigid Rotor Hamiltonian</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vibration_coriolis.html">Vibrational-Coriolis Hamiltonian</a></li>
 <li class="toctree-l3"><a class="reference internal" href="watson.html">Watson Hamiltonian</a></li>
@@ -76,9 +82,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html">Theoretical Background</a></li>
-      <li class="breadcrumb-item active">Harmonic Oscillator Hamiltonian</li>
+      <li class="breadcrumb-item active">Watson mu Tensor</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/background/harmonic_oscillator.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/background/watson_mu.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -86,21 +92,48 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="harmonic-oscillator-hamiltonian">
-<span id="harmonic-oscillator"></span><h1>Harmonic Oscillator Hamiltonian<a class="headerlink" href="#harmonic-oscillator-hamiltonian" title="Link to this heading"></a></h1>
-<p><span class="math notranslate nohighlight">\(\HHO\)</span> is diagonal in this basis with matrix elements:</p>
+  <section id="watson-mu-tensor">
+<span id="id1"></span><h1>Watson mu Tensor<a class="headerlink" href="#watson-mu-tensor" title="Link to this heading"></a></h1>
+<p>The problem description notes that the Watson mu tensor, <span class="math notranslate nohighlight">\(\muvec\)</span>, is expanded as
+a fourth-order Taylor series about the minimum energy geometry,
+<span class="math notranslate nohighlight">\(\muvec \approx \sum_{n=0}^{4}\muvec^{(n)}\)</span>. This page works out the
+details.</p>
+<section id="general-formulation">
+<h2>General Formulation<a class="headerlink" href="#general-formulation" title="Link to this heading"></a></h2>
+<p>The <span class="math notranslate nohighlight">\(n\)</span>-th term in the Taylor expansion of <span class="math notranslate nohighlight">\(\muvec\)</span> is given by:</p>
 <div class="math notranslate nohighlight">
-\[\braket{\vvec',J',K'\mid\HHO\mid\vvec,J,K} =
-   \delta_{\vvec',\vvec}\delta_{J',J}\delta_{K',K}
-   \sum_{i=1}^{\Nvib}\hbar\omega_i\left(v_i + \frac{1}{2}\right)\]</div>
+\[\muvec^{(n)} =&amp; c_n \Izmhalf \bvec^n \Izmhalf\]</div>
+<p>with:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_n = (n+1)\left(-\frac{1}{2}\right)^n\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\bvec =&amp; \sum_{k=1}^{\Nvib} \Izmhalf \avec_k \Izmhalf \qop_k\)</span></p></li>
+</ul>
+<p>and <span class="math notranslate nohighlight">\(\avec_k\)</span> is a 3 by 3 matrix with elements:</p>
+<div class="math notranslate nohighlight">
+\[a_{k,\alpha\beta} =&amp;
+   2 \sum_{\ell=1}^{\Natom} \sum_{m,n=1}^{3}
+   \left(\delta_{\alpha\beta}\delta_{mn} -
+         \delta_{\alpha n}\delta_{\beta m}\right)
+   \sqrt{M_\ell}\,
+   r_{\ell,m}^0
+   L_{\ell,k,n}\]</div>
+</section>
+<section id="th-order-term">
+<h2>0-th Order Term<a class="headerlink" href="#th-order-term" title="Link to this heading"></a></h2>
+<p>The 0-th order term is straightforward:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\muvec^{(0)} =&amp; c_0 \Izmhalf \bvec^0 \Izmhalf\\
+              =&amp; 1 \cdot \Izmhalf \Izmhalf\\
+              =&amp; \Ivec\end{split}\]</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="problem_definition.html" class="btn btn-neutral float-left" title="Problem Specification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="rigid_rotor.html" class="btn btn-neutral float-right" title="Rigid Rotor Hamiltonian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="coordinate_system.html" class="btn btn-neutral float-left" title="Coordinate System" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="angular_wavefunction.html" class="btn btn-neutral float-right" title="Angular Wavefunction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

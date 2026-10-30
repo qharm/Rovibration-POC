@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Harmonic Oscillator Hamiltonian" href="harmonic_oscillator.html" />
+    <link rel="next" title="Coordinate System" href="coordinate_system.html" />
     <link rel="prev" title="Theoretical Background" href="index.html" /> 
 </head>
 
@@ -49,12 +49,14 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html#notation">Notation</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Problem Specification</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#coordinate-system">Coordinate System</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#definitions">Definitions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#deriving-the-rovibrational-hamiltonian">Deriving the Rovibrational Hamiltonian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-the-rovibrational-hamiltonian">Defining the Rovibrational Hamiltonian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#matrix-elements-of-the-hamiltonian">Matrix Elements of the Hamiltonian</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#matrix-elements">Matrix Elements</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="harmonic_oscillator.html">Harmonic Oscillator Hamiltonian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coordinate_system.html">Coordinate System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="watson_mu.html">Watson mu Tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="angular_wavefunction.html">Angular Wavefunction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rigid_rotor.html">Rigid Rotor Hamiltonian</a></li>
 <li class="toctree-l3"><a class="reference internal" href="vibration_coriolis.html">Vibrational-Coriolis Hamiltonian</a></li>
 <li class="toctree-l3"><a class="reference internal" href="watson.html">Watson Hamiltonian</a></li>
@@ -96,109 +98,67 @@
 <h1>Problem Specification<a class="headerlink" href="#problem-specification" title="Link to this heading"></a></h1>
 <p>The goal of rovib is to model the rovibrational energy levels of a non-linear
 molecule containing <span class="math notranslate nohighlight">\(\Natom\)</span> atoms. The location of the <span class="math notranslate nohighlight">\(i\)</span>th atom in the
-molecule is given by the vector <span class="math notranslate nohighlight">\(\rvec_i\)</span> and the location of the
-molecule as a whole is given by the 3|Natom|-dimensional vector
-<span class="math notranslate nohighlight">\(\rvec = \left(\rvec_1, \rvec_2, \ldots, \rvec_\Natom\right)\)</span>. Similarly,
+molecule is given by the vector <span class="math notranslate nohighlight">\(\vec{r}_i\)</span> and the location of the
+molecule as a whole is given by the matrix of atomic coordinates,
+<span class="math notranslate nohighlight">\(\tens{r} = \left({\vec{r}}_1, {\vec{r}}_2, \ldots, {\vec{r}}_{\Natom}\right)\)</span>.
+Similarly,
 <span class="math notranslate nohighlight">\(\Mvec\)</span> is the diagonal matrix of atomic masses such that <span class="math notranslate nohighlight">\(M_{ii}\)</span> is the
 mass of the <span class="math notranslate nohighlight">\(i\)</span>th atom. We assume that the Born-Oppenheimer
 approximation is valid. In this case, we can assume that the nuclei move on a
-single potential energy surface (PES), <span class="math notranslate nohighlight">\(\Vop\left(\rvec\right)\)</span>, defined
+single potential energy surface (PES), <span class="math notranslate nohighlight">\(V\left(\tens{r}\right)\)</span>, defined
 by the electronic Hamiltonian. We will also assume that we have located a
-minimum energy geometry on the PES, <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p>
+minimum energy geometry on the PES, <span class="math notranslate nohighlight">\(\rzvec\)</span>. As the molecule vibrates
+and rotations it will be assumed to have total angular momentum
+<span class="math notranslate nohighlight">\(\tens{J}\)</span>.</p>
 <p>Our original goal can be restated as solving the time-independent Schrödinger
 equation for the motion of the nuclei on the PES.</p>
 <section id="coordinate-system">
 <h2>Coordinate System<a class="headerlink" href="#coordinate-system" title="Link to this heading"></a></h2>
-<p><span class="math notranslate nohighlight">\(\rvec\)</span> will in general be a somewhat arbitrary space-fixed reference
-frame. In this coordinate system the molecule can translate, rotate, and
-vibrate. The rovibrational Hamiltonian is simplified by defining a molecular
-reference frame that maximally decouples the <span class="math notranslate nohighlight">\(\Nvib = (3\Natom - 6)\)</span>
-internal degrees of freedom of the molecule (vibrations) from the 6 external
-degrees of freedom (translations and rotations). In practice, rotational-
-vibrational coupling is only completely eliminated if the PES is harmonic. The
-conditions under which the internal and external degrees of freedom are
-maximally decoupled are known as the Eckart conditions.</p>
-<p>To eliminate the translational degrees of freedom, we require the molecular
-reference frame to move with the molecule. This is accomplished by requiring
-the center of mass of the molecule to be at the origin of the molecular
-reference frame.</p>
-<p>We assume we have a non-linear molecule with <span class="math notranslate nohighlight">\(\Natom\)</span> atoms. This means that
-the molecule has  vibrational degrees of freedom.
-We will define a molecular reference frame shortly. In the molecular reference
-frame, <span class="math notranslate nohighlight">\(\rvec\)</span> is the vector containing the Cartesian coordinates of all <span class="math notranslate nohighlight">\(\Natom\)</span>
-atoms such that <span class="math notranslate nohighlight">\(\rvec_i\)</span> is the position of the <span class="math notranslate nohighlight">\(i\)</span>th atom in
-the molecule.  <span class="math notranslate nohighlight">\(\Ivec\)</span> is the inertia
-tensor of the molecule with coordinates defined by <span class="math notranslate nohighlight">\(\rvec\)</span>.</p>
-<p>We assume that  is the potential energy surface
-(PES) of the molecule and that <span class="math notranslate nohighlight">\(\rzvec\)</span> is a minimum energy geometry on the PES.
-The molecular reference frame is defined so that its origin is the center of
-mass of <span class="math notranslate nohighlight">\(\rzvec\)</span> and its axes are aligned with the principal axes of inertia of
-<span class="math notranslate nohighlight">\(\rzvec\)</span>. To satisfy the Eckart conditions, we will use displacements from
-<span class="math notranslate nohighlight">\(\rzvec\)</span> to define the geometry of the molecule instead of <span class="math notranslate nohighlight">\(\rvec\)</span>.
-The displacements are defined as <span class="math notranslate nohighlight">\(\rhovec = \rvec - \rzvec\)</span>.</p>
-<p>The orientation and location of the molecular reference frame with respect to
-the space-fixed reference frame can be fixed by requiring the center of mass to
-be at the origin of the space-fixed reference frame and the Hessian of the PES
-at <span class="math notranslate nohighlight">\(\rzvec\)</span> to be diagonal in mass-weighted Cartesian coordinates. <span class="math notranslate nohighlight">\(\Lvec\)</span> is the
-transformation
-matrix that diagonalizes the Hessian and <span class="math notranslate nohighlight">\(\Izvec\)</span> is the diagonal inertia tensor
-of the molecule at <span class="math notranslate nohighlight">\(\rzvec\)</span>. <span class="math notranslate nohighlight">\(\qvec = \Lvec^T\Mvec^{1/2}\rhovec\)</span> are the
-resulting mass-weighted normal coordinates of the molecule describing the
-vibrational degrees of freedom. The corresponding vibrational momenta are
-<span class="math notranslate nohighlight">\(\pvec = -i\hbar\frac{\partial}{\partial \qvec}\)</span>. As the molecule vibrates
-and rotations it will be assumed to have total angular momentum <span class="math notranslate nohighlight">\(\jvec\)</span> and
-vibrational angular momentum <span class="math notranslate nohighlight">\(\pivec\)</span>.</p>
-<p>Other quantities used in the rovibrational Hamiltonian are:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(\Ieffvec\)</span> is the effective inertia tensor of the molecule with
-coordinates defined by <span class="math notranslate nohighlight">\(\rvec\)</span>; it is the difference between <span class="math notranslate nohighlight">\(\Ivec\)</span> and the
-vibrational contribution to the inertia tensor.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\muvec\)</span> is the inverse of the effective inertia tensor of the
-molecule with coordinates defined by <span class="math notranslate nohighlight">\(\rzvec\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\zetavec\)</span> is the Coriolis coupling tensor.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\gammavec\)</span> are the rotation constants of the molecule.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\omegavec\)</span> are the harmonic frequencies of the vibrational
-degrees of freedom of the molecule.</p></li>
-<li><p><span class="math notranslate nohighlight">\(\Hvib\)</span> is the vibrational Hamiltonian of the molecule.</p></li>
-</ul>
+<p>Main article: <a class="reference internal" href="coordinate_system.html#coordinate-system"><span class="std std-ref">Coordinate System</span></a>.</p>
+<p>If <span class="math notranslate nohighlight">\(\tens{r}\)</span> and <span class="math notranslate nohighlight">\(\tens{r}^0\)</span> are defined in the Eckart frame,
+then the internal coordinates of the molecule are given by:</p>
+<div class="math notranslate nohighlight">
+\[\tens{Q} = \Lvec^T\Mvec^{1/2}\left(\tens{r} - \tens{r}^0\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Lvec\)</span> is the transformation matrix that diagonalizes the mass-
+weighted Hessian of the PES at <span class="math notranslate nohighlight">\(\tens{r}^0\)</span>. The corresponding vibrational
+momenta are given by:
+<span class="math notranslate nohighlight">\(\tens{P} = -i\hbar\frac{\partial}{\partial \tens{Q}}\)</span>.</p>
+<p>In practice, we will solve the rovibrational Schrödinger equation using second
+quantization. In this basis, the vibrational coordinates and momenta take on
+the form of creation and annihilation operators, <span class="math notranslate nohighlight">\(\qvec\)</span> and <span class="math notranslate nohighlight">\(\pvec\)</span>, and the
+coordinate forms of <span class="math notranslate nohighlight">\(\tens{Q}\)</span> and <span class="math notranslate nohighlight">\(\tens{P}\)</span> are needed only to
+compute the necessary coefficients for the second-quantized Hamiltonian.</p>
 </section>
-<section id="definitions">
-<h2>Definitions<a class="headerlink" href="#definitions" title="Link to this heading"></a></h2>
-<p><span class="math notranslate nohighlight">\(\zetavec\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\zeta_{i,j}^\alpha = \sum_{k=1}^{\Natom}
-    \left(\Lvec_{k,i}\times\Lvec_{k,j}\right)_\alpha\]</div>
-<p><span class="math notranslate nohighlight">\(\Ivec\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\Iop_{\alpha,\beta} = \sum_{i=1}^{\Natom} M_i
-    \left(\left(\rvec_i\cdot\rvec_i\right)\delta_{\alpha,\beta} -
-          \rop_{i,\alpha}\rop_{i,\beta}\right)\]</div>
-<p><span class="math notranslate nohighlight">\(\Izvec\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[I^0_{\alpha,\alpha} = \frac{\hbar^2}{2\gamma_\alpha}\]</div>
-<p><span class="math notranslate nohighlight">\(\Ieffvec\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\Ieffop_{\alpha,\beta} = \Iop_{\alpha,\beta} -
-   \sum_{i,j,k}^{\Nvib} \zeta^{\alpha}_{i,k}\zeta^\beta_{j,k}
-   \qop_i \qop_j\]</div>
-<p><span class="math notranslate nohighlight">\(\pivec\)</span> is given by:</p>
-<div class="math notranslate nohighlight">
-\[\piop_\alpha = \sum_{i,j}^{\Nvib} \zeta_{i,j}^\alpha \qop_i \pop_j\]</div>
-</section>
-<section id="deriving-the-rovibrational-hamiltonian">
-<h2>Deriving the Rovibrational Hamiltonian<a class="headerlink" href="#deriving-the-rovibrational-hamiltonian" title="Link to this heading"></a></h2>
-<p><span class="math notranslate nohighlight">\(\Hvib\)</span> is given by:</p>
+<section id="defining-the-rovibrational-hamiltonian">
+<h2>Defining the Rovibrational Hamiltonian<a class="headerlink" href="#defining-the-rovibrational-hamiltonian" title="Link to this heading"></a></h2>
+<p>The total rovibrational Hamiltonian <span class="math notranslate nohighlight">\(\Hvib\)</span> of the molecule is given by:</p>
 <div class="math notranslate nohighlight">
 \[\Hvib =
    \frac{1}{2}\left(\jvec-\pivec\right)^T\muvec\left(\jvec-\pivec\right) +
    \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 +
    \Vop(\qvec) -
    \frac{\hbar^2}{8}\tr(\muvec)\]</div>
-<p>where <span class="math notranslate nohighlight">\(\frac{\hbar^2}{8}\tr(\muvec)\)</span> is the Watson term for a
-non-linear molecule and is a type of centrifugal distortion term.</p>
-<p><span class="math notranslate nohighlight">\(\Vop(\qvec)\)</span> is then expanded as a Taylor series about the minimum
-energy geometry (which means the zeroth and 1st order terms are zero).
-Truncating at the quartic term gives:</p>
+<p>Here <span class="math notranslate nohighlight">\(\pivec\)</span> is the angular momentum of the atoms due to their vibrational
+motion, it is given by:</p>
+<div class="math notranslate nohighlight">
+\[\piop_\alpha = \sum_{i,j}^{\Nvib} \zeta_{i,j}^\alpha \qop_i \pop_j\]</div>
+<p>where <span class="math notranslate nohighlight">\(\zetavec\)</span> is the Coriolis coupling constants. <span class="math notranslate nohighlight">\(\zetavec\)</span> is given by:</p>
+<div class="math notranslate nohighlight">
+\[\zeta_{i,j}^\alpha = \sum_{k=1}^{\Natom}
+    \left(\Lvec_{ki}\times\Lvec_{kj}\right)_\alpha.\]</div>
+<p><span class="math notranslate nohighlight">\(\muvec\)</span> is the inverse of the effective inertia tensor, <span class="math notranslate nohighlight">\(\Ieffvec\)</span>. <span class="math notranslate nohighlight">\(\Ieffvec\)</span> is
+given by:</p>
+<div class="math notranslate nohighlight">
+\[\Ieffop_{\alpha,\beta} = \Iop_{\alpha,\beta} -
+   \sum_{i,j,k}^{\Nvib} \zeta^{\alpha}_{i,k}\zeta^\beta_{j,k}
+   \qop_i \qop_j\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Ivec\)</span> is the instantaneous inertia tensor of the molecule.</p>
+<p>In practice, we rarely have an analytical form of the PES, so we
+instead Taylor expand <span class="math notranslate nohighlight">\(\Vop(\qvec)\)</span> in displacements from the minimum
+energy geometry. We set the energy of the minimum energy geometry to zero (so
+the zeroth term of the Taylor series is zero). Similarly, since the expansion
+point is the minimum energy geometry the gradient is zero (which means 1st order
+term is also zero). Truncating the series at the quartic term gives:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\Vop(\qvec) \approx&amp;  \Vharm + \Vanharm\\
 \Vharm \equiv&amp; \frac{1}{2}\sum_{i}^{\Nvib}\omega_i^2 \qop_i^2 \\
@@ -206,55 +166,94 @@ Truncating at the quartic term gives:</p>
                    \qop_i \qop_j \qop_k +
            \frac{1}{24}\sum_{i,j,k,\ell}^{\Nvib}F_{i,j,k,\ell}
              \qop_i \qop_j \qop_k \qop_\ell\end{split}\]</div>
-<p>where we used the fact that the harmonic force constants are diagonal in
-mass-weighted coordinates and defined the third- and fourth-order force
+<p>where we used the fact that the harmonic force constants are diagonal in the
+normal coordinate basis and introduced the third- and fourth-order force
 constants as <span class="math notranslate nohighlight">\(g_{i,j,k}\)</span> and <span class="math notranslate nohighlight">\(F_{i,j,k,\ell}\)</span> respectively.</p>
-<p>For convenience and consistency, <span class="math notranslate nohighlight">\(\muvec\)</span> is also expanded as a
-fourth-order Taylor series about the minimum energy geometry:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\muvec \approx&amp; \sum_{n=0}^{4}\muvec^{(n)}\\
-\muvec^{(n)} =&amp; c_n \Izmhalf \bvec^n \Izmhalf\\
-c_n =&amp; (n+1)\left(-\frac{1}{2}\right)^n\\
-\bvec =&amp; \sum_{k=1}^{\Nvib} \Izmhalf \avec_k \Izmhalf \qop_k\\
-a_{k,\alpha\beta} =&amp;
-   2 \sum_{\ell=1}^{\Natom} \sum_{m,n=1}^{3}
-   \left(\delta_{\alpha\beta}\delta_{mn} -
-         \delta_{\alpha n}\delta_{\beta m}\right)
-   \sqrt{M_\ell}\,
-   r_{\ell,m}^0
-   L_{\ell,k,n}\end{split}\]</div>
+<p>Similarly, since <span class="math notranslate nohighlight">\(\muvec\)</span> is also a function of the normal coordinates, it is
+also expanded as a fourth-order Taylor series about the minimum energy geometry,
+<span class="math notranslate nohighlight">\(\muvec \approx \sum_{n=0}^{4}\muvec^{(n)}\)</span>.</p>
 <p>Inserting the Taylor expansions of <span class="math notranslate nohighlight">\(\Vop(\qvec)\)</span> and <span class="math notranslate nohighlight">\(\muvec\)</span> into the
 vibrational Hamiltonian, and retaining terms up to fourth order in <span class="math notranslate nohighlight">\(\qvec\)</span>
 gives:</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}\Hvib =&amp;
-  \HRR
-  + \HHO + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
-  \mathcal{O}(\qvec^5)\\
-\HHO \equiv&amp;  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\\
-\HvibCor\equiv&amp; \frac{1}{2}\sum_{n=0}^{2}
-  \pivec^T\muvec^{(n)}\pivec\\
-\Hwatson \equiv&amp; -\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\\
-\Hrovib \equiv&amp; \frac{1}{2}\sum_{n=1}^{4}
-  \jvec^T\muvec^{(n)}\jvec -
-  \frac{1}{2}\sum_{n=0}^{3}\jvec^T\muvec^{(n)}\pivec-
-  \frac{1}{2}\sum_{n=0}^{3}\pivec^T\muvec^{(n)}\jvec\\
-  \mathcal{O}(\qvec^5) =&amp;
-         \frac{1}{2}\sum_{n=3}^{4}\pivec^T\muvec^{(n)}\pivec -
-         \frac{1}{2}\jvec^T\muvec^{(4)}\pivec -
-         \frac{1}{2}\pivec^T\muvec^{(4)}\jvec\\\end{split}\]</div>
+\[\Hvib =&amp; \HHO + \HRR + \Vanharm  + \HvibCor + \Hrovib + \Hwatson +
+  \mathcal{O}(\qvec^5)\]</div>
+<p>Where:</p>
 <ul class="simple">
-<li><p>See <a class="reference internal" href="rigid_rotor.html#rigid-rotor"><span class="std std-ref">Rigid Rotor Hamiltonian</span></a> for details on the rigid rotor Hamiltonian,
-<span class="math notranslate nohighlight">\(\HRR\)</span>.</p></li>
-<li><p>See <a class="reference internal" href="harmonic_oscillator.html#harmonic-oscillator"><span class="std std-ref">Harmonic Oscillator Hamiltonian</span></a> for details on the harmonic oscillator
-Hamiltonian, <span class="math notranslate nohighlight">\(\HHO\)</span>.</p></li>
-<li><p>See <a class="reference internal" href="vibration_coriolis.html#vibration-coriolis"><span class="std std-ref">Vibrational-Coriolis Hamiltonian</span></a> for details on the vibrational Coriolis
-Hamiltonian, <span class="math notranslate nohighlight">\(\HvibCor\)</span>.</p></li>
-<li><p>See <a class="reference internal" href="watson.html#watson-hamiltonian"><span class="std std-ref">Watson Hamiltonian</span></a> for details on the Watson Hamiltonian,
-<span class="math notranslate nohighlight">\(\Hwatson\)</span>.</p></li>
-<li><p>See <a class="reference internal" href="rovibrational_coupling.html#rovibrational-coupling"><span class="std std-ref">Rovibrational Coupling Hamiltonian</span></a> for details on the rovibrational coupling
-Hamiltonian, <span class="math notranslate nohighlight">\(\Hrovib\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\HHO \equiv&amp;  \frac{1}{2}\sum_{i=1}^{\Nvib}\pop_i^2 + \Vharm\)</span> is the
+harmonic oscillator Hamiltonian.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\HRR \equiv&amp; \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\)</span> is the rigid rotor
+Hamiltonian.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Vanharm\)</span> is the anharmonic potential energy.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\HvibCor\equiv&amp; \frac{1}{2}\sum_{n=0}^{2}\pivec^T\muvec^{(n)}\pivec\)</span>
+is the vibrational Coriolis Hamiltonian.</p></li>
+<li><dl class="simple">
+<dt><span class="math notranslate nohighlight">\(\Hwatson \equiv&amp; -\sum_{n=0}^{4}\frac{\hbar^2}{8}\tr(\muvec^{(n)})\)</span> is</dt><dd><p>the Watson Hamiltonian.</p>
+</dd>
+</dl>
+</li>
 </ul>
+<p>and <span class="math notranslate nohighlight">\(\Hrovib\)</span> is the rovibrational coupling Hamiltonian, which is given
+by:</p>
+<div class="math notranslate nohighlight">
+\[\Hrovib \equiv&amp; \frac{1}{2}\sum_{n=1}^{4}\jvec^T\muvec^{(n)}\jvec -
+      \frac{1}{2}\sum_{n=0}^{3}\jvec^T\muvec^{(n)}\pivec-
+      \frac{1}{2}\sum_{n=0}^{3}\pivec^T\muvec^{(n)}\jvec\]</div>
+</section>
+<section id="matrix-elements-of-the-hamiltonian">
+<h2>Matrix Elements of the Hamiltonian<a class="headerlink" href="#matrix-elements-of-the-hamiltonian" title="Link to this heading"></a></h2>
+<p>The rovibtrational problem is solved by diagonalizing <span class="math notranslate nohighlight">\(\Hvib\)</span> in a basis set
+<span class="math notranslate nohighlight">\(\ket{\vvec,J,K}\)</span>. The basis functions are the direct product of
+<span class="math notranslate nohighlight">\(\Nvib\)</span> harmonic oscillator eigenfunctions and an angular momentum
+eigenfunction.</p>
+<section id="harmonic-oscillator-matrix-elements">
+<h3>Harmonic Oscillator Matrix Elements<a class="headerlink" href="#harmonic-oscillator-matrix-elements" title="Link to this heading"></a></h3>
+<p>The Harmonic Oscillator Hamiltonian, <span class="math notranslate nohighlight">\(\HHO\)</span>, is diagonal in the
+<span class="math notranslate nohighlight">\(\ket{\vvec,J,K}\)</span> basis with matrix elements:</p>
+<div class="math notranslate nohighlight">
+\[\braket{\vvec',J',K'\mid\HHO\mid\vvec,J,K} =
+   \delta_{\vvec',\vvec}\delta_{J',J}\delta_{K',K}
+   \sum_{i=1}^{\Nvib}\hbar\omega_i\left(v_i + \frac{1}{2}\right)\]</div>
+</section>
+<section id="rigid-rotor-matrix-elements">
+<h3>Rigid Rotor Matrix Elements<a class="headerlink" href="#rigid-rotor-matrix-elements" title="Link to this heading"></a></h3>
+<p>Main article: <a class="reference internal" href="rigid_rotor.html#rigid-rotor"><span class="std std-ref">Rigid Rotor Hamiltonian</span></a>.</p>
+<p>In the <span class="math notranslate nohighlight">\(\ket{\vvec,J,K}\)</span> basis, the rigid rotor Hamiltonian, <span class="math notranslate nohighlight">\(\HRR\)</span>, is
+diagonal in <span class="math notranslate nohighlight">\(\vvec\)</span> and <span class="math notranslate nohighlight">\(J\)</span>, but not <span class="math notranslate nohighlight">\(K\)</span>. The matrix elements
+are:</p>
+<div class="math notranslate nohighlight">
+\[\braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =
+   \delta_{\vvec',\vvec}\delta_{J',J}\left(
+   T^{(\text{RR},0)}_{J,K',K} +
+   T^{(\text{RR},-2)}_{J,K',K} +
+   T^{(\text{RR},2)}_{J,K',K}\right)\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}T^{(\text{RR},0)}_{J,K',K} \equiv&amp; \delta_{K',K}\left[
+                                   \frac{\gamma_x+\gamma_y}{2}
+                                   \left(J(J+1) - K^2\right) +
+                                   \gamma_z K^2\right]\\
+T^{(\text{RR},-2)}_{J,K',K} \equiv&amp; \delta_{K',K-2}
+                                   \frac{\gamma_x-\gamma_y}{4}
+                                   C^-_{J,K}C^-_{J,K-1}\\
+T^{(\text{RR},2)}_{J,K',K} \equiv&amp; \delta_{K',K+2}
+                                   \frac{\gamma_x-\gamma_y}{4}
+                                   C^+_{J,K}C^+_{J,K+1}\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\gamma_x\)</span>, <span class="math notranslate nohighlight">\(\gamma_y\)</span>, and <span class="math notranslate nohighlight">\(\gamma_z\)</span> being the
+rotational constants of the molecule and
+<span class="math notranslate nohighlight">\(C^\pm_{J,K} =&amp; \sqrt{J(J+1) - K(K\pm1)}\)</span>.</p>
+</section>
+<section id="watson-matrix-elements">
+<h3>Watson Matrix Elements<a class="headerlink" href="#watson-matrix-elements" title="Link to this heading"></a></h3>
+<p>Main article: <a class="reference internal" href="watson.html#watson-hamiltonian"><span class="std std-ref">Watson Hamiltonian</span></a>.</p>
+</section>
+<section id="vibrational-coriolis-matrix-elements">
+<h3>Vibrational Coriolis Matrix Elements<a class="headerlink" href="#vibrational-coriolis-matrix-elements" title="Link to this heading"></a></h3>
+<p>Main article: <a class="reference internal" href="vibration_coriolis.html#vibration-coriolis"><span class="std std-ref">Vibrational-Coriolis Hamiltonian</span></a>.</p>
+</section>
+<section id="rovibrational-coupling-matrix-elements">
+<h3>Rovibrational Coupling Matrix Elements<a class="headerlink" href="#rovibrational-coupling-matrix-elements" title="Link to this heading"></a></h3>
+<p>Main article: <a class="reference internal" href="rovibrational_coupling.html#rovibrational-coupling"><span class="std std-ref">Rovibrational Coupling Hamiltonian</span></a>.</p>
 <p>TODO: Stuff below here needs a new home.</p>
 <p>The remaining Hamiltonians are easier to work with once
 <span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span> and <span class="math notranslate nohighlight">\(\pivec\)</span> are written explicitly in terms
@@ -284,6 +283,7 @@ so <span class="math notranslate nohighlight">\(\muvec^{(n)}\)</span> is symmetr
 <span class="math notranslate nohighlight">\(\zeta^\alpha_{i,i} = 0\)</span> and each <span class="math notranslate nohighlight">\(\piop_\alpha\)</span> is Hermitian.</p></li>
 </ul>
 </section>
+</section>
 <section id="matrix-elements">
 <h2>Matrix Elements<a class="headerlink" href="#matrix-elements" title="Link to this heading"></a></h2>
 <p>Let <span class="math notranslate nohighlight">\(\ket{v}\)</span> be an eigenfunction of <span class="math notranslate nohighlight">\(\HHO\)</span> with eigenvalue
@@ -295,13 +295,6 @@ and <span class="math notranslate nohighlight">\(\jop_z\)</span> with eigenvalue
 Hamiltonian is then given by the direct
 product of one <span class="math notranslate nohighlight">\(\ket{v}\)</span> per vibrational degree of freedom and
 <span class="math notranslate nohighlight">\(\ket{J,K}\)</span>, i.e., <span class="math notranslate nohighlight">\(\ket{\vvec,J,K}\)</span>.</p>
-<p>The molecule-fixed components of <span class="math notranslate nohighlight">\(\jvec\)</span> obey the anomalous commutation
-relation <span class="math notranslate nohighlight">\(\left[\jop_x, \jop_y\right] = -i\hbar \jop_z\)</span>. As a result
-<span class="math notranslate nohighlight">\(\jop_\pm = \jop_x \pm i\jop_y\)</span> lower and raise <span class="math notranslate nohighlight">\(K\)</span> respectively
-(the reverse of the space-fixed case):</p>
-<div class="math notranslate nohighlight">
-\[\jop_\pm\ket{J,K} = \hbar C^\mp_{J,K}\ket{J,K\mp1},\qquad
-C^\pm_{J,K} \equiv \sqrt{J(J+1) - K(K\pm1)}\]</div>
 <p><span class="math notranslate nohighlight">\(\HvibCor\)</span> and <span class="math notranslate nohighlight">\(\Hrovib\)</span> are sums of products of
 <span class="math notranslate nohighlight">\(\qop_k\)</span>, <span class="math notranslate nohighlight">\(\pop_k\)</span>, and <span class="math notranslate nohighlight">\(\jop_\alpha\)</span>, so their matrix
 elements follow from those of the individual operators.</p>
@@ -359,7 +352,7 @@ a single <span class="math notranslate nohighlight">\(J\)</span> block:</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Theoretical Background" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="harmonic_oscillator.html" class="btn btn-neutral float-right" title="Harmonic Oscillator Hamiltonian" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="coordinate_system.html" class="btn btn-neutral float-right" title="Coordinate System" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

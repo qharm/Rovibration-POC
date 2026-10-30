@@ -37,7 +37,9 @@ The following typesetting conventions are used:
    :maxdepth: 2
 
    problem_definition
-   harmonic_oscillator
+   coordinate_system
+   watson_mu
+   angular_wavefunction
    rigid_rotor
    vibration_coriolis
    watson

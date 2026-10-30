@@ -18,21 +18,25 @@
 Rigid Rotor Hamiltonian
 #######################
 
-The rigid rotor Hamiltonian is then defined as:
+
+The rigid rotor Hamiltonian is defined as:
 
 .. math::
 
    \HRR \equiv& \frac{1}{2}\jvec^T\muvec^{(0)}\jvec\\
-               =& \frac{1}{2}\sum_{\alpha,\beta=1}^{3}
-                  \jop_\alpha\muop^{(0)}_{\alpha,\beta}\jop_\beta\\
-               =& \frac{1}{2}\sum_{\alpha=1}^{3}
-                  \frac{\jop_\alpha^2}{I^0_{\alpha,\alpha}}
+             =& \frac{1}{2}\sum_{\alpha,\beta=1}^{3}
+                \jop_\alpha\muop^{(0)}_{\alpha,\beta}\jop_\beta\\
+             =& \frac{1}{2}\sum_{\alpha=1}^{3}
+                \frac{\jop_\alpha^2}{I^0_{\alpha,\alpha}}
 
-fixed frame. Using :math:`\gamma_x = \frac{\hbar^2}{2I^0_{xx}}`,
+where we used the equation for :math:`\muvec^{(0)}` from
+:ref:`watson_mu_tensor`. Defining the rotational constants
+:math:`\gamma_x = \frac{\hbar^2}{2I^0_{xx}}`,
 :math:`\gamma_y = \frac{\hbar^2}{2I^0_{yy}}`, and
-:math:`\gamma_z = \frac{\hbar^2}{2I^0_{zz}}`, we can rewrite:
+:math:`\gamma_z = \frac{\hbar^2}{2I^0_{zz}}`, we can rewrite |HRR| as:
 
 .. math::
+
    \HRR =&\frac{1}{\hbar^2}\left[\gamma_x \jop_x^2 + \gamma_y \jop_y^2 +
                                   \gamma_z \jop_z^2\right]\\
           =&\frac{1}{\hbar^2}\left[
@@ -44,21 +48,50 @@ fixed frame. Using :math:`\gamma_x = \frac{\hbar^2}{2I^0_{xx}}`,
             \frac{\gamma_x-\gamma_y}{4}\left(\jop_+^2 + \jop_-^2\right) +
             \gamma_z \jop_z^2\right]
 
-where we used the fact that :math:`\muvec^{(0)}` is diagonal in the molecule-
-
-|HRR| is not diagonal in this basis, because the rigid rotor
-eigenstates are linear combinations of the :math:`\ket{J,K}` states. The matrix
-elements of |HRR| in this basis are given by:
+where we have used the definitions of :math:`\jop^2` and :math:`\jop_\pm` from
+:ref:`angular_wavefunction`. Using the actions of these operators on
+:math:`\ket{J,K}`, also from :ref:`angular_wavefunction`, the matrix elements
+of the operators appearing in |HRR| are:
 
 .. math::
 
-    \braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =&
-       \delta_{\vvec',\vvec}\delta_{J',J}\left[
-       \left(\frac{\gamma_x+\gamma_y}{2}\left(J(J+1) - K^2\right) +
-             \gamma_z K^2\right)\delta_{K',K}\right.\\
-       &\left.+ \frac{\gamma_x-\gamma_y}{4}\left(
-          C^-_{J,K}C^-_{J,K-1}\,\delta_{K',K-2} +
-          C^+_{J,K}C^+_{J,K+1}\,\delta_{K',K+2}\right)\right]
+   \braket{J',K'\mid\frac{1}{\hbar^2}\left(\jop^2 - \jop_z^2\right)\mid J,K}
+      =& \delta_{J',J}\delta_{K',K}\left[J(J+1) - K^2\right]\\
+   \braket{J',K'\mid\frac{1}{\hbar^2}\jop_z^2\mid J,K}
+      =& \delta_{J',J}\delta_{K',K}K^2\\
+   \braket{J',K'\mid\frac{1}{\hbar^2}\jop_+^2\mid J,K}
+      =& \delta_{J',J}\delta_{K',K-2}C^-_{J,K}C^-_{J,K-1}\\
+   \braket{J',K'\mid\frac{1}{\hbar^2}\jop_-^2\mid J,K}
+      =& \delta_{J',J}\delta_{K',K+2}C^+_{J,K}C^+_{J,K+1}
 
-where the :math:`\hbar^2` from the two ladder operators cancels the
-:math:`1/\hbar^2` in |HRR|.
+All of these matrix elements are diagonal in :math:`J`, and couple
+:math:`\ket{J,K}` only to states with :math:`K'=K`, :math:`K'=K-2`, or
+:math:`K'=K+2`. Grouping the terms of |HRR| by these selection rules, we
+define three tensors:
+
+.. math::
+
+   T^{(\text{RR},0)}_{J,K',K} \equiv& \delta_{K',K}\left[
+                                      \frac{\gamma_x+\gamma_y}{2}
+                                      \left(J(J+1) - K^2\right) +
+                                      \gamma_z K^2\right]\\
+   T^{(\text{RR},-2)}_{J,K',K} \equiv& \delta_{K',K-2}
+                                      \frac{\gamma_x-\gamma_y}{4}
+                                      C^-_{J,K}C^-_{J,K-1}\\
+   T^{(\text{RR},2)}_{J,K',K} \equiv& \delta_{K',K+2}
+                                      \frac{\gamma_x-\gamma_y}{4}
+                                      C^+_{J,K}C^+_{J,K+1}
+
+where :math:`T^{(\text{RR},0)}` contains the :math:`\Delta K = 0` terms,
+:math:`T^{(\text{RR},-2)}` contains the :math:`\Delta K = -2` terms (from
+:math:`\jop_+^2`), and :math:`T^{(\text{RR},2)}` contains the
+:math:`\Delta K = +2` terms (from :math:`\jop_-^2`). Since |HRR| does not act
+on the vibrational degrees of freedom, the matrix elements of |HRR| are then:
+
+.. math::
+
+   \braket{\vvec',J',K'\mid \HRR\mid\vvec,J,K} =
+      \delta_{\vvec',\vvec}\delta_{J',J}\left(
+      T^{(\text{RR},0)}_{J,K',K} +
+      T^{(\text{RR},-2)}_{J,K',K} +
+      T^{(\text{RR},2)}_{J,K',K}\right)
