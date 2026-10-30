@@ -19,6 +19,8 @@ from .constants import HARTREE_TO_CM
 from .hamiltonian import Hamiltonian
 from .hamiltonian_matrix import build_hamiltonian_matrix
 from .harmonic_hamiltonian import HarmonicHamiltonian
+from .inertia import rotational_constants
+from .rigid_rotor_hamiltonian import RigidRotorHamiltonian
 from .rovibrational_ansatz import RovibrationalAnsatz
 from .water_params import harmonic_analysis
 
@@ -26,11 +28,13 @@ from .water_params import harmonic_analysis
 def rovibrational_energies(molecule, vmax, J=0):
     """Computes the rovibrational energies of a molecule.
 
-    The Hamiltonian is currently only the harmonic oscillator Hamiltonian
-    |HHO|, and the parameters are hard-coded for water. The eigenvectors are
-    expressed in ``RovibrationalAnsatz(molecule.nvib, vmax, J)``.
+    The Hamiltonian is currently the harmonic oscillator Hamiltonian |HHO|
+    plus the rigid rotor Hamiltonian |HRR|. The harmonic parameters are
+    hard-coded for water. The eigenvectors are expressed in
+    ``RovibrationalAnsatz(molecule.nvib, vmax, J)``.
 
-    :param molecule: The molecule, at its minimum energy geometry.
+    :param molecule: The molecule, at its minimum energy geometry, with its
+        center of mass at the origin.
     :type molecule: Molecule
     :param vmax: The maximum vibrational quantum number of each mode.
     :type vmax: int
@@ -45,8 +49,9 @@ def rovibrational_energies(molecule, vmax, J=0):
     _, frequencies = harmonic_analysis(molecule)
 
     H_harm = HarmonicHamiltonian(frequencies)
+    H_rr = RigidRotorHamiltonian(rotational_constants(molecule))
 
-    hamiltonian = Hamiltonian((H_harm, ))
+    hamiltonian = Hamiltonian((H_harm, H_rr))
     ansatz = RovibrationalAnsatz(molecule.nvib, vmax, J)
     matrix = build_hamiltonian_matrix(hamiltonian, ansatz)
     energies, eigenvectors = np.linalg.eigh(matrix)

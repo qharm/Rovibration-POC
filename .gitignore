@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+si/
+
 # These are directories used by IDEs for storing settings
 .idea/
 .vscode/

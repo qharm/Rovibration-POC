@@ -15,8 +15,6 @@
 
 import unittest
 
-import numpy as np
-
 from rovib import (
     RovibrationalAnsatz,
     dominant_basis_function,
@@ -41,7 +39,6 @@ TOL = 0.05
 
 
 class TestWaterHarmonic(unittest.TestCase):
-
     def test_table1_harmonic(self):
         water = water_molecule()
         energies, eigenvectors = rovibrational_energies(water, vmax=3, J=0)
@@ -57,14 +54,6 @@ class TestWaterHarmonic(unittest.TestCase):
         self.assertAlmostEqual(ground_state, GROUND_STATE, delta=TOL)
         for v, excitation in EXCITATIONS.items():
             with self.subTest(v=v):
-                self.assertAlmostEqual(levels[v] - ground_state,
-                                       excitation,
-                                       delta=TOL)
-
-    def test_rotational_degeneracy(self):
-        J = 2
-        energies, _ = rovibrational_energies(water_molecule(), vmax=2, J=J)
-        self.assertEqual(energies.size, 3**3 * (2 * J + 1))
-        multiplets = energies.reshape(-1, 2 * J + 1)
-        np.testing.assert_allclose(multiplets, multiplets[:, :1] * np.ones(
-            (1, 2 * J + 1)))
+                self.assertAlmostEqual(
+                    levels[v] - ground_state, excitation, delta=TOL
+                )

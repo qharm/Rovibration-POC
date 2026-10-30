@@ -27,15 +27,22 @@ from .harmonic_hamiltonian_elements import (
     harmonic_matrix_element,
     harmonic_non_zero_indices,
 )
+from .rigid_rotor_hamiltonian import RigidRotorHamiltonian
+from .rigid_rotor_hamiltonian_elements import (
+    rigid_rotor_matrix_element,
+    rigid_rotor_non_zero_indices,
+)
 
 #: Maps each type of Hamiltonian term to its non-zero index generator.
 _NON_ZERO_INDICES = {
     HarmonicHamiltonian: harmonic_non_zero_indices,
+    RigidRotorHamiltonian: rigid_rotor_non_zero_indices,
 }
 
 #: Maps each type of Hamiltonian term to its matrix element function.
 _MATRIX_ELEMENTS = {
     HarmonicHamiltonian: harmonic_matrix_element,
+    RigidRotorHamiltonian: rigid_rotor_matrix_element,
 }
 
 

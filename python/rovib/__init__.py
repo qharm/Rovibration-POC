@@ -27,7 +27,9 @@ from .hamiltonian_matrix import (
 )
 from .hamiltonian_term import HamiltonianTerm
 from .harmonic_hamiltonian import HarmonicHamiltonian
+from .inertia import inertia_tensor, rotational_constants
 from .molecule import Molecule
+from .rigid_rotor_hamiltonian import RigidRotorHamiltonian
 from .rovibrational_ansatz import RovibrationalAnsatz
 from .rovibrational_basis_function import RovibrationalBasisFunction
 from .water_params import harmonic_analysis, is_water, water_molecule
@@ -37,15 +39,18 @@ __all__ = [
     "HamiltonianTerm",
     "HarmonicHamiltonian",
     "Molecule",
+    "RigidRotorHamiltonian",
     "RovibrationalAnsatz",
     "RovibrationalBasisFunction",
     "build_hamiltonian_matrix",
     "dominant_basis_function",
     "harmonic_analysis",
     "hartree_to_wavenumber",
+    "inertia_tensor",
     "is_water",
     "matrix_element",
     "non_zero_indices",
+    "rotational_constants",
     "rovibrational_energies",
     "water_molecule",
 ]

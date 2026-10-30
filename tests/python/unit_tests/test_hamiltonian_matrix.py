@@ -20,6 +20,7 @@ from rovib import (
     Hamiltonian,
     HamiltonianTerm,
     HarmonicHamiltonian,
+    RigidRotorHamiltonian,
     RovibrationalAnsatz,
     RovibrationalBasisFunction,
     build_hamiltonian_matrix,
@@ -30,6 +31,10 @@ from rovib.harmonic_hamiltonian_elements import (
     harmonic_matrix_element,
     harmonic_non_zero_indices,
 )
+from rovib.rigid_rotor_hamiltonian_elements import (
+    rigid_rotor_matrix_element,
+    rigid_rotor_non_zero_indices,
+)
 
 
 class TestNonZeroIndices(unittest.TestCase):
@@ -39,6 +44,14 @@ class TestNonZeroIndices(unittest.TestCase):
         self.assertEqual(
             list(non_zero_indices(ansatz, term, ansatz)),
             list(harmonic_non_zero_indices(ansatz, term, ansatz)),
+        )
+
+    def test_rigid_rotor(self):
+        term = RigidRotorHamiltonian([1.0, 3.0, 2.0])
+        ansatz = RovibrationalAnsatz(3, 1, 2)
+        self.assertEqual(
+            list(non_zero_indices(ansatz, term, ansatz)),
+            list(rigid_rotor_non_zero_indices(ansatz, term, ansatz)),
         )
 
     def test_unknown_term(self):
@@ -56,6 +69,15 @@ class TestMatrixElement(unittest.TestCase):
         self.assertEqual(
             matrix_element(self.bf, term, self.bf),
             harmonic_matrix_element(self.bf, term, self.bf),
+        )
+
+    def test_rigid_rotor(self):
+        term = RigidRotorHamiltonian([1.0, 3.0, 2.0])
+        bra = RovibrationalBasisFunction((1, 0, 2), 2, 2)
+        ket = RovibrationalBasisFunction((1, 0, 2), 2, 0)
+        self.assertEqual(
+            matrix_element(bra, term, ket),
+            rigid_rotor_matrix_element(bra, term, ket),
         )
 
     def test_unknown_term(self):
@@ -82,6 +104,29 @@ class TestBuildHamiltonianMatrix(unittest.TestCase):
         ]
         np.testing.assert_array_equal(np.diag(matrix), expected)
         np.testing.assert_array_equal(matrix - np.diag(np.diag(matrix)), 0.0)
+
+    def test_rigid_rotor(self):
+        term = RigidRotorHamiltonian([1.0, 3.0, 2.0])
+        matrix = build_hamiltonian_matrix(Hamiltonian((term,)), self.ansatz)
+        np.testing.assert_array_equal(matrix, matrix.conj().T)
+
+        expected = np.zeros_like(matrix)
+        for bra, ket in rigid_rotor_non_zero_indices(
+            self.ansatz, term, self.ansatz
+        ):
+            b = self.ansatz.index(bra)
+            k = self.ansatz.index(ket)
+            expected[b, k] = rigid_rotor_matrix_element(bra, term, ket)
+        np.testing.assert_array_equal(matrix, expected)
+
+    def test_harmonic_plus_rigid_rotor(self):
+        rr = RigidRotorHamiltonian([1.0, 3.0, 2.0])
+        total = build_hamiltonian_matrix(self.term + rr, self.ansatz)
+        harmonic = build_hamiltonian_matrix(
+            Hamiltonian((self.term,)), self.ansatz
+        )
+        rigid_rotor = build_hamiltonian_matrix(Hamiltonian((rr,)), self.ansatz)
+        np.testing.assert_allclose(total, harmonic + rigid_rotor)
 
     def test_terms_are_summed(self):
         once = build_hamiltonian_matrix(Hamiltonian((self.term,)), self.ansatz)

@@ -18,8 +18,8 @@
 A proof-of-concept library that solves the rovibrational problem
 
 > **Note:** rovib is under active development. The Hamiltonian currently
-> contains only the harmonic oscillator term, and the molecular parameters
-> are hard-coded for water (see `rovib.water_params`).
+> contains only the harmonic oscillator and rigid rotor terms, and the
+> harmonic parameters are hard-coded for water (see `rovib.water_params`).
 
 ## Installation
 

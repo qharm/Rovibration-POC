@@ -22,10 +22,12 @@ from rovib import (
     RovibrationalBasisFunction,
     dominant_basis_function,
     hartree_to_wavenumber,
+    rotational_constants,
     rovibrational_energies,
     water_molecule,
 )
 from rovib.constants import HARTREE_TO_CM
+from rovib.water_params import water_harmonic_frequencies
 
 
 class TestRovibrationalEnergies(unittest.TestCase):
@@ -37,6 +39,18 @@ class TestRovibrationalEnergies(unittest.TestCase):
         self.assertEqual(energies.shape, (len(ansatz),))
         self.assertEqual(eigenvectors.shape, (len(ansatz), len(ansatz)))
         self.assertTrue(np.all(np.diff(energies) >= 0.0))
+
+    def test_rigid_rotor(self):
+        # With vmax = 0 the J = 1 levels are the zero-point energy plus the
+        # J = 1 rigid rotor levels, which are sums of two rotational
+        # constants.
+        water = water_molecule()
+        energies, _ = rovibrational_energies(water, vmax=0, J=1)
+        zero_point = 0.5 * water_harmonic_frequencies().sum()
+        x, y, z = rotational_constants(water)
+        np.testing.assert_allclose(
+            energies - zero_point, sorted([x + y, x + z, y + z])
+        )
 
     def test_not_water(self):
         water = water_molecule()
